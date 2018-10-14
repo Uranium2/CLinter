@@ -18,6 +18,16 @@ int isDelim(char c) {
 			isOpe(c));
 }
 
+int isDelimNoSpace(char c) {
+	if (c == ' ')
+		return 0;
+	return (c == ';' ||
+			c == '[' || c == ']' ||
+			c == '(' || c == ')' ||
+			c == '{' || c == '}' ||
+			isOpe(c));
+}
+
 // Get subString of str delimited by left and right
 char* getSubString(char* str, int left, int right) {
 	if (left > right)
@@ -38,6 +48,7 @@ char* getSubString(char* str, int left, int right) {
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
 void parse(char* str) {
+	printf("%s\n", str);
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
@@ -51,7 +62,11 @@ void parse(char* str) {
 			right++;
 			left = right;
 		} else if ((isDelim(str[right]) && left != right) || (right == len && left != right)) {
-			printf("%s \n", getSubString(str, left, right));
+			char* sub = getSubString(str, left, right);
+			int lastPos = strlen(sub) - 1;
+			if (isDelimNoSpace(sub[lastPos])) // remove delimiter in subString at last pos
+				sub[lastPos] = '\0';
+			printf("%s \n", sub);
 			left = right;
 		}
 	}
