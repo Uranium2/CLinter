@@ -1,6 +1,9 @@
 #binary
 linter
 
+#vim
+*.swp
+
 # Prerequisites
 *.d
 
