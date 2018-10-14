@@ -1,12 +1,13 @@
-#ifndef HEADERS
-#define HEADERS
+#ifndef FILES
+#define FILES
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include "tool.h"
-#include "parser.h"
-#include "files.h"
+
+char** getAllLines(char* path);
 
 #endif
