@@ -1,6 +1,6 @@
 #include "parser.h"
 
-
+// Tell if char is an operator
 int isOpe(char c) {
 	return (c == '=' || c == '+' ||
 			c == '-' || c == '*' ||
@@ -9,7 +9,7 @@ int isOpe(char c) {
 			c == '/');
 }
 
-
+// Tell if char is a delimiter + operator
 int isDelim(char c) {
 	return (c == ' ' || c == ';' ||
 			c == '[' || c == ']' ||
@@ -18,6 +18,7 @@ int isDelim(char c) {
 			isOpe(c));
 }
 
+// Tell if char is a delimiter expect space ' '
 int isDelimNoSpace(char c) {
 	if (c == ' ')
 		return 0;
