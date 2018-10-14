@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "tool.h"
 #include "parser.h"
 
 #endif
