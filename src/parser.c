@@ -1,7 +1,7 @@
 #include "parser.h"
 
 int isDelim(char c) {
-	return (c == ' ');
+	return (c == ' ' || c == ';');
 }
 
 
@@ -13,7 +13,7 @@ void parse(char* str) {
 	int right = 0;
 	int len = strlen(str);
 
-	while (right <= len && right >= left) { // stop when reach end of string or left cursor reaches right cursor
+	while (right <= len - 1 && right >= left) { // stop when reach end of string or left cursor reaches right cursor
 		printf("%c\n", str[right]);
 
 		if (!isDelim(str[right])) // extend right until end of "word"
@@ -26,4 +26,6 @@ void parse(char* str) {
 				left = right;
 		}
 	}
+	if (str[len - 1] == ';')
+		printf("END OF LINE\n");
 }
