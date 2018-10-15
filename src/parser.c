@@ -40,7 +40,7 @@ char* getSubString(char* str, int left, int right) {
 	for (; i < right + 1; i++) {
 		res[i - left] = str[i];
 	}
-	res[i] = '\0';
+	res[right - left + 1] = '\0';
 	return res;
 }
 

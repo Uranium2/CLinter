@@ -23,6 +23,7 @@ char** getAllLines(char* path, int* nbLines) {
 	int index = 0;
 	rewind(f); // reset pointer to start of file
 	while ((getline(&line, &len, f)) != -1) {
+		printf("READ: %s", line);
 		text[index] = line;
 		line = NULL;
 		index++;
