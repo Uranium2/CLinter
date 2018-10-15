@@ -1,5 +1,7 @@
 # CLinter
 Linter in C
+# To compile and run:
+make && ./linter
 
 # TODO:
 * Lire les options d'un fichier config
