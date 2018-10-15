@@ -35,7 +35,7 @@ int isDelim(char c) {
 			c == '[' || c == ']' ||
 			c == '(' || c == ')' ||
 			c == '{' || c == '}' ||
-			isOpe(c));
+			c == '\t' || isOpe(c));
 }
 
 // Tell if char is a delimiter expect space ' '
@@ -46,7 +46,7 @@ int isDelimNoSpace(char c) {
 			c == '[' || c == ']' ||
 			c == '(' || c == ')' ||
 			c == '{' || c == '}' ||
-			isOpe(c));
+			c == '\t' || isOpe(c));
 }
 
 // Tell if a string has variable format
@@ -84,8 +84,8 @@ int isKey(char* str) {
 
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
-void parse(char* str) {
-	printf("ORIGINAL LINE : %s\n", str);
+void parse(char* str, int nbLine) {
+	printf("ORIGINAL LINE : %s", str);
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
@@ -96,25 +96,25 @@ void parse(char* str) {
 			right++;
 		if (isDelim(str[right]) && left == right) {
 			if (isOpe(str[right]))
-				printf("'%c' IS AN OPERATOR\n", str[right]);
+				printf("'%c' is an " GRN "OPERATOR\n" RESET, str[right]);
 			else
-				printf("'%c' IS ?\n", str[right]);
+				printf("'%c' is a " GRN "DELIMITER\n" RESET, str[right]);
 			right++;
 			left = right;
 		} else if ((isDelim(str[right]) && left != right) || (right == len && left != right)) {
 			char* sub = getSubString(str, left, right);
 			int lastPos = strlen(sub) - 1;
-			//if (isDelimNoSpace(sub[lastPos])) // remove delimiter in subString at last pos
-			//	sub[lastPos] = '\0';
-			sub[lastPos] = '\0';
-			if (isKey(sub))
-				printf("%s IS A KEY WORD\n", sub);
+			sub[lastPos] = '\0'; // remove \n at each end of lines
+			if (sub[0] == '\0')
+				continue;
+			else if (isKey(sub))
+				printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
 			else if (isInt(sub))
-				printf("%s IS A INTEGER\n", sub);
+				printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
 			else if (isVar(sub))
-				printf("%s IS A VARIABLE\n", sub);
+				printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
 			else
-				printf("%s IS NOTHING YET\n", sub);
+				printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
 			left = right;
 		}
 	}
