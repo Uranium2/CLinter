@@ -98,17 +98,26 @@ void parse(char* str, int nbLine) {
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
+	AstNode** listNode = malloc(sizeof(AstNode) * len);
+	int countList = 0;
 
 	while (right <= len - 1 && right >= left) { // stop when reach end of string or left cursor reaches right cursor
-
-		if (!isDelim(str[right])) // extend right until end of "word"
+		char c = str[right];
+		char* cString = malloc(sizeof(char));
+		cString[0] = c;
+		if (!isDelim(c)) // extend right until end of "word"
 			right++;
-		if (isDelim(str[right]) && left == right) {
-			if (isOpe(str[right]))
-				printf("'%c' is an " GRN "OPERATOR\n" RESET, str[right]);
-			else
-				printf("'%c' is a " GRN "DELIMITER\n" RESET, str[right]);
+		if (isDelim(c) && left == right) {
+			if (isOpe(c)) {
+				listNode[countList] = createNode(0, cString);
+				printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
+			}
+			else {
+				listNode[countList] = createNode(2, cString);
+				printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
+			}
 			right++;
+			countList++;
 			left = right;
 		} else if ((isDelim(str[right]) && left != right) || (right == len && left != right)) {
 			char* sub = getSubString(str, left, right);
@@ -116,15 +125,24 @@ void parse(char* str, int nbLine) {
 			sub[lastPos] = '\0'; // remove \n at each end of lines
 			if (sub[0] == '\0')
 				continue;
-			else if (isKey(sub))
+			else if (isKey(sub)) {
+				listNode[countList] = createNode(1, sub);
 				printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
-			else if (isInt(sub))
+			}
+			else if (isInt(sub)) {
+				listNode[countList] = createNode(4, sub);
 				printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
-			else if (isVar(sub))
+			}
+			else if (isVar(sub)) {
+				listNode[countList] = createNode(3, sub);
 				printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
-			else
+			}
+			else {
+				listNode[countList] = createNode(5, sub);
 				printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
+			}
 			left = right;
+			countList++;
 		}
 	}
 	if (str[len - 1] == ';')
