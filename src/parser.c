@@ -94,7 +94,7 @@ int isKey(char* str) {
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
 void parse(char* str, int nbLine) {
-	printf("ORIGINAL LINE : %s", str);
+	//printf("ORIGINAL LINE : %s", str);
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
@@ -105,16 +105,17 @@ void parse(char* str, int nbLine) {
 		char c = str[right];
 		char* cString = malloc(sizeof(char));
 		cString[0] = c;
+		cString[1] = '\0';
 		if (!isDelim(c)) // extend right until end of "word"
 			right++;
 		if (isDelim(c) && left == right) {
 			if (isOpe(c)) {
 				listNode[countList] = createNode(0, cString);
-				printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
+				//printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
 			}
 			else {
 				listNode[countList] = createNode(2, cString);
-				printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
+				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
 			}
 			right++;
 			countList++;
@@ -127,24 +128,23 @@ void parse(char* str, int nbLine) {
 				continue;
 			else if (isKey(sub)) {
 				listNode[countList] = createNode(1, sub);
-				printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
+				//printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
 			}
 			else if (isInt(sub)) {
 				listNode[countList] = createNode(4, sub);
-				printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
+				//printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
 			}
 			else if (isVar(sub)) {
 				listNode[countList] = createNode(3, sub);
-				printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
+				//printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
 			}
 			else {
 				listNode[countList] = createNode(5, sub);
-				printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
+				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
 			}
 			left = right;
 			countList++;
 		}
 	}
-	if (str[len - 1] == ';')
-		printf("'%c' IS END OF LINE\n", str[len - 1]);
+	check(listNode, countList);
 }
