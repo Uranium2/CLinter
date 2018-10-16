@@ -78,7 +78,16 @@ char* getSubString(char* str, int left, int right) {
 
 // Tell if string is a C key word
 int isKey(char* str) {
-	return (!strcmp(str, "int") || !strcmp(str, "float"));
+	return (!strcmp(str, "int") || !strcmp(str, "float") ||
+			!strcmp(str, "double") || !strcmp(str, "char") ||
+			!strcmp(str, "if") || !strcmp(str, "else") ||
+			!strcmp(str, "while") || !strcmp(str, "do") ||
+			!strcmp(str, "for") || !strcmp(str, "unsigned") ||
+			!strcmp(str, "break") || !strcmp(str, "continue") ||
+			!strcmp(str, "switch") || !strcmp(str, "return") ||
+			!strcmp(str, "case") || !strcmp(str, "short") ||
+			!strcmp(str, "static") || !strcmp(str, "void") ||
+			!strcmp(str, "struct"));
 }
 
 
