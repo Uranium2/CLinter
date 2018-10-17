@@ -3,9 +3,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-#include "ast.h"
+#include "token.h"
 
-void check(AstNode** listNode, int nbNode);
+void check(Token** listToken, int nbToken);
 
 #endif

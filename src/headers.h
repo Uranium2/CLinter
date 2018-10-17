@@ -8,6 +8,6 @@
 #include "tool.h"
 #include "parser.h"
 #include "files.h"
-#include "ast.h"
+#include "token.h"
 
 #endif

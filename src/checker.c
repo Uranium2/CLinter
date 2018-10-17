@@ -1,20 +1,20 @@
 #include "checker.h"
 
-int isAssign(AstNode** listNode, int pos) {
-	int size = sizeof(listNode) / sizeof(listNode[0]);
-	if (!strcmp(listNode[pos + 4]->value, "="))
+int isAssign(Token** listToken, int pos) {
+	int size = sizeof(listToken) / sizeof(listToken[0]);
+	if (!strcmp(listToken[pos + 4]->value, "="))
 		return 1;
 	return 0;
 }
 
-void check(AstNode** ListNode, int nbNode) {
+void check(Token** listToken, int nbNode) {
 	for (int i = 0; i < nbNode; i++)
 	{
-		switch (ListNode[i]->type) {
+		switch (listToken[i]->type) {
 			case 0:		// Operator
 				break;
 			case 1:		// KeyWord
-				if (isAssign(ListNode, i))
+				if (isAssign(listToken, i))
 					printf("YES\n");
 				break;
 			case 2:		// Delimiter
@@ -27,7 +27,7 @@ void check(AstNode** ListNode, int nbNode) {
 				break;
 
 		}
-		printf("%s", ListNode[i]->value);
+		printf("%s", listToken[i]->value);
 	}	
 	printf("\n");
 }

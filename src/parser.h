@@ -8,7 +8,8 @@
 #include <regex.h>
 
 #include "tool.h"
-#include "ast.h"
+#include "token.h"
+#include "checker.h"
 
 
 // Color defines

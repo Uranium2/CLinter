@@ -1,10 +1,10 @@
-#ifndef AST
-#define AST
+#ifndef TOKEN
+#define TOKEN
 
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct AstNode_t {
+typedef struct Token_t {
 	int type; // 0 = Operator
 	// 1 = KeyWord
 	// 2 = Delimiter
@@ -12,13 +12,13 @@ typedef struct AstNode_t {
 	// 4 = Num
 	// 5 = ??
 	char* value;
-} AstNode;
+} Token;
 
 typedef struct Ast_t {
-	AstNode* base;
-	AstNode* left;
-	AstNode* right;
+	Token* base;
+	Token* left;
+	Token* right;
 } ast;
 
-AstNode* createNode(int type, char* value);
+Token* createToken(int type, char* value);
 #endif

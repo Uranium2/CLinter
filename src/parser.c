@@ -98,7 +98,7 @@ void parse(char* str, int nbLine) {
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
-	AstNode** listNode = malloc(sizeof(AstNode) * len);
+	Token** listToken = malloc(sizeof(Token) * len);
 	int countList = 0;
 
 	while (right <= len - 1 && right >= left) { // stop when reach end of string or left cursor reaches right cursor
@@ -110,11 +110,11 @@ void parse(char* str, int nbLine) {
 			right++;
 		if (isDelim(c) && left == right) {
 			if (isOpe(c)) {
-				listNode[countList] = createNode(0, cString);
+				listToken[countList] = createToken(0, cString);
 				//printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
 			}
 			else {
-				listNode[countList] = createNode(2, cString);
+				listToken[countList] = createToken(2, cString);
 				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
 			}
 			right++;
@@ -127,24 +127,24 @@ void parse(char* str, int nbLine) {
 			if (sub[0] == '\0')
 				continue;
 			else if (isKey(sub)) {
-				listNode[countList] = createNode(1, sub);
+				listToken[countList] = createToken(1, sub);
 				//printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
 			}
 			else if (isInt(sub)) {
-				listNode[countList] = createNode(4, sub);
+				listToken[countList] = createToken(4, sub);
 				//printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
 			}
 			else if (isVar(sub)) {
-				listNode[countList] = createNode(3, sub);
+				listToken[countList] = createToken(3, sub);
 				//printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
 			}
 			else {
-				listNode[countList] = createNode(5, sub);
+				listToken[countList] = createToken(5, sub);
 				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
 			}
 			left = right;
 			countList++;
 		}
 	}
-	check(listNode, countList);
+	check(listToken, countList);
 }
