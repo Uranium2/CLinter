@@ -9,6 +9,7 @@ make && ./linter
 * Ouvrir un fichier code (\*.c). Le charger dans un char**	:+1:
 * Lire ligne par ligne	:+1:
 * Delimiter les tokens (Mot clés, délimiteurs, opérateurs, noms variables, espaces, reste?)	:+1: :-1:
+	* Dans parser.c, un momement on s'arrête sur un char. Il faudrait arriver à lire une string pour les opérateurs à 2 charactères
 * Stocker la string dans dans un token (struct Token)
 * Charger les tokens dans un AST (https://en.wikipedia.org/wiki/Abstract_syntax_tree)
 * Faire une "grammaire". Apres tel type de neuds de l'AST on doit trouver tel type de noeuds:
