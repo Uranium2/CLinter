@@ -110,11 +110,11 @@ void parse(char* str, int nbLine) {
 			right++;
 		if (isDelim(c) && left == right) {
 			if (isOpe(c)) {
-				listToken[countList] = createToken(0, cString);
+				listToken[countList] = createToken(Operator, cString);
 				//printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
 			}
 			else {
-				listToken[countList] = createToken(2, cString);
+				listToken[countList] = createToken(Delimiter, cString);
 				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
 			}
 			right++;
@@ -127,19 +127,19 @@ void parse(char* str, int nbLine) {
 			if (sub[0] == '\0')
 				continue;
 			else if (isKey(sub)) {
-				listToken[countList] = createToken(1, sub);
+				listToken[countList] = createToken(KeyWord, sub);
 				//printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
 			}
 			else if (isInt(sub)) {
-				listToken[countList] = createToken(4, sub);
+				listToken[countList] = createToken(Numerical, sub);
 				//printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
 			}
 			else if (isVar(sub)) {
-				listToken[countList] = createToken(3, sub);
+				listToken[countList] = createToken(Variable, sub);
 				//printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
 			}
 			else {
-				listToken[countList] = createToken(5, sub);
+				listToken[countList] = createToken(Nothing, sub);
 				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
 			}
 			left = right;

@@ -4,13 +4,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef enum Type_e {
+	Operator,
+	KeyWord,
+	Delimiter,
+	Variable,
+	Numerical,
+	Nothing
+} Type;
+
 typedef struct Token_t {
-	int type; // 0 = Operator
-	// 1 = KeyWord
-	// 2 = Delimiter
-	// 3 = Variable
-	// 4 = Num
-	// 5 = ??
+	Type type;
 	char* value;
 } Token;
 
@@ -20,5 +24,5 @@ typedef struct Ast_t {
 	Token* right;
 } ast;
 
-Token* createToken(int type, char* value);
+Token* createToken(Type type, char* value);
 #endif
