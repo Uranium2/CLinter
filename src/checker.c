@@ -15,7 +15,7 @@ void check(Token** listToken, int nbNode) {
 				break;
 			case 1:		// KeyWord
 				if (isAssign(listToken, i))
-					printf("YES\n");
+					//printf("YES\n");
 				break;
 			case 2:		// Delimiter
 				break;
@@ -27,7 +27,7 @@ void check(Token** listToken, int nbNode) {
 				break;
 
 		}
-		printf("%s", listToken[i]->value);
+		printf("%s|", listToken[i]->value);
 	}	
 	printf("\n");
 }

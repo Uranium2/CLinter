@@ -1,18 +1,15 @@
 #include "parser.h"
 
-// Tell if a string is an Integer
-int isInt(char* str) {
+// Tell if a string is an Number
+int isNum(char* str) {
 	if (str == NULL)
-		exit_m("isInt: str == NULL");
+		exit_m("isNum: str == NULL");
 	int len = strlen(str);
 	if (len <= 0)
 		return 0;
 	for (int i = 0; i < (int)strlen(str); i++) {
-		if (str[i] == '0' || str[i] == '1' ||
-				str[i] == '2' || str[i] == '3' ||
-				str[i] == '4' || str[i] == '5' ||
-				str[i] == '6' || str[i] == '7' ||
-				str[i] == '8' || str[i] == '9')  {
+		if (isdigit(str[i]) || str[i] == '.' ||
+		str[i] == 'e' || str[i] == 'E')  {
 		}
 		else
 			return 0;
@@ -31,11 +28,11 @@ int isOpe(char c) {
 
 // Tell if char is a delimiter + operator
 int isDelim(char c) {
-	return (c == ' ' || c == ';' ||
+	return (isspace(c) || c == ';' ||
 			c == '[' || c == ']' ||
 			c == '(' || c == ')' ||
-			c == '{' || c == '}' ||
-			c == '\t' || isOpe(c));
+			c == '{' || c == '}'||
+			c == ',' || isOpe(c));
 }
 
 // Tell if char is a delimiter expect space ' '
@@ -130,7 +127,7 @@ void parse(char* str, int nbLine) {
 				listToken[countList] = createToken(KeyWord, sub);
 				//printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
 			}
-			else if (isInt(sub)) {
+			else if (isNum(sub)) {
 				listToken[countList] = createToken(Numerical, sub);
 				//printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
 			}

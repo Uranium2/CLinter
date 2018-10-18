@@ -27,7 +27,24 @@
 // int line : line in file
 void parse(char* str, int line);
 
-// Tell if a string is an Integer
-int isInt(char* str);
+// Tell if a string is an Number
+int isNum(char* str);
 
+// Tell if char is an operator
+int isOpe(char c);
+
+// Tell if char is a delimiter + operator
+int isDelim(char c);
+
+// Tell if char is a delimiter expect space ' '
+int isDelimNoSpace(char c);
+
+// Tell if a string has variable format
+int isVar(char* str);
+
+// Get subString of str delimited by left and right
+char* getSubString(char* str, int left, int right);
+
+// Tell if string is a C key word
+int isKey(char* str);
 #endif
