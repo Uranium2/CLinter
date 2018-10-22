@@ -9,7 +9,9 @@ int isNum(char* str) {
 		return 0;
 	char* end;
 	double num = strtod(str, &end);
-	if (end == NULL)
+	if (end == str)
+		return 0;
+	if (strlen(end) > 0)
 		return 0;
 	return 1;
 }
@@ -105,7 +107,7 @@ void parse(char* str, int nbLine) {
 		if (isDelim(c) && left == right) {
 			if (isOpe(c)) {
 				listToken[countList] = createToken(Operator, cString);
-				//printf("'%c' is an " GRN "OPERATOR\n" RESET, c);
+				//printf("'%c' is an " MAG "OPERATOR\n" RESET, c);
 			}
 			else {
 				listToken[countList] = createToken(Delimiter, cString);
@@ -115,6 +117,11 @@ void parse(char* str, int nbLine) {
 			countList++;
 			left = right;
 		} else if ((isDelim(c) && left != right) || (right == len && left != right)) {
+			if (isDelim(c) && (str[right - 1] == 'e' || str[right - 1] == 'E' ))
+			{
+				right++;
+				continue;
+			}
 			char* sub = getSubString(str, left, right);
 			int lastPos = strlen(sub) - 1;
 			sub[lastPos] = '\0'; // remove \n at each end of lines
@@ -122,15 +129,15 @@ void parse(char* str, int nbLine) {
 				continue;
 			else if (isKey(sub)) {
 				listToken[countList] = createToken(KeyWord, sub);
-				//printf("'%s' is a " GRN "KEY WORD\n" RESET, sub);
+				//printf("'%s' is a " YEL "KEY WORD\n" RESET, sub);
 			}
 			else if (isNum(sub)) {
 				listToken[countList] = createToken(Numerical, sub);
-				//printf("'%s' is an " GRN "INTEGER\n" RESET, sub);
+				//printf("'%s' is an " BLU "NUMBER\n" RESET, sub);
 			}
 			else if (isVar(sub)) {
 				listToken[countList] = createToken(Variable, sub);
-				//printf("'%s' is a " GRN "VARIABLE\n" RESET, sub);
+				//printf("'%s' is a " CYN "VARIABLE\n" RESET, sub);
 			}
 			else {
 				listToken[countList] = createToken(Nothing, sub);
