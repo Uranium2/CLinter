@@ -8,7 +8,7 @@ int isNum(char* str) {
 	if (len <= 0)
 		return 0;
 	char* end;
-	double num = strtod(str, &end);
+	strtod(str, &end);
 	if (end == str)
 		return 0;
 	if (strlen(end) > 0)
@@ -31,7 +31,8 @@ int isDelim(char c) {
 			c == '[' || c == ']' ||
 			c == '(' || c == ')' ||
 			c == '{' || c == '}'||
-			c == ',' || isOpe(c));
+			c == ',' || c == '"' ||
+			c == '\'' || isOpe(c));
 }
 
 // Tell if char is a delimiter expect space ' '
@@ -42,7 +43,8 @@ int isDelimNoSpace(char c) {
 			c == '[' || c == ']' ||
 			c == '(' || c == ')' ||
 			c == '{' || c == '}' ||
-			c == '\t' || isOpe(c));
+			c == '\t' || c == '"' ||
+			c == '\'' || isOpe(c));
 }
 
 // Tell if a string has variable format
@@ -101,14 +103,29 @@ void parse(char* str, int nbLine) {
 	int countList = 0;
 
 	while (right <= len - 1 && right >= left) { // stop when reach end of string or left cursor reaches right cursor
-		char c = str[right];
 		char* cString = malloc(sizeof(char));
-		cString[0] = c;
+		cString[0] = str[right];
 		cString[1] = '\0';
-		if (!isDelim(c)) // extend right until end of "word"
+		if (!isDelim(str[right])) // extend right until end of "word"
 			right++;
-		if (isDelim(c) && left == right) {
-			if (isOpe(c)) {
+		if (str[right] == '\"') {
+			right++;
+			while (1) {
+				if (str[right] != '\"')
+					right++;
+				else if (str[right] == '\"' && str[right - 1] == '\\')
+						right++;
+					else if (str[right] == '\"') {
+						right++;
+						break;
+					} else
+						break;
+				//printf("%c\n", str[right]);
+				
+			}
+		}
+		if (isDelim(str[right]) && left == right) {
+			if (isOpe(str[right])) {
 				listToken[countList] = createToken(Operator, cString);
 				//printf("'%c' is an " MAG "OPERATOR\n" RESET, c);
 			}
@@ -119,8 +136,8 @@ void parse(char* str, int nbLine) {
 			right++;
 			countList++;
 			left = right;
-		} else if ((isDelim(c) && left != right) || (right == len && left != right)) {
-			if (canBeExpe(c, str, right)) // is exponential ?
+		} else if ((isDelim(str[right]) && left != right) || (right == len && left != right)) {
+			if (canBeExpe(str[right], str, right)) // is exponential ?
 			{
 				right++;
 				continue;

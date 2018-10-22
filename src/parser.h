@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <regex.h>
+#include <ctype.h>
 
 #include "tool.h"
 #include "token.h"
