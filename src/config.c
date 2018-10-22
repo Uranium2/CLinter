@@ -25,6 +25,30 @@ char *getExtends(char **file, int nbLines)
     return "";
 }
 
+char **getFilesName(char **file, int nbLines, int* NbFiles)
+{
+    int countFiles = 0;
+    char **fileNames = malloc(sizeof(char*) * 20); // MAX 20 FILES. BAD IDEA
+    for(int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "excludedFiles") != NULL) {
+            i++;
+            char *p = NULL;
+            while(file[i][0] == '-') {
+                p = strrchr(file[i], ' ');
+                if (p && *(p + 1)) {
+                    fileNames[countFiles] = p + 1;
+                    countFiles++;
+                }
+                i++;
+            }
+            break;
+        }
+    }
+    *NbFiles = countFiles;
+    return fileNames;
+}
+
 int getVal(char **file, char *rule, int nbLines)
 {
     
@@ -71,8 +95,7 @@ Config *loadConfig(char *path)
     conf->undeclaredFunction = getVal(configText, "undeclared-function", nbLines);
     conf->variableAssignmentType = getVal(configText, "variable-assignment-type", nbLines);
     conf->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
-    conf->excludedFiles = NULL;
-    conf->nbExcludedFiles = 0;
+    conf->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
     conf->recursive = 0;
     return conf;
 }
