@@ -103,7 +103,8 @@ int canBeExpe(char c, char *str, int right)
 
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
-void parse(char *str, int nbLine)
+// int nbNodes : nbNodes in str
+Token **parse(char *str, int* nbNodes)
 {
 	//printf("ORIGINAL LINE : %s", str);
 	int left = 0;
@@ -190,5 +191,6 @@ void parse(char *str, int nbLine)
 			countList++;
 		}
 	}
-	check(listToken, countList);
+	*nbNodes = countList;
+	return listToken;
 }

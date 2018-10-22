@@ -23,8 +23,8 @@
 
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
-// int line : line in file
-void parse(char *str, int line);
+// int nbNodes : nbNodes in str
+Token **parse(char *str, int* nbNodes);
 
 // Tell if a string is an Number
 int isNum(char *str);
