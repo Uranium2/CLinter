@@ -9,5 +9,6 @@
 #include "parser.h"
 #include "files.h"
 #include "token.h"
+#include "config.h"
 
 #endif

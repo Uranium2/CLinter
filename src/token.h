@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef enum Type_e {
+typedef enum Type_e
+{
 	Operator,
 	KeyWord,
 	Delimiter,
@@ -13,16 +14,18 @@ typedef enum Type_e {
 	Nothing
 } Type;
 
-typedef struct Token_t {
+typedef struct Token_t
+{
 	Type type;
-	char* value;
+	char *value;
 } Token;
 
-typedef struct Ast_t {
-	Token* base;
-	Token* left;
-	Token* right;
+typedef struct Ast_t
+{
+	Token *base;
+	Token *left;
+	Token *right;
 } ast;
 
-Token* createToken(Type type, char* value);
+Token *createToken(Type type, char *value);
 #endif

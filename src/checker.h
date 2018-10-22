@@ -7,6 +7,6 @@
 
 #include "token.h"
 
-void check(Token** listToken, int nbToken);
+void check(Token **listToken, int nbToken);
 
 #endif

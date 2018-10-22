@@ -8,6 +8,6 @@
 
 #include "tool.h"
 
-char** getAllLines(char* path, int* nbLines);
+char **getAllLines(char *path, int *nbLines);
 
 #endif
