@@ -4,6 +4,7 @@ Linter in C
 make
 # To run one file
 ./linter [path/to/c/file]
+
 ./linter [path/to/c/file] [path/to/config/file]
 
 # To run tests
