@@ -1,7 +1,7 @@
 #include "checker.h"
 
 int isAssign(Token** listToken, int pos) {
-	int size = sizeof(listToken) / sizeof(listToken[0]);
+	//int size = sizeof(listToken) / sizeof(listToken[0]);
 	if (!strcmp(listToken[pos + 4]->value, "="))
 		return 1;
 	return 0;

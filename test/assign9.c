@@ -1,0 +1,1 @@
+double f = r*zrez242D%ZEA4RQE%QDµ13Rfeds;

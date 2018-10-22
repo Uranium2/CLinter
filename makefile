@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-W -Wall -std=c99 -pedantic
 LDFLAGS=
 EXEC=linter
-SRC=$(wildcard */*.c)
+SRC=$(wildcard src/*.c)
 
 all:
 	$(CC) -o $(EXEC) $(SRC) $(CFLAGS)
