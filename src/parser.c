@@ -7,13 +7,10 @@ int isNum(char* str) {
 	int len = strlen(str);
 	if (len <= 0)
 		return 0;
-	for (int i = 0; i < (int)strlen(str); i++) {
-		if (isdigit(str[i]) || str[i] == '.' ||
-		str[i] == 'e' || str[i] == 'E')  {
-		}
-		else
-			return 0;
-	}
+	char* end;
+	double num = strtod(str, &end);
+	if (end == NULL)
+		return 0;
 	return 1;
 }
 
@@ -117,7 +114,7 @@ void parse(char* str, int nbLine) {
 			right++;
 			countList++;
 			left = right;
-		} else if ((isDelim(str[right]) && left != right) || (right == len && left != right)) {
+		} else if ((isDelim(c) && left != right) || (right == len && left != right)) {
 			char* sub = getSubString(str, left, right);
 			int lastPos = strlen(sub) - 1;
 			sub[lastPos] = '\0'; // remove \n at each end of lines
