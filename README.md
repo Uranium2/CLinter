@@ -3,7 +3,8 @@ Linter in C
 # To compile
 make
 # To run one file
-./linter [path/to/file]
+./linter [path/to/c/file]
+./linter [path/to/c/file] [path/to/config/file]
 
 # To run tests
 ./test.sh
