@@ -86,6 +86,9 @@ int isKey(char* str) {
 			!strcmp(str, "struct"));
 }
 
+int canBeExpe(char c, char* str, int right) {
+	return isDelim(c) && (str[right - 1] == 'e' || str[right - 1] == 'E' ) && isdigit(str[right - 2]) && isdigit(str[right + 1]);
+}
 
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
@@ -117,7 +120,7 @@ void parse(char* str, int nbLine) {
 			countList++;
 			left = right;
 		} else if ((isDelim(c) && left != right) || (right == len && left != right)) {
-			if (isDelim(c) && (str[right - 1] == 'e' || str[right - 1] == 'E' ))
+			if (canBeExpe(c, str, right)) // is exponential ?
 			{
 				right++;
 				continue;
