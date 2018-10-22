@@ -11,6 +11,20 @@ int isValidConfFile(char *filename)
     return 0;
 }
 
+char *getExtends(char **file, int nbLines)
+{
+    
+    for(int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "extends") != NULL) {
+            char* res = malloc(sizeof(char) * strlen(file[i + 1]));
+            res = file[i + 1];
+            return res;
+        }
+    }
+    return "";
+}
+
 int getVal(char **file, char *rule, int nbLines)
 {
     
@@ -40,7 +54,7 @@ Config *loadConfig(char *path)
         configText = getAllLines(path, &nbLines);
 
     Config *conf = malloc(sizeof(Config));
-    conf->extends = 0;
+    conf->extends = getExtends(configText, nbLines);
     conf->arrayBracketEol = getVal(configText, "array-bracket-eol", nbLines);
     conf->operatorsSpacing = getVal(configText, "operators-spacing", nbLines);
     conf->commaSpacing = getVal(configText, "comma-spacing", nbLines);
