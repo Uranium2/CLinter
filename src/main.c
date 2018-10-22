@@ -2,11 +2,14 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 3)
+	if (argc < 2 || argc > 4)
 		exit_m("main.c: ARGUMENTS COUNT");
 
 	// Load Config file
-	Config *conf = loadConfig(argv[2]);
+	char *path = "";
+	if ( argc == 3)
+		path = argv[2];
+	Config *conf = loadConfig(path);
 
 	// Run parsing
 	int nbLines = 0;

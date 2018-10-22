@@ -1,0 +1,11 @@
+=extends
+main.lconf
+
+=rules
+- array-bracket-eol = on
+
+=excludedFiles
+- hello.c
+
+=recursive
+false

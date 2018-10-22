@@ -9,8 +9,26 @@
 
 typedef struct Config_t
 {
-    short EFO_Space;
-    char **exclusion;
+    char *extends;
+    short arrayBracketEol;
+    short operatorsSpacing;
+    short commaSpacing;
+    short indent; // nb space of indend
+    short commentsHeader;
+    short maxLineNumbers; // nb Max char per line
+    short maxFileLineNumbers; // nb Max line per file
+    short noTrallingSpaces;
+    short NoMultiDeclaration;
+    short unusedVariable;
+    short undeclaredVariable;
+    short noPrototype;
+    short unusedFunction;
+    short undeclaredFunction;
+    short variableAssignmentType;
+    short functionParametersType;
+    char **excludedFiles;
+    int nbExcludedFiles;
+    short recursive;
 } Config;
 
 // Reads a file and loads the configuration
