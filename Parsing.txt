@@ -1,4 +1,27 @@
-Sentence	-> statement
+StartPoint	-> VarDeclare
+
+VarDeclare	-> var ;
+		|  var = Exp ;
+		
+Exp		-> var
+		-> val Ope Exp
+		
+void nextTok(int* pos) {
+	*pos = *pos + 1;
+}		
+		
+void VarDeclare(Token* tok, int* pos) {
+	if ()
+}
+
+
+void VarDeclare(Token* tok) {
+	int pos = 0;
+	VarDeclare(token, &pos);
+}
+
+-------------------------------------------------------------------------
+StartPoint	-> statement
 
 statement	-> IF ( expresison ) { statement }
 		|  IF ( expresison ) { statement } ELSE { statement }
