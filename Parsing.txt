@@ -8,11 +8,9 @@ Exp		-> num
 		|  var
 		|  var Ope Exp
 		|  listExp
-		;
 
 listExp	-> ( Exp )
 		|  listExp ( Exp )
-		;
 		
 -------------------------------------------------------------------------
 StartPoint	-> statement
