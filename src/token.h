@@ -27,5 +27,7 @@ typedef struct Ast_t
 	Token *right;
 } ast;
 
+char* getEnumName(Type type);
+
 Token *createToken(Type type, char *value);
 #endif

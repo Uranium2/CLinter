@@ -1,1 +1,1 @@
-long long int a = 10 + 34;
+int a ;

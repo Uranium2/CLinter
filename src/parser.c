@@ -24,7 +24,8 @@ int isOpe(char c)
 			c == '-' || c == '*' ||
 			c == '^' || c == '%' ||
 			c == '>' || c == '<' ||
-			c == '/');
+			c == '/' || c == '!' ||
+			c == '&');
 }
 
 // Tell if char is a delimiter + operator
@@ -35,7 +36,8 @@ int isDelim(char c)
 			c == '(' || c == ')' ||
 			c == '{' || c == '}' ||
 			c == ',' || c == '"' ||
-			c == '\'' || isOpe(c));
+			c == '\''|| c == '@' ||
+			isOpe(c));
 }
 
 // Tell if char is a delimiter expect space ' '
