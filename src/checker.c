@@ -10,6 +10,11 @@ Exp		-> num ;
 		-> var ;
 		-> var Ope Exp
 */
+void printErr(char *expected, char *found)
+{
+	printf("Expected %s. Found %s at line X char Y\n", expected, found);
+}
+
 int match(Token *tok, Type type, char *val)
 {
 	if (type == tok->type)
@@ -37,7 +42,7 @@ void eatToken(Token **tokens, Type type, int *pos, int nbNode)
 {
 	printf("Eating token %s\n", tokens[*pos]->value);
 	if (tokens[*pos]->type != type)
-		printf("Expected %s. Found %s\n", getEnumName(type), getEnumName(tokens[*pos]->type));
+		printErr(getEnumName(type), getEnumName(tokens[*pos]->type));
 	nextTok(pos, nbNode, tokens);
 }
 
@@ -58,7 +63,7 @@ void expression(Token **tokens, int *pos, int nbNode)
 			return;
 		}
 		else
-			printf("Expected Operator. Found %s\n", getEnumName(tokens[*pos]->type));
+			printErr("Operator", getEnumName(tokens[*pos]->type));
 	}
 	else if (match(tokens[*pos], Variable, NULL))
 	{
@@ -75,22 +80,16 @@ void expression(Token **tokens, int *pos, int nbNode)
 		}
 	}
 	else
-	{
-		printf("Expected Variable or Numerical. Found %s\n", getEnumName(tokens[*pos]->type));
-	}
+		printErr("Variable or Numerical", getEnumName(tokens[*pos]->type));
 }
 
 void keyword(Token **tokens, int *pos, int nbNode, char *val)
 {
 	if (!match(tokens[*pos], KeyWord, NULL))
-	{
-		printf("Expected Keyword. Found %s\n", getEnumName(tokens[*pos]->type));
-	}
+		printErr("Keyword", getEnumName(tokens[*pos]->type));
 	if (val != NULL)
-	{
 		if (strcmp(val, tokens[*pos]->value) != 0)
-			printf("Expected %s. Found %s\n", val, tokens[*pos]->value);
-	}
+			printErr(val, tokens[*pos]->value);
 	nextTok(pos, nbNode, tokens);
 }
 
@@ -101,9 +100,7 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
 	{
 		eatToken(tokens, Variable, pos, nbNode);
 		if (match(tokens[*pos], Delimiter, ";"))
-		{
 			printf("END OF FILE\n");
-		}
 		else
 		{
 			if (match(tokens[*pos], Operator, "="))
@@ -112,20 +109,18 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
 				expression(tokens, pos, nbNode);
 			}
 			else
-				printf("Expected '='. Found %s\n", tokens[*pos]->value);
+				printErr("=", tokens[*pos]->value);
 		}
 	}
 	else
-		printf("Expected Varaible. Found %s\n", getEnumName(tokens[*pos]->type));
+		printErr("Variable", getEnumName(tokens[*pos]->type));
 }
 
 void check(Token **tokens, int nbNode)
 {
 
 	for (int i = 0; i < nbNode; i++)
-	{
 		printf("%s", tokens[i]->value);
-	}
 	printf("\n");
 	int pos = 0;
 	varDeclare(tokens, &pos, nbNode);
