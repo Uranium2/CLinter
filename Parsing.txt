@@ -3,23 +3,10 @@ StartPoint	-> VarDeclare
 VarDeclare	-> var ;
 		|  var = Exp ;
 		
-Exp		-> var
-		-> val Ope Exp
-		
-void nextTok(int* pos) {
-	*pos = *pos + 1;
-}		
-		
-void VarDeclare(Token* tok, int* pos) {
-	if ()
-}
-
-
-void VarDeclare(Token* tok) {
-	int pos = 0;
-	VarDeclare(token, &pos);
-}
-
+Exp		-> num ;
+		-> num Ope Exp
+		-> var ;
+		-> var Ope Exp
 -------------------------------------------------------------------------
 StartPoint	-> statement
 
