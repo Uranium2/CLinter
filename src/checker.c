@@ -1,13 +1,4 @@
 #include "checker.h"
-
-int isAssign(Token **listToken, int pos)
-{
-	//int size = sizeof(listToken) / sizeof(listToken[0]);
-	if (!strcmp(listToken[pos + 4]->value, "="))
-		return 1;
-	return 0;
-}
-
 /*
 StartPoint	-> VarDeclare
 
@@ -19,19 +10,6 @@ Exp		-> num ;
 		-> var ;
 		-> var Ope Exp
 */
-void nextTok(int *pos, int nbNode, Token **tokens)
-{
-	if (*pos == nbNode - 1)
-	{
-		printf("END OF FILE\n");
-		return;
-	}
-	printf("At token: %s type %s pos %d\n", tokens[*pos]->value, getEnumName(tokens[*pos]->type), *pos);
-	*pos = *pos + 1;
-	while (strcmp(tokens[*pos]->value, " ") == 0)
-		*pos = *pos + 1;
-}
-
 int match(Token *tok, Type type, char *val)
 {
 	if (type == tok->type)
@@ -43,31 +21,23 @@ int match(Token *tok, Type type, char *val)
 	return 0;
 }
 
-void var(Token **tokens, int *pos, int nbNode)
+void nextTok(int *pos, int nbNode, Token **tokens)
 {
-	if (tokens[*pos]->type != Variable)
-		printf("Expected Variable. Found %s\n", getEnumName(tokens[*pos]->type));
-	nextTok(pos, nbNode, tokens);
+	if (*pos == nbNode - 1)
+	{
+		printf("END OF FILE\n");
+		return;
+	}
+	*pos = *pos + 1;
+	while (match(tokens[*pos], Delimiter, " "))
+		*pos = *pos + 1;
 }
 
-void numerical(Token **tokens, int *pos, int nbNode)
+void eatToken(Token **tokens, Type type, int *pos, int nbNode)
 {
-	if (tokens[*pos]->type != Numerical)
-		printf("Expected Numerical. Found %s\n", getEnumName(tokens[*pos]->type));
-	nextTok(pos, nbNode, tokens);
-}
-
-void operator(Token **tokens, int *pos, int nbNode)
-{
-	if (tokens[*pos]->type != Operator)
-		printf("Expected Operator. Found %s\n", getEnumName(tokens[*pos]->type));
-	nextTok(pos, nbNode, tokens);
-}
-
-void delimiter(Token **tokens, int *pos, int nbNode)
-{
-	if (tokens[*pos]->type != Delimiter)
-		printf("Expected Delimiter. Found %s\n", getEnumName(tokens[*pos]->type));
+	printf("Eating token %s\n", tokens[*pos]->value);
+	if (tokens[*pos]->type != type)
+		printf("Expected %s. Found %s\n", getEnumName(type), getEnumName(tokens[*pos]->type));
 	nextTok(pos, nbNode, tokens);
 }
 
@@ -75,7 +45,7 @@ void expression(Token **tokens, int *pos, int nbNode)
 {
 	if (match(tokens[*pos], Numerical, NULL))
 	{
-		numerical(tokens, pos, nbNode);
+		eatToken(tokens, Numerical, pos, nbNode);
 		if (match(tokens[*pos], Delimiter, ";"))
 		{
 			printf("END OF FILE\n");
@@ -83,7 +53,7 @@ void expression(Token **tokens, int *pos, int nbNode)
 		}
 		else if (match(tokens[*pos], Operator, NULL))
 		{
-			operator(tokens, pos, nbNode);
+			eatToken(tokens, Operator, pos, nbNode);
 			expression(tokens, pos, nbNode);
 			return;
 		}
@@ -92,10 +62,10 @@ void expression(Token **tokens, int *pos, int nbNode)
 	}
 	else if (match(tokens[*pos], Variable, NULL))
 	{
-		var(tokens, pos, nbNode);
+		eatToken(tokens, Variable, pos, nbNode);
 		if (match(tokens[*pos], Operator, NULL))
 		{
-			operator(tokens, pos, nbNode);
+			eatToken(tokens, Operator, pos, nbNode);
 			expression(tokens, pos, nbNode);
 		}
 		else if (match(tokens[*pos], Delimiter, ";"))
@@ -108,15 +78,6 @@ void expression(Token **tokens, int *pos, int nbNode)
 	{
 		printf("Expected Variable or Numerical. Found %s\n", getEnumName(tokens[*pos]->type));
 	}
-}
-
-void equal(Token **tokens, int *pos, int nbNode)
-{
-	if (tokens[*pos]->type != Operator)
-	{
-		printf("Expected Operator. Found %s\n", getEnumName(tokens[*pos]->type));
-	}
-	nextTok(pos, nbNode, tokens);
 }
 
 void keyword(Token **tokens, int *pos, int nbNode, char *val)
@@ -138,7 +99,7 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
 	keyword(tokens, pos, nbNode, NULL);
 	if (match(tokens[*pos], Variable, NULL))
 	{
-		var(tokens, pos, nbNode);
+		eatToken(tokens, Variable, pos, nbNode);
 		if (match(tokens[*pos], Delimiter, ";"))
 		{
 			printf("END OF FILE\n");
@@ -147,13 +108,15 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
 		{
 			if (match(tokens[*pos], Operator, "="))
 			{
-				equal(tokens, pos, nbNode);
+				eatToken(tokens, Operator, pos, nbNode);
 				expression(tokens, pos, nbNode);
 			}
 			else
 				printf("Expected '='. Found %s\n", tokens[*pos]->value);
 		}
 	}
+	else
+		printf("Expected Varaible. Found %s\n", getEnumName(tokens[*pos]->type));
 }
 
 void check(Token **tokens, int nbNode)
