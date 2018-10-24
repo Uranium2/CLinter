@@ -1,12 +1,19 @@
 StartPoint	-> VarDeclare
 
 VarDeclare	-> var ;
-		|  var = Exp ;
+			|var = Exp ;
 		
-Exp		-> num ;
-		-> num Ope Exp
-		-> var ;
-		-> var Ope Exp
+Exp		-> num
+		|  num Ope Exp
+		|  var
+		|  var Ope Exp
+		|  listExp
+		;
+
+listExp	-> ( Exp )
+		|  listExp ( Exp )
+		;
+		
 -------------------------------------------------------------------------
 StartPoint	-> statement
 
