@@ -71,6 +71,8 @@ typedef enum Type_e
 	CONTINUE,
 	BREAK,
 	RETURN,
+	SPACE,
+	TAB,
 	Nothing
 } Type;
 

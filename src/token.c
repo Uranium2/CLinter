@@ -179,6 +179,12 @@ char *getEnumName(Type type)
         case RETURN:
                 return "RETURN";
                 break;
+        case SPACE:
+                return "SPACE";
+                break;
+        case TAB:
+                return "TAB";
+                break;
         default:
                 return "Nothing";
                 break;
