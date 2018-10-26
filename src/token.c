@@ -5,6 +5,23 @@ char *getEnumName(Type type)
 
         switch (type)
         {
+        case Operator:
+                return "Operator";
+                break;
+        case Delimiter:
+                return "Delimiter";
+                break;
+        case Variable:
+                return "Variable";
+                break;
+        case Numerical:
+                return "Numerical";
+                break;
+        case KeyWord:
+                return "KeyWord";
+                break;
+
+        // new
         case IDENTIFIER:
                 return "IDENTIFIER";
                 break;

@@ -7,6 +7,7 @@
 #include <math.h>
 #include <ctype.h>
 
+#include "changeType.h"
 #include "tool.h"
 #include "token.h"
 #include "checker.h"

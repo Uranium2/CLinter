@@ -18,6 +18,11 @@ int main(int argc, char *argv[])
 	{
 		int nbNodes = 0;
 		Token **tokenList = parse(codeText[i], &nbNodes);
+		
+		for(int j = 0; j < nbNodes; j++)
+		{
+			printf("%s ", getEnumName(tokenList[j]->type));
+		}
 		check(tokenList, nbNodes);
 	}
 	return 0;

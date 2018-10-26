@@ -13,6 +13,9 @@ typedef enum Type_e
 	Numerical,
 	KeyWord,
 	// new types
+	OpenPar,
+	ClosedPar,
+	COMA,
 	IDENTIFIER,
 	CONSTANT,
 	STRING_LITERAL,

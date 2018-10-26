@@ -143,16 +143,7 @@ Token **parse(char *str, int* nbNodes)
 		}
 		if (isDelim(str[right]) && left == right)
 		{
-			if (isOpe(str[right]))
-			{
-				listToken[countList] = createToken(Operator, cString);
-				//printf("'%c' is an " MAG "OPERATOR\n" RESET, c);
-			}
-			else
-			{
-				listToken[countList] = createToken(Delimiter, cString);
-				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
-			}
+			listToken[countList] = createToken(Nothing, cString);
 			right++;
 			countList++;
 			left = right;
@@ -169,30 +160,14 @@ Token **parse(char *str, int* nbNodes)
 			sub[lastPos] = '\0'; // remove \n at each end of lines
 			if (sub[0] == '\0')
 				continue;
-			else if (isKey(sub))
-			{
-				listToken[countList] = createToken(KeyWord, sub);
-				//printf("'%s' is a " YEL "KEY WORD\n" RESET, sub);
-			}
-			else if (isNum(sub))
-			{
-				listToken[countList] = createToken(Numerical, sub);
-				//printf("'%s' is an " BLU "NUMBER\n" RESET, sub);
-			}
-			else if (isVar(sub))
-			{
-				listToken[countList] = createToken(Variable, sub);
-				//printf("'%s' is a " CYN "VARIABLE\n" RESET, sub);
-			}
-			else
-			{
-				listToken[countList] = createToken(Nothing, sub);
-				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
-			}
+			listToken[countList] = createToken(Nothing, sub);
 			left = right;
 			countList++;
 		}
 	}
 	*nbNodes = countList;
+
+	//Function to merge some tokens and assign good types?
+	assignTypes(listToken, *nbNodes);
 	return listToken;
 }

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-W -Wall -std=c99 -pedantic
+CFLAGS=-W -Wall -std=c99 -pedantic -g
 LDFLAGS=
 EXEC=linter
 SRC=$(wildcard src/*.c)
