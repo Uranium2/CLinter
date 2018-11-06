@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
 			checkSpaceEOL(tokenList, nbNodes, i + 1);
 		if (conf->arrayBracketEol)
 			checkBracketEOL(tokenList, i + 1);
+		if (conf->operatorsSpacing)
+			checkOperatorEOL(tokenList,nbNodes, i + 1);
 	}
 	return 0;
 }
