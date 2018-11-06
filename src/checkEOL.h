@@ -8,6 +8,7 @@
 #include "token.h"
 #include "parser.h"
 
-void checkEOL(Token **listToken, int nbToken, int line);
+void checkSpaceEOL(Token **listToken, int nbToken, int line);
+void checkBracketEOL(Token **listToken, int nbToken, int line);
 
 #endif

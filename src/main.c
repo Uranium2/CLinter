@@ -19,8 +19,15 @@ int main(int argc, char *argv[])
 		int nbNodes = 0;
 		Token **tokenList = parse(codeText[i], &nbNodes);
 		//check(tokenList, nbNodes);
+		
+		for(int j = 0; j < nbNodes; j++)
+			printf("%s", tokenList[j]->value);
+		
+		
 		if (conf->noTrallingSpaces)
-			checkEOL(tokenList, nbNodes, i + 1);
+			checkSpaceEOL(tokenList, nbNodes, i + 1);
+		if (conf->arrayBracketEol)
+			checkBracketEOL(tokenList, nbNodes, i + 1);
 	}
 	return 0;
 }
