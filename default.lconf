@@ -3,6 +3,7 @@ main.lconf
 
 =rules
 - array-bracket-eol = on
+- no-trailing-spaces = on
 
 =excludedFiles
 - hello.c

@@ -18,7 +18,9 @@ int main(int argc, char *argv[])
 	{
 		int nbNodes = 0;
 		Token **tokenList = parse(codeText[i], &nbNodes);
-		check(tokenList, nbNodes);
+		//check(tokenList, nbNodes);
+		if (conf->noTrallingSpaces)
+			checkEOL(tokenList, nbNodes, i + 1);
 	}
 	return 0;
 }

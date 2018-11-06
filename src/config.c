@@ -13,11 +13,12 @@ int isValidConfFile(char *filename)
 
 char *getExtends(char **file, int nbLines)
 {
-    
-    for(int i = 0; i < nbLines - 1; i++)
+
+    for (int i = 0; i < nbLines - 1; i++)
     {
-        if (strstr(file[i], "extends") != NULL) {
-            char* res = malloc(sizeof(char) * strlen(file[i + 1]));
+        if (strstr(file[i], "extends") != NULL)
+        {
+            char *res = malloc(sizeof(char) * strlen(file[i + 1]));
             res = file[i + 1];
             return res;
         }
@@ -25,18 +26,21 @@ char *getExtends(char **file, int nbLines)
     return "";
 }
 
-char **getFilesName(char **file, int nbLines, int* NbFiles)
+char **getFilesName(char **file, int nbLines, int *NbFiles)
 {
     int countFiles = 0;
-    char **fileNames = malloc(sizeof(char*) * 20); // MAX 20 FILES. BAD IDEA
-    for(int i = 0; i < nbLines - 1; i++)
+    char **fileNames = malloc(sizeof(char *) * 20); // MAX 20 FILES. BAD IDEA
+    for (int i = 0; i < nbLines - 1; i++)
     {
-        if (strstr(file[i], "excludedFiles") != NULL) {
+        if (strstr(file[i], "excludedFiles") != NULL)
+        {
             i++;
             char *p = NULL;
-            while(file[i][0] == '-') {
+            while (file[i][0] == '-')
+            {
                 p = strrchr(file[i], ' ');
-                if (p && *(p + 1)) {
+                if (p && *(p + 1))
+                {
                     fileNames[countFiles] = p + 1;
                     countFiles++;
                 }
@@ -51,15 +55,18 @@ char **getFilesName(char **file, int nbLines, int* NbFiles)
 
 int getVal(char **file, char *rule, int nbLines)
 {
-    
-    for(int i = 0; i < nbLines; i++)
+
+    for (int i = 0; i < nbLines; i++)
     {
-        if (strstr(file[i], rule) != NULL) {
+
+        if (strstr(file[i], rule) != NULL)
+        {
             char *p = strrchr(file[i], ' ');
-            if (p && *(p + 1)) {
-                if (strcmp(p + 1, "on") == 0)
+            if (p && *(p + 1))
+            {
+                if (strstr(file[i], "on") != NULL)
                     return 1;
-                if (strcmp(p + 1, "off") == 0)
+                if (strstr(file[i], "off") != NULL)
                     return 0;
                 return atoi(p + 1);
             }
@@ -73,7 +80,7 @@ Config *loadConfig(char *path)
     char **configText;
     int nbLines = 0;
     if (!isValidConfFile(path))
-       configText = getAllLines("default.lconf", &nbLines);
+        configText = getAllLines("default.lconf", &nbLines);
     else
         configText = getAllLines(path, &nbLines);
 
@@ -84,9 +91,9 @@ Config *loadConfig(char *path)
     conf->commaSpacing = getVal(configText, "comma-spacing", nbLines);
     conf->indent = getVal(configText, "indent", nbLines); // nb space of indend
     conf->commentsHeader = getVal(configText, "comments-header", nbLines);
-    conf->maxLineNumbers = getVal(configText, "max-line-numbers", nbLines); // nb Max char per line
+    conf->maxLineNumbers = getVal(configText, "max-line-numbers", nbLines);          // nb Max char per line
     conf->maxFileLineNumbers = getVal(configText, "max-file-line-numbers", nbLines); // nb Max line per file
-    conf->noTrallingSpaces = getVal(configText, "no-tralling-spaces", nbLines);
+    conf->noTrallingSpaces = getVal(configText, "no-trailing-spaces", nbLines);
     conf->NoMultiDeclaration = getVal(configText, "no-multi-declaration", nbLines);
     conf->unusedVariable = getVal(configText, "unused-variable", nbLines);
     conf->undeclaredVariable = getVal(configText, "undeclared-variable", nbLines);
