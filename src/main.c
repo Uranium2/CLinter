@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 			printf("%s", tokenList[j]->value);
 
 		if (conf->NoMultiDeclaration)
-			//
+			multiDeclare(tokenList, nbNodes, nbLines);
 		if (conf->maxLineNumbers)
 			checkmaxLineNumbers(i + 1,
 								tokenList[nbNodes - 1]->pos +

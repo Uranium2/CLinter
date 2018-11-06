@@ -7,6 +7,7 @@ main.lconf
 - operators-spacing = on
 - max-line-numbers = 80
 - max-file-line-numbers = 80
+- no-multi-declaration = on
 
 
 =excludedFiles

@@ -11,5 +11,6 @@
 #include "token.h"
 #include "config.h"
 #include "checkCoding.h"
+#include "checkVarFunc.h"
 
 #endif
