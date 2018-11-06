@@ -13,7 +13,7 @@ void checkmaxFileLineNumbers(int nbLines, int linesConf)
         printf(RED "%d Lines in file. Max is %d.\n" RESET, nbLines, linesConf);
 }
 
-void checkOperatorEOL(Token **listToken, int nbToken, int line)
+void checkOperator(Token **listToken, int nbToken, int line)
 {
     if (nbToken == 1)
         return;
@@ -27,13 +27,13 @@ void checkOperatorEOL(Token **listToken, int nbToken, int line)
     }
 }
 
-void checkBracketEOL(Token **listToken, int line)
+void checkBracket(Token **listToken, int line)
 {
     if (strcmp(listToken[0]->value, "{") == 0)
         print_warning("Bad bracket", line, 0);
 }
 
-void checkSpaceEOL(Token **listToken, int nbToken, int line)
+void checkSpace(Token **listToken, int nbToken, int line)
 {
     if (nbToken == 1)
         return;

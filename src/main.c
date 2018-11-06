@@ -31,11 +31,11 @@ int main(int argc, char *argv[])
 									strlen(tokenList[nbNodes - 1]->value),
 								conf->maxLineNumbers);
 		if (conf->noTrallingSpaces)
-			checkSpaceEOL(tokenList, nbNodes, i + 1);
+			checkSpace(tokenList, nbNodes, i + 1);
 		if (conf->arrayBracketEol)
-			checkBracketEOL(tokenList, i + 1);
+			checkBracket(tokenList, i + 1);
 		if (conf->operatorsSpacing)
-			checkOperatorEOL(tokenList, nbNodes, i + 1);
+			checkOperator(tokenList, nbNodes, i + 1);
 	}
 	if (conf->maxFileLineNumbers)
 		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
