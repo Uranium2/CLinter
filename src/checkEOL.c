@@ -1,8 +1,15 @@
 #include "checkEOL.h"
 
+void checkmaxLineNumbers(int line, int nbChar, int maxLine)
+{
+    if (nbChar > maxLine)
+        printf(RED "%d characters in line %d. Max is %d.\n" RESET, nbChar, line, maxLine);
+}
+
+
 void checkmaxFileLineNumbers(int nbLines, int linesConf)
 {
-    if (nbLines >= linesConf)
+    if (nbLines > linesConf)
         printf(RED "%d Lines in file. Max is %d.\n" RESET, nbLines, linesConf);
 }
 

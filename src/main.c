@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
 	// Load Config file
 	char *path = "";
-	if ( argc == 3)
+	if (argc == 3)
 		path = argv[2];
 	Config *conf = loadConfig(path);
 
@@ -19,17 +19,18 @@ int main(int argc, char *argv[])
 		int nbNodes = 0;
 		Token **tokenList = parse(codeText[i], &nbNodes);
 		//check(tokenList, nbNodes);
-		
-		for(int j = 0; j < nbNodes; j++)
+
+		for (int j = 0; j < nbNodes; j++)
 			printf("%s", tokenList[j]->value);
-		
-		
+
+		if (conf->maxLineNumbers)
+			checkmaxLineNumbers(i + 1, nbNodes, conf->maxLineNumbers);
 		if (conf->noTrallingSpaces)
 			checkSpaceEOL(tokenList, nbNodes, i + 1);
 		if (conf->arrayBracketEol)
 			checkBracketEOL(tokenList, i + 1);
 		if (conf->operatorsSpacing)
-			checkOperatorEOL(tokenList,nbNodes, i + 1);
+			checkOperatorEOL(tokenList, nbNodes, i + 1);
 	}
 	if (conf->maxFileLineNumbers)
 		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
