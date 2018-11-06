@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 		for (int j = 0; j < nbNodes; j++)
 			printf("%s", tokenList[j]->value);
 
+		if (conf->NoMultiDeclaration)
+			//
 		if (conf->maxLineNumbers)
 			checkmaxLineNumbers(i + 1,
 								tokenList[nbNodes - 1]->pos +

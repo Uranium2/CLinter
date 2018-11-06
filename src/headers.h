@@ -10,6 +10,6 @@
 #include "files.h"
 #include "token.h"
 #include "config.h"
-#include "checkEOL.h"
+#include "checkCoding.h"
 
 #endif
