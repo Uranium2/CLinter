@@ -18,14 +18,8 @@ typedef struct Token_t
 {
 	Type type;
 	char *value;
+	int pos;
 } Token;
-
-typedef struct Ast_t
-{
-	Token *base;
-	Token *left;
-	Token *right;
-} ast;
 
 char* getEnumName(Type type);
 
