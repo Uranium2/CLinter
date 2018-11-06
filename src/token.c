@@ -29,10 +29,11 @@ char* getEnumName(Type type) {
         return "Nothing";
 }
 
-Token *createToken(Type type, char *value)
+Token *createToken(Type type, char *value, int pos)
 {
         Token *token = malloc(sizeof(Token));
         token->type = type;
         token->value = value;
+        token->pos = pos;
         return token;
 }
