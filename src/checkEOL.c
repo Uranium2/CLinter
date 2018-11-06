@@ -7,7 +7,7 @@ void checkOperatorEOL(Token **listToken, int nbToken, int line)
         if (listToken[i]->type == Operator && strcmp(listToken[i - 1]->value, " ") != 0 &&
                 listToken[i - 1]->type != Operator && listToken[i - 1]->type != KeyWord)
             print_warning("Missing space", line, i - 1);
-        if (listToken[i]->type == Numerical && listToken[i - 1]->type == Operator)
+        if ((listToken[i]->type == Variable || listToken[i]->type == Numerical) && listToken[i - 1]->type == Operator)
             print_warning("No space", line, i - 1);
     }
 }
