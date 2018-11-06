@@ -145,12 +145,12 @@ Token **parse(char *str, int* nbNodes)
 		{
 			if (isOpe(str[right]))
 			{
-				listToken[countList] = createToken(Operator, cString);
+				listToken[countList] = createToken(Operator, cString, left);
 				//printf("'%c' is an " MAG "OPERATOR\n" RESET, c);
 			}
 			else
 			{
-				listToken[countList] = createToken(Delimiter, cString);
+				listToken[countList] = createToken(Delimiter, cString, left);
 				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
 			}
 			right++;
@@ -171,22 +171,22 @@ Token **parse(char *str, int* nbNodes)
 				continue;
 			else if (isKey(sub))
 			{
-				listToken[countList] = createToken(KeyWord, sub);
+				listToken[countList] = createToken(KeyWord, sub, left);
 				//printf("'%s' is a " YEL "KEY WORD\n" RESET, sub);
 			}
 			else if (isNum(sub))
 			{
-				listToken[countList] = createToken(Numerical, sub);
+				listToken[countList] = createToken(Numerical, sub, left);
 				//printf("'%s' is an " BLU "NUMBER\n" RESET, sub);
 			}
 			else if (isVar(sub))
 			{
-				listToken[countList] = createToken(Variable, sub);
+				listToken[countList] = createToken(Variable, sub, left);
 				//printf("'%s' is a " CYN "VARIABLE\n" RESET, sub);
 			}
 			else
 			{
-				listToken[countList] = createToken(Nothing, sub);
+				listToken[countList] = createToken(Nothing, sub, left);
 				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
 			}
 			left = right;
