@@ -1,7 +1,15 @@
 #include "checkEOL.h"
 
+void checkmaxFileLineNumbers(int nbLines, int linesConf)
+{
+    if (nbLines >= linesConf)
+        printf(RED "%d Lines in file. Max is %d.\n" RESET, nbLines, linesConf);
+}
+
 void checkOperatorEOL(Token **listToken, int nbToken, int line)
 {
+    if (nbToken == 1)
+        return;
     for (int i = 0; i < nbToken; i++)
     {
         if (listToken[i]->type == Operator && strcmp(listToken[i - 1]->value, " ") != 0 &&
@@ -20,6 +28,8 @@ void checkBracketEOL(Token **listToken, int line)
 
 void checkSpaceEOL(Token **listToken, int nbToken, int line)
 {
+    if (nbToken == 1)
+        return;
     for (int i = 0; i < nbToken; i++)
     {
         if (strcmp(listToken[i]->value, "\n") == 0 && strcmp(listToken[i - 1]->value, " ") == 0)

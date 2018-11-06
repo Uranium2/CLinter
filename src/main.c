@@ -31,5 +31,7 @@ int main(int argc, char *argv[])
 		if (conf->operatorsSpacing)
 			checkOperatorEOL(tokenList,nbNodes, i + 1);
 	}
+	if (conf->maxFileLineNumbers)
+		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
 	return 0;
 }

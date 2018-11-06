@@ -5,6 +5,7 @@ main.lconf
 - array-bracket-eol = on
 - no-trailing-spaces = on
 - operators-spacing = on
+- max-file-line-numbers = 80
 
 =excludedFiles
 - hello.c
