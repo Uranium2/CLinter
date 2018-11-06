@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 		if (conf->noTrallingSpaces)
 			checkSpaceEOL(tokenList, nbNodes, i + 1);
 		if (conf->arrayBracketEol)
-			checkBracketEOL(tokenList, nbNodes, i + 1);
+			checkBracketEOL(tokenList, i + 1);
 	}
 	return 0;
 }

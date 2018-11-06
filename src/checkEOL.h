@@ -9,6 +9,6 @@
 #include "parser.h"
 
 void checkSpaceEOL(Token **listToken, int nbToken, int line);
-void checkBracketEOL(Token **listToken, int nbToken, int line);
+void checkBracketEOL(Token **listToken, int line);
 
 #endif
