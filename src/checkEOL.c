@@ -21,9 +21,9 @@ void checkOperatorEOL(Token **listToken, int nbToken, int line)
     {
         if (listToken[i]->type == Operator && strcmp(listToken[i - 1]->value, " ") != 0 &&
                 listToken[i - 1]->type != Operator && listToken[i - 1]->type != KeyWord)
-            print_warning("Missing space", line, i - 1);
+            print_warning("Missing space", line, listToken[i - 1]->pos);
         if ((listToken[i]->type == Variable || listToken[i]->type == Numerical) && listToken[i - 1]->type == Operator)
-            print_warning("No space", line, i - 1);
+            print_warning("No space", line, listToken[i - 1]->pos);
     }
 }
 
@@ -40,6 +40,6 @@ void checkSpaceEOL(Token **listToken, int nbToken, int line)
     for (int i = 0; i < nbToken; i++)
     {
         if (strcmp(listToken[i]->value, "\n") == 0 && strcmp(listToken[i - 1]->value, " ") == 0)
-            print_warning("Extra space", line, i - 1);
+            print_warning("Extra space", line, listToken[i - 1]->pos);
     }
 }

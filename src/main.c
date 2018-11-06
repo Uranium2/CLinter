@@ -24,7 +24,10 @@ int main(int argc, char *argv[])
 			printf("%s", tokenList[j]->value);
 
 		if (conf->maxLineNumbers)
-			checkmaxLineNumbers(i + 1, nbNodes, conf->maxLineNumbers);
+			checkmaxLineNumbers(i + 1,
+								tokenList[nbNodes - 1]->pos +
+									strlen(tokenList[nbNodes - 1]->value),
+								conf->maxLineNumbers);
 		if (conf->noTrallingSpaces)
 			checkSpaceEOL(tokenList, nbNodes, i + 1);
 		if (conf->arrayBracketEol)
