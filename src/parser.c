@@ -1,22 +1,5 @@
 #include "parser.h"
 
-// Tell if a string is an Number
-int isNum(char *str)
-{
-	if (str == NULL)
-		exit_m("isNum: str == NULL");
-	int len = strlen(str);
-	if (len <= 0)
-		return 0;
-	char *end;
-	strtod(str, &end);
-	if (end == str)
-		return 0;
-	if (strlen(end) > 0)
-		return 0;
-	return 1;
-}
-
 // Tell if char is an operator
 int isOpe(char c)
 {
@@ -143,16 +126,7 @@ Token **parse(char *str, int* nbNodes)
 		}
 		if (isDelim(str[right]) && left == right)
 		{
-			if (isOpe(str[right]))
-			{
-				listToken[countList] = createToken(Operator, cString, left);
-				//printf("'%c' is an " MAG "OPERATOR\n" RESET, c);
-			}
-			else
-			{
-				listToken[countList] = createToken(Delimiter, cString, left);
-				//printf("'%c' is a " GRN "DELIMITER\n" RESET, c);
-			}
+			listToken[countList] = createToken(Nothing, cString, left);
 			right++;
 			countList++;
 			left = right;
@@ -169,30 +143,14 @@ Token **parse(char *str, int* nbNodes)
 			sub[lastPos] = '\0'; // remove \n at each end of lines
 			if (sub[0] == '\0')
 				continue;
-			else if (isKey(sub))
-			{
-				listToken[countList] = createToken(KeyWord, sub, left);
-				//printf("'%s' is a " YEL "KEY WORD\n" RESET, sub);
-			}
-			else if (isNum(sub))
-			{
-				listToken[countList] = createToken(Numerical, sub, left);
-				//printf("'%s' is an " BLU "NUMBER\n" RESET, sub);
-			}
-			else if (isVar(sub))
-			{
-				listToken[countList] = createToken(Variable, sub, left);
-				//printf("'%s' is a " CYN "VARIABLE\n" RESET, sub);
-			}
-			else
-			{
-				listToken[countList] = createToken(Nothing, sub, left);
-				//printf("'%s' " RED "IS NOTHING YET. at %d:%d\n" RESET, sub, nbLine, right);
-			}
+			listToken[countList] = createToken(Nothing, sub, left);
 			left = right;
 			countList++;
 		}
 	}
 	*nbNodes = countList;
+
+	//Function to merge some tokens and assign good types?
+	assignTypes(listToken, *nbNodes);
 	return listToken;
 }

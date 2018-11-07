@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "changeType.h"
 #include "tool.h"
 #include "parser.h"
 #include "files.h"
@@ -12,5 +13,6 @@
 #include "config.h"
 #include "checkCoding.h"
 #include "checkVarFunc.h"
+
 
 #endif

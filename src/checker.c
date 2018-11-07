@@ -14,7 +14,6 @@ void printErr(char *expected, char *found)
 {
 	printf("Expected %s. Found %s at line X char Y\n", expected, found);
 }
-
 int match(Token *tok, Type type, char *val)
 {
 	if (type == tok->type)
@@ -28,100 +27,46 @@ int match(Token *tok, Type type, char *val)
 
 void nextTok(int *pos, int nbNode, Token **tokens)
 {
+	//printf("POSITION BEFORE: %d\n", *pos);
 	if (*pos == nbNode - 1)
 	{
-		printf("END OF FILE\n");
+		//printf("END OF FILE\n");
 		return;
 	}
 	*pos = *pos + 1;
 	while (match(tokens[*pos], Delimiter, " "))
 		*pos = *pos + 1;
+	//printf("POSITION AFTER: %d\n", *pos);
 }
 
-void eatToken(Token **tokens, Type type, int *pos, int nbNode)
+int eatToken(Token **tokens, Type type, int *pos, int nbNode)
 {
-	printf("Eating token %s\n", tokens[*pos]->value);
-	if (tokens[*pos]->type != type)
-		printErr(getEnumName(type), getEnumName(tokens[*pos]->type));
+	//printf("Before %d %d\n", *pos + 1, nbNode);
+	if (tokens[*pos]->type != type) {
+		//printErr(getEnumName(type), getEnumName(tokens[*pos]->type));
+		return 0;
+	}
+	//printf("Eating token %s of type: %s %s \n", tokens[*pos]->value, getEnumName(tokens[*pos]->type), getEnumName(type));
 	nextTok(pos, nbNode, tokens);
+	//printf("After %d %d\n", *pos + 1, nbNode);
+	if (*pos + 1 == nbNode)
+		exit(0);
+	return 1;
 }
 
-void expression(Token **tokens, int *pos, int nbNode)
+void varDeclare(Token **tokens, int* pos, int nbNode)
 {
-	if (match(tokens[*pos], Numerical, NULL))
-	{
-		eatToken(tokens, Numerical, pos, nbNode);
-		if (match(tokens[*pos], Delimiter, ";"))
-		{
-			printf("END OF FILE\n");
-			return;
-		}
-		else if (match(tokens[*pos], Operator, NULL))
-		{
-			eatToken(tokens, Operator, pos, nbNode);
-			expression(tokens, pos, nbNode);
-			return;
-		}
-		else
-			printErr("Operator", getEnumName(tokens[*pos]->type));
-	}
-	else if (match(tokens[*pos], Variable, NULL))
-	{
-		eatToken(tokens, Variable, pos, nbNode);
-		if (match(tokens[*pos], Operator, NULL))
-		{
-			eatToken(tokens, Operator, pos, nbNode);
-			expression(tokens, pos, nbNode);
-		}
-		else if (match(tokens[*pos], Delimiter, ";"))
-		{
-			printf("END OF FILE\n");
-			return;
-		}
-	}
-	else
-		printErr("Variable or Numerical", getEnumName(tokens[*pos]->type));
-}
-
-void keyword(Token **tokens, int *pos, int nbNode, char *val)
-{
-	if (!match(tokens[*pos], KeyWord, NULL))
-		printErr("Keyword", getEnumName(tokens[*pos]->type));
-	if (val != NULL)
-		if (strcmp(val, tokens[*pos]->value) != 0)
-			printErr(val, tokens[*pos]->value);
-	nextTok(pos, nbNode, tokens);
-}
-
-void varDeclare(Token **tokens, int *pos, int nbNode)
-{
-	keyword(tokens, pos, nbNode, NULL);
-	if (match(tokens[*pos], Variable, NULL))
-	{
-		eatToken(tokens, Variable, pos, nbNode);
-		if (match(tokens[*pos], Delimiter, ";"))
-			printf("END OF FILE\n");
-		else
-		{
-			if (match(tokens[*pos], Operator, "="))
-			{
-				eatToken(tokens, Operator, pos, nbNode);
-				expression(tokens, pos, nbNode);
-			}
-			else
-				printErr("=", tokens[*pos]->value);
-		}
-	}
-	else
-		printErr("Variable", getEnumName(tokens[*pos]->type));
+	tokens =tokens;
+	pos = pos;
+	nbNode = nbNode;
 }
 
 void check(Token **tokens, int nbNode)
 {
 
-	for (int i = 0; i < nbNode; i++)
-		printf("%s", tokens[i]->value);
-	printf("\n");
+	//for (int i = 0; i < nbNode; i++)
+	//	printf("%s", tokens[i]->value);
+	//printf("\n");
 	int pos = 0;
 	varDeclare(tokens, &pos, nbNode);
 }

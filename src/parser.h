@@ -10,6 +10,7 @@
 #include "tool.h"
 #include "token.h"
 #include "checker.h"
+#include "changeType.h"
 
 // Color defines
 #define RED "\x1B[31m"
@@ -26,8 +27,6 @@
 // int nbNodes : nbNodes in str
 Token **parse(char *str, int* nbNodes);
 
-// Tell if a string is an Number
-int isNum(char *str);
 
 // Tell if char is an operator
 int isOpe(char c);
