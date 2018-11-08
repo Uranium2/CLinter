@@ -1,15 +1,14 @@
 #include "listFiles.h"
 
-int isNotExcluded(char ** excludedFiles, char* file, int length)
+int isNotExcluded(char **excludedFiles, char *file, int length)
 {
+
     if (excludedFiles == NULL)
         return 1;
     for (int i = 0; i < length; i++)
-    {
-        if (strstr(excludedFiles[i], file) == NULL)
-            return 1;
-    }
-    return 0;
+        if (strcmp(excludedFiles[i], file) == 0)
+            return 0;
+    return 1;
 }
 
 void getFiles(short isRecursive, char **excludedFiles, char *path, int length)
@@ -21,10 +20,9 @@ void getFiles(short isRecursive, char **excludedFiles, char *path, int length)
         exit(2);
     while ((dp = readdir(dir)) != NULL)
     {
-        if (!(strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0) &&
-        isNotExcluded(excludedFiles, dp->d_name, length))
+        if (!(strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0))
         {
-            if (strstr(dp->d_name, ".c") != NULL)
+            if (strstr(dp->d_name, ".c") != NULL && isNotExcluded(excludedFiles, dp->d_name, length))
                 printf("%s/%s\n", path, dp->d_name);
             else
             {
