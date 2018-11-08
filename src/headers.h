@@ -13,6 +13,7 @@
 #include "config.h"
 #include "checkCoding.h"
 #include "checkVarFunc.h"
+#include "listFiles.h"
 
 
 #endif
