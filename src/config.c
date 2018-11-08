@@ -50,6 +50,12 @@ char **getFilesName(char **file, int nbLines, int *NbFiles)
         }
     }
     *NbFiles = countFiles;
+    
+    for(int i = 0; i < countFiles; i++)
+        for(unsigned j = 0; j < strlen(fileNames[i]); j++)
+            if (fileNames[i][j] == '\n')
+                fileNames[i][j] = '\0';
+    
     return fileNames;
 }
 

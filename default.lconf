@@ -11,10 +11,10 @@ main.lconf
 
 
 =excludedFiles
-- hello.c
+- main.c
 - hello2.c
 - hello3.c
 - hello4.c
 
 =recursive
-false
+true
