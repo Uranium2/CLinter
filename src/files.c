@@ -9,6 +9,7 @@ int countLinesInFile(FILE *f)
 	{
 		count++;
 	}
+	free(line);
 	return count;
 }
 
@@ -29,7 +30,7 @@ char **getAllLines(char *path, int *nbLines)
 		line = NULL;
 		index++;
 	}
-
+	free(line);
 	fclose(f);
 	return text;
 }
