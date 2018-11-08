@@ -36,4 +36,5 @@ void getFiles(short isRecursive, char **excludedFiles, char *path, int length)
             }
         }
     }
+    closedir(dir);
 }
