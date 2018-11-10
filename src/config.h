@@ -1,6 +1,5 @@
 #ifndef CONFIG
 #define CONFIG
-#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,3 +33,5 @@ typedef struct Config_t
 
 // Reads a file and loads the configuration
 Config *loadConfig(char *path);
+
+#endif

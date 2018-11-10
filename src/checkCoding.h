@@ -1,6 +1,5 @@
 #ifndef CHECKCODING
 #define CHECKCODING
-#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,3 +13,5 @@ void checkmaxFileLineNumbers(int nbLines, int linesConf);
 void checkOperator(Token **listToken, int nbToken, int line);
 void checkSpace(Token **listToken, int nbToken, int line);
 void checkBracket(Token **listToken, int line);
+
+#endif
