@@ -1,11 +1,11 @@
 #ifndef LISTFILES
 #define LISTFILES
+#endif
 
-#define _GNU_SOURCE
+//#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>
 
 void getFiles(short isRecursive, char **excludedFiles, char *path, int length);
-#endif

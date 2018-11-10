@@ -1,5 +1,6 @@
 #ifndef PARSER
 #define PARSER
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,4 +46,3 @@ char *getSubString(char *str, int left, int right);
 
 // Tell if string is a C key word
 int isKey(char *str);
-#endif

@@ -1,5 +1,6 @@
 #ifndef CHANGETYPE
 #define CHANGETYPE
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,5 +10,3 @@
 #include "parser.h"
 
 void assignTypes(Token **listToken, int nbNodes);
-
-#endif

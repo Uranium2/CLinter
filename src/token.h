@@ -1,5 +1,6 @@
 #ifndef TOKEN
 #define TOKEN
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -93,4 +94,3 @@ typedef struct Token_t
 char* getEnumName(Type type);
 
 Token *createToken(Type type, char *value, int pos);
-#endif
