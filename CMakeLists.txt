@@ -77,10 +77,9 @@ add_library(
         src/tool.h
 )
 
-
 # Main
 add_executable(clinter src/main.c)
-target_link_libraries(clinter ${MYSQL_LIBRARY} MainLibrary)
+target_link_libraries(clinter ${MYSQLLIBRARY} MainLibrary)
 
 
 # Tests
