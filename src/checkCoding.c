@@ -17,7 +17,7 @@ void checkOperator(Token **listToken, int nbToken, int line)
 {
     if (nbToken == 1)
         return;
-    for (int i = 0; i < nbToken; i++)
+    for (int i = 1; i < nbToken; i++)
     {
         if (listToken[i]->type == Operator && strcmp(listToken[i - 1]->value, " ") != 0 &&
                 listToken[i - 1]->type != Operator && listToken[i - 1]->type != KeyWord)
