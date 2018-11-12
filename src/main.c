@@ -2,15 +2,12 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc < 2 || argc > 4)
-		exit_m("main.c: ARGUMENTS COUNT");
-
 	// Load Config file
 	char *path = "";
 	if (argc == 3)
 		path = argv[2];
 	Config *conf = loadConfig(path);
-
+	getFiles(1, conf->excludedFiles, ".", conf->nbExcludedFiles);
 	// Run parsing
 	int nbLines = 0;
 	char **codeText = getAllLines(argv[1], &nbLines);
@@ -36,8 +33,14 @@ int main(int argc, char *argv[])
 			checkBracket(tokenList, i + 1);
 		if (conf->operatorsSpacing)
 			checkOperator(tokenList, nbNodes, i + 1);
+
+		// TokenList	
+		free_tokenList(tokenList, nbNodes);
 	}
 	if (conf->maxFileLineNumbers)
 		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
+
+	free_text(codeText, nbLines);
+	free_conf(conf);
 	return 0;
 }

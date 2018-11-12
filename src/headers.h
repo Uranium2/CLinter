@@ -14,6 +14,7 @@
 #include "checkCoding.h"
 #include "checkVarFunc.h"
 #include "listFiles.h"
+#include "freeAll.h"
 
 
 #endif
