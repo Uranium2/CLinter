@@ -19,7 +19,7 @@ void free_tokenList(Token **tokenList, int nbNodes)
 void free_text(char **codeText, int nbLines)
 {
     for (int i = 0; i < nbLines; i++)
-        free(codeText);
+        free(codeText[i]);
 }
 
 void free_conf(Config *conf)

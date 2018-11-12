@@ -91,7 +91,6 @@ int canBeExpe(char c, char *str, int right)
 // int nbNodes : nbNodes in str
 Token **parse(char *str, int* nbNodes)
 {
-	//printf("ORIGINAL LINE : %s", str);
 	int left = 0;
 	int right = 0;
 	int len = strlen(str);
@@ -121,7 +120,6 @@ Token **parse(char *str, int* nbNodes)
 				}
 				else
 					break;
-				//printf("%c\n", str[right]);
 			}
 		}
 		if (isDelim(str[right]) && left == right)

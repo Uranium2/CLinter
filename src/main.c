@@ -7,43 +7,52 @@ int main(int argc, char *argv[])
 	if (argc == 3)
 		path = argv[2];
 	Config *conf = loadConfig(path);
-	char **files = malloc(sizeof(char*) * 255); // 255 files max BAD IDEA
+
+	char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
 	int pos = 0;
 	getFiles(files, &pos, 1, conf->excludedFiles, ".", conf->nbExcludedFiles);
 	// Run parsing
-	int nbLines = 0;
-	char **codeText = getAllLines(argv[1], &nbLines);
-	for (int i = 0; i < nbLines; i++)
+
+	for (int i = 0; i < pos; i++)
 	{
-		int nbNodes = 0;
-		Token **tokenList = parse(codeText[i], &nbNodes);
-		check(tokenList, nbNodes);
+		printf("%s\n", files[i]);
+		if (files[i] == NULL)
+			break;
+		int nbLines = 0;
+		char **codeText = getAllLines(files[i], &nbLines);
+		for (int i = 0; i < nbLines; i++)
+		{
+			int nbNodes = 0;
+			Token **tokenList = parse(codeText[i], &nbNodes);
+			check(tokenList, nbNodes);
+			
+			for (int j = 0; j < nbNodes; j++)
+				printf("%s", tokenList[j]->value);
 
-		for (int j = 0; j < nbNodes; j++)
-			printf("%s %s ", tokenList[j]->value, getEnumName(tokenList[j]->type));
+			if (conf->NoMultiDeclaration)
+				multiDeclare(tokenList, nbNodes, nbLines);
+			if (conf->maxLineNumbers)
+				checkmaxLineNumbers(i + 1,
+									tokenList[nbNodes - 1]->pos +
+										strlen(tokenList[nbNodes - 1]->value),
+									conf->maxLineNumbers);
+			if (conf->noTrallingSpaces)
+				checkSpace(tokenList, nbNodes, i + 1);
+			if (conf->arrayBracketEol)
+				checkBracket(tokenList, i + 1);
+			if (conf->operatorsSpacing)
+				checkOperator(tokenList, nbNodes, i + 1);
 
-		if (conf->NoMultiDeclaration)
-			multiDeclare(tokenList, nbNodes, nbLines);
-		if (conf->maxLineNumbers)
-			checkmaxLineNumbers(i + 1,
-								tokenList[nbNodes - 1]->pos +
-									strlen(tokenList[nbNodes - 1]->value),
-								conf->maxLineNumbers);
-		if (conf->noTrallingSpaces)
-			checkSpace(tokenList, nbNodes, i + 1);
-		if (conf->arrayBracketEol)
-			checkBracket(tokenList, i + 1);
-		if (conf->operatorsSpacing)
-			checkOperator(tokenList, nbNodes, i + 1);
-
-		// TokenList	
-		free_tokenList(tokenList, nbNodes);
+			// TokenList
+			free_tokenList(tokenList, nbNodes);
+		}
+		if (conf->maxFileLineNumbers)
+			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
+		free_text(codeText, nbLines);
+		printf("%s\n", files[i]);
 	}
-	if (conf->maxFileLineNumbers)
-		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
 
-	free_files(files, 255);
-	free_text(codeText, nbLines);
 	free_conf(conf);
+	free_files(files, pos);
 	return 0;
 }
