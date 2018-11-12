@@ -28,7 +28,6 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles, c
                 strcpy(str, path);
                 strcat(str, "/");
                 strcat(str, dp->d_name);
-                printf("%s pos: %d\n", str, *pos);
                 files[*pos] = str;
                 *pos = *pos + 1;
             }
