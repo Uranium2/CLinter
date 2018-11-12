@@ -8,6 +8,6 @@
 
 // Exit the program with a display message
 void exit_m(char *message);
-void print_warning(char *message, int line, int pos);
+void print_warning(char *message, int line, int pos, char* fileName);
 
 #endif

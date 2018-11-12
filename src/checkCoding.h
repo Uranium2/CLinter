@@ -8,10 +8,10 @@
 #include "token.h"
 #include "parser.h"
 
-void checkmaxLineNumbers(int line, int nbChar, int maxLine);
-void checkmaxFileLineNumbers(int nbLines, int linesConf);
-void checkOperator(Token **listToken, int nbToken, int line);
-void checkSpace(Token **listToken, int nbToken, int line);
-void checkBracket(Token **listToken, int line);
+void checkmaxLineNumbers(int line, int nbChar, int maxLine, char *fileName);
+void checkmaxFileLineNumbers(int nbLines, int linesConf, char *fileName);
+void checkOperator(Token **listToken, int nbToken, int line, char* fileName);
+void checkSpace(Token **listToken, int nbToken, int line, char* fileName);
+void checkBracket(Token **listToken, int line, char* fileName);
 
 #endif

@@ -8,6 +8,6 @@
 #include "token.h"
 #include "parser.h"
 
-void multiDeclare(Token **listToken, int nbToken, int line);
+void multiDeclare(Token **listToken, int nbToken, int line, char* fileName);
 
 #endif

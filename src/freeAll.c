@@ -1,5 +1,20 @@
 #include "freeAll.h"
 
+void clean_text(char **codeText, int nbLines)
+{
+    
+    for(int i = 0; i < nbLines; i++)
+    {
+        
+        for(int j = 0; j < 255; j++)
+        {
+            codeText[i][j] = '\0';
+        }
+        
+    }
+    
+}
+
 void free_files(char** files, int nbFiles)
 {
     

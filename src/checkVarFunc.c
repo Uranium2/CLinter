@@ -16,7 +16,7 @@ int containsStr(Token **listToken, int nbToken, char *str)
     return 0;
 }
 
-void multiDeclare(Token **listToken, int nbToken, int line)
+void multiDeclare(Token **listToken, int nbToken, int line, char* fileName)
 {
     int i = skipSpaces(listToken, nbToken);
     if (!(listToken[i]->type == KeyWord))
@@ -27,5 +27,5 @@ void multiDeclare(Token **listToken, int nbToken, int line)
         return;
     int posComma = containsStr(listToken, nbToken, ",");
     if (posComma)
-        print_warning("Multiple declaration", line, listToken[posComma + 1]->pos);
+        print_warning("Multiple declaration", line, listToken[posComma + 1]->pos, fileName);
 }

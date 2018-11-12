@@ -25,28 +25,30 @@ int main(int argc, char *argv[])
 			Token **tokenList = parse(codeText[i], &nbNodes);
 			check(tokenList, nbNodes);
 			
-			//for (int j = 0; j < nbNodes; j++)
-			//	printf("%s", tokenList[j]->value);
+			for (int j = 0; j < nbNodes; j++)
+				printf("%s", tokenList[j]->value);
 
 			if (conf->NoMultiDeclaration)
-				multiDeclare(tokenList, nbNodes, nbLines);
+				multiDeclare(tokenList, nbNodes, nbLines, files[i]);
 			if (conf->maxLineNumbers)
 				checkmaxLineNumbers(i + 1,
 									tokenList[nbNodes - 1]->pos +
 										strlen(tokenList[nbNodes - 1]->value),
-									conf->maxLineNumbers);
+									conf->maxLineNumbers,
+									files[i]);
 			if (conf->noTrallingSpaces)
-				checkSpace(tokenList, nbNodes, i + 1);
+				checkSpace(tokenList, nbNodes, i + 1, files[i]);
 			if (conf->arrayBracketEol)
-				checkBracket(tokenList, i + 1);
+				checkBracket(tokenList, i + 1, files[i]);
 			if (conf->operatorsSpacing)
-				checkOperator(tokenList, nbNodes, i + 1);
+				checkOperator(tokenList, nbNodes, i + 1, files[i]);
 
 			// TokenList
 			free_tokenList(tokenList, nbNodes);
 		}
+		
 		if (conf->maxFileLineNumbers)
-			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
+			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[i]);
 		free_text(codeText, nbLines);
 	}
 
