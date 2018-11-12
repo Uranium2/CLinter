@@ -7,7 +7,9 @@ int main(int argc, char *argv[])
 	if (argc == 3)
 		path = argv[2];
 	Config *conf = loadConfig(path);
-	getFiles(1, conf->excludedFiles, ".", conf->nbExcludedFiles);
+	char **files = malloc(sizeof(char*) * 255); // 255 files max BAD IDEA
+	int pos = 0;
+	getFiles(files, &pos, 1, conf->excludedFiles, ".", conf->nbExcludedFiles);
 	// Run parsing
 	int nbLines = 0;
 	char **codeText = getAllLines(argv[1], &nbLines);
@@ -40,6 +42,7 @@ int main(int argc, char *argv[])
 	if (conf->maxFileLineNumbers)
 		checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
 
+	free_files(files, 255);
 	free_text(codeText, nbLines);
 	free_conf(conf);
 	return 0;

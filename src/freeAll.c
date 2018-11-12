@@ -1,5 +1,14 @@
 #include "freeAll.h"
 
+void free_files(char** files, int nbFiles)
+{
+    
+    for(int i = 0; i < nbFiles; i++)
+        free(files[i]);
+
+    free(files);
+}
+
 void free_tokenList(Token **tokenList, int nbNodes)
 {
     for (int j = 0; j < nbNodes; j++)

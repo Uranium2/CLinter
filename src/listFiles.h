@@ -7,5 +7,5 @@
 #include <dirent.h>
 #include <string.h>
 
-void getFiles(short isRecursive, char **excludedFiles, char *path, int length);
+void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles, char *path, int length);
 #endif
