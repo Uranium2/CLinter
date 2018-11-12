@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < pos; i++)
 	{
-		printf("%s\n", files[i]);
 		if (files[i] == NULL)
 			break;
 		int nbLines = 0;
@@ -26,8 +25,8 @@ int main(int argc, char *argv[])
 			Token **tokenList = parse(codeText[i], &nbNodes);
 			check(tokenList, nbNodes);
 			
-			for (int j = 0; j < nbNodes; j++)
-				printf("%s", tokenList[j]->value);
+			//for (int j = 0; j < nbNodes; j++)
+			//	printf("%s", tokenList[j]->value);
 
 			if (conf->NoMultiDeclaration)
 				multiDeclare(tokenList, nbNodes, nbLines);
@@ -49,7 +48,6 @@ int main(int argc, char *argv[])
 		if (conf->maxFileLineNumbers)
 			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers);
 		free_text(codeText, nbLines);
-		printf("%s\n", files[i]);
 	}
 
 	free_conf(conf);
