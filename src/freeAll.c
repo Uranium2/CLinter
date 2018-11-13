@@ -2,7 +2,9 @@
 
 void clean_text(char **codeText, int nbLines)
 {
-    
+    if (nbLines < 1)
+        return;
+
     for(int i = 0; i < nbLines; i++)
     {
         
@@ -17,7 +19,9 @@ void clean_text(char **codeText, int nbLines)
 
 void free_files(char** files, int nbFiles)
 {
-    
+    if (nbFiles < 1)
+        return;
+
     for(int i = 0; i < nbFiles; i++)
         free(files[i]);
 
@@ -26,6 +30,9 @@ void free_files(char** files, int nbFiles)
 
 void free_tokenList(Token **tokenList, int nbNodes)
 {
+    if (nbNodes < 1)
+        return;
+
     for (int j = 0; j < nbNodes; j++)
     {
         free(tokenList[j]->value);
@@ -36,15 +43,21 @@ void free_tokenList(Token **tokenList, int nbNodes)
 
 void free_text(char **codeText, int nbLines)
 {
+    if (nbLines < 1)
+        return;
+
     for (int i = 0; i < nbLines; i++)
         free(codeText[i]);
 }
 
 void free_conf(Config *conf)
 {
+    if (conf == NULL)
+        return;
     //Free ExcludedFiles[i]?
 
     free(conf->excludedFiles);
-    free(conf->extends);
+    if (conf->extends == NULL)
+        free(conf->extends);
     free(conf);
 }

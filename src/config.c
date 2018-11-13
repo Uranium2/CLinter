@@ -1,5 +1,14 @@
 #include "config.h"
 
+char* getConfigFile(int argc, char** argv)
+{
+    
+    for(int i = 1; i < argc; i++)
+        if(strstr(argv[i], ".lconf") != NULL)
+            return argv[i];
+    return "default.lconf";
+}
+
 int isValidConfFile(char *filename)
 {
     char *dot = strrchr(filename, '.');

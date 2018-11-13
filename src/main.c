@@ -3,10 +3,7 @@
 int main(int argc, char *argv[])
 {
 	// Load Config file
-	char *path = "";
-	if (argc == 3)
-		path = argv[2];
-	Config *conf = loadConfig(path);
+	Config *conf = loadConfig(getConfigFile(argc, argv));
 
 	char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
 	int pos = 0;
