@@ -19,6 +19,20 @@ int isValidConfFile(char *filename)
     return 0;
 }
 
+short getRecursive(char **file, int nbLines)
+{
+
+    for (int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "=recursive") != NULL)
+        {
+            if (strstr(file[i + 1], "true") != NULL)
+                return 1;
+        }
+    }
+    return 0;
+}
+
 char *getExtends(char **file, int nbLines)
 {
 
@@ -114,7 +128,7 @@ void mergeConf(Config *conf, char *path)
     conf2->variableAssignmentType = getVal(configText, "variable-assignment-type", nbLines);
     conf2->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
     conf2->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
-    conf2->recursive = 0;
+    conf2->recursive = getRecursive(configText, nbLines);
 
     conf->arrayBracketEol += conf2->arrayBracketEol;
     conf->operatorsSpacing += conf2->operatorsSpacing;
@@ -164,7 +178,7 @@ Config *loadConfig(char *path)
     conf->variableAssignmentType = getVal(configText, "variable-assignment-type", nbLines);
     conf->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
     conf->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
-    conf->recursive = 0;
+    conf->recursive = getRecursive(configText, nbLines);
 
     if (conf->extends != NULL || conf->extends[0] != '\0')
         mergeConf(conf, conf->extends);

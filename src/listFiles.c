@@ -33,6 +33,7 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles, c
             }
             else
             {
+                // check config for recursive
                 if (dp->d_type == DT_DIR)
                 {
                     strcpy(newPath, path);
