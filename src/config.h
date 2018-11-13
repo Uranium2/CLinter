@@ -7,6 +7,8 @@
 
 #include "files.h"
 
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+
 typedef struct Config_t
 {
     char *extends;

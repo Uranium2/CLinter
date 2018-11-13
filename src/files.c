@@ -15,6 +15,9 @@ int countLinesInFile(FILE *f)
 
 char **getAllLines(char *path, int *nbLines)
 {
+	printf("FILE OPENING: %s\n", path);
+	if (path[strlen(path) - 1] == '\n')
+		path[strlen(path) - 1] = '\0';
 	FILE *f = fopen(path, "r");
 	if (f == NULL)
 		exit_m("getAllLines: f == NULL");

@@ -1,10 +1,9 @@
 #include "config.h"
 
-char* getConfigFile(int argc, char** argv)
+char *getConfigFile(int argc, char **argv)
 {
-    
-    for(int i = 1; i < argc; i++)
-        if(strstr(argv[i], ".lconf") != NULL)
+    for (int i = 1; i < argc; i++)
+        if (strstr(argv[i], ".lconf") != NULL)
             return argv[i];
     return "default.lconf";
 }
@@ -59,12 +58,12 @@ char **getFilesName(char **file, int nbLines, int *NbFiles)
         }
     }
     *NbFiles = countFiles;
-    
-    for(int i = 0; i < countFiles; i++)
-        for(unsigned j = 0; j < strlen(fileNames[i]); j++)
+
+    for (int i = 0; i < countFiles; i++)
+        for (unsigned j = 0; j < strlen(fileNames[i]); j++)
             if (fileNames[i][j] == '\n')
                 fileNames[i][j] = '\0';
-    
+
     return fileNames;
 }
 
@@ -88,6 +87,53 @@ int getVal(char **file, char *rule, int nbLines)
         }
     }
     return 0;
+}
+
+void mergeConf(Config *conf, char *path)
+{
+    char **configText;
+    int nbLines = 0;
+    configText = getAllLines(path, &nbLines);
+
+    Config *conf2 = malloc(sizeof(Config));
+    conf2->extends = getExtends(configText, nbLines);
+    conf2->arrayBracketEol = getVal(configText, "array-bracket-eol", nbLines);
+    conf2->operatorsSpacing = getVal(configText, "operators-spacing", nbLines);
+    conf2->commaSpacing = getVal(configText, "comma-spacing", nbLines);
+    conf2->indent = getVal(configText, "indent", nbLines); // nb space of indend
+    conf2->commentsHeader = getVal(configText, "comments-header", nbLines);
+    conf2->maxLineNumbers = getVal(configText, "max-line-numbers", nbLines);          // nb Max char per line
+    conf2->maxFileLineNumbers = getVal(configText, "max-file-line-numbers", nbLines); // nb Max line per file
+    conf2->noTrallingSpaces = getVal(configText, "no-trailing-spaces", nbLines);
+    conf2->NoMultiDeclaration = getVal(configText, "no-multi-declaration", nbLines);
+    conf2->unusedVariable = getVal(configText, "unused-variable", nbLines);
+    conf2->undeclaredVariable = getVal(configText, "undeclared-variable", nbLines);
+    conf2->noPrototype = getVal(configText, "no-prototype", nbLines);
+    conf2->unusedFunction = getVal(configText, "unused-function", nbLines);
+    conf2->undeclaredFunction = getVal(configText, "undeclared-function", nbLines);
+    conf2->variableAssignmentType = getVal(configText, "variable-assignment-type", nbLines);
+    conf2->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
+    conf2->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
+    conf2->recursive = 0;
+
+    conf->arrayBracketEol += conf2->arrayBracketEol;
+    conf->operatorsSpacing += conf2->operatorsSpacing;
+    conf->commaSpacing += conf2->commaSpacing;
+    conf->indent += conf2->indent;
+    conf->commentsHeader += conf2->commentsHeader;
+    conf->maxLineNumbers = MAX(conf->maxLineNumbers, conf2->maxLineNumbers);
+    conf->maxFileLineNumbers = MAX(conf->maxFileLineNumbers, conf2->maxFileLineNumbers);
+    conf->noTrallingSpaces += conf2->noTrallingSpaces;
+    conf->NoMultiDeclaration += conf->NoMultiDeclaration;
+    conf->unusedVariable += conf->unusedVariable;
+    conf->undeclaredVariable += conf->undeclaredVariable;
+    conf->noPrototype += conf->noPrototype;
+    conf->unusedFunction += conf->unusedFunction;
+    conf->undeclaredFunction += conf->undeclaredFunction;
+    conf->variableAssignmentType += conf->variableAssignmentType;
+    conf->functionParametersType += conf->functionParametersType;
+    //conf->excludedFiles += conf->excludedFiles;
+    conf->recursive += conf->recursive;
 }
 
 Config *loadConfig(char *path)
@@ -119,5 +165,8 @@ Config *loadConfig(char *path)
     conf->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
     conf->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
     conf->recursive = 0;
+
+    if (conf->extends != NULL || conf->extends[0] != '\0')
+        mergeConf(conf, conf->extends);
     return conf;
 }
