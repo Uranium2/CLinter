@@ -27,7 +27,10 @@ void free_files(char** files, int nbFiles)
 void free_tokenList(Token **tokenList, int nbNodes)
 {
     for (int j = 0; j < nbNodes; j++)
+    {
         free(tokenList[j]->value);
+        free(tokenList[j]);
+    }
     free(tokenList);
 }
 

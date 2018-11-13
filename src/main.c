@@ -13,12 +13,10 @@ int main(int argc, char *argv[])
 	getFiles(files, &pos, 1, conf->excludedFiles, ".", conf->nbExcludedFiles);
 	// Run parsing
 
-	for (int i = 0; i < pos; i++)
+	for (int o = 0; o < pos; o++)
 	{
-		if (files[i] == NULL)
-			break;
 		int nbLines = 0;
-		char **codeText = getAllLines(files[i], &nbLines);
+		char **codeText = getAllLines(files[o], &nbLines);
 		for (int i = 0; i < nbLines; i++)
 		{
 			int nbNodes = 0;
@@ -29,26 +27,26 @@ int main(int argc, char *argv[])
 				printf("%s", tokenList[j]->value);
 
 			if (conf->NoMultiDeclaration)
-				multiDeclare(tokenList, nbNodes, nbLines, files[i]);
+				multiDeclare(tokenList, nbNodes, nbLines, files[o]);
 			if (conf->maxLineNumbers)
 				checkmaxLineNumbers(i + 1,
 									tokenList[nbNodes - 1]->pos +
 										strlen(tokenList[nbNodes - 1]->value),
 									conf->maxLineNumbers,
-									files[i]);
+									files[o]);
 			if (conf->noTrallingSpaces)
-				checkSpace(tokenList, nbNodes, i + 1, files[i]);
+				checkSpace(tokenList, nbNodes, i + 1, files[o]);
 			if (conf->arrayBracketEol)
-				checkBracket(tokenList, i + 1, files[i]);
+				checkBracket(tokenList, i + 1, files[o]);
 			if (conf->operatorsSpacing)
-				checkOperator(tokenList, nbNodes, i + 1, files[i]);
+				checkOperator(tokenList, nbNodes, i + 1, files[o]);
 
 			// TokenList
 			free_tokenList(tokenList, nbNodes);
 		}
 		
 		if (conf->maxFileLineNumbers)
-			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[i]);
+			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
 		free_text(codeText, nbLines);
 	}
 
