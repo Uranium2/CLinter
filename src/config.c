@@ -1,5 +1,23 @@
 #include "config.h"
 
+char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2)
+{
+    int nbTotal = *nb1 + *nb2;
+    char **txt3 = malloc(sizeof(char*) * nbTotal);
+    int j = 0;
+    
+    for(int i = 0; i < *nb1; i++)
+        txt3[i] = txt1[i];
+    
+    for(int i = *nb1 ; i < nbTotal; i++)
+    {
+        txt3[i] = txt2[j];
+        j++;
+    }
+    *nb1 = nbTotal;
+    return txt3;
+}
+
 char *getConfigFile(int argc, char **argv)
 {
     for (int i = 1; i < argc; i++)
@@ -127,7 +145,7 @@ void mergeConf(Config *conf, char *path)
     conf2->undeclaredFunction = getVal(configText, "undeclared-function", nbLines);
     conf2->variableAssignmentType = getVal(configText, "variable-assignment-type", nbLines);
     conf2->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
-    conf2->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
+    conf2->excludedFiles = getFilesName(configText, nbLines, &(conf2->nbExcludedFiles));
     conf2->recursive = getRecursive(configText, nbLines);
 
     conf->arrayBracketEol += conf2->arrayBracketEol;
@@ -146,7 +164,7 @@ void mergeConf(Config *conf, char *path)
     conf->undeclaredFunction += conf->undeclaredFunction;
     conf->variableAssignmentType += conf->variableAssignmentType;
     conf->functionParametersType += conf->functionParametersType;
-    //conf->excludedFiles += conf->excludedFiles;
+    conf->excludedFiles = mergeText(conf->excludedFiles, &conf->nbExcludedFiles, conf2->excludedFiles, &conf2->nbExcludedFiles);
     conf->recursive += conf->recursive;
 }
 
