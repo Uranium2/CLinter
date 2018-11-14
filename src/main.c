@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
 	char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
 	int pos = 0;
-	getFiles(files, &pos, 1, conf->excludedFiles, ".", conf->nbExcludedFiles);
+	getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
 	// Run parsing
 
 	for (int o = 0; o < pos; o++)

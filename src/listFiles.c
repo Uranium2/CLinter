@@ -11,7 +11,8 @@ int isNotExcluded(char **excludedFiles, char *file, int length)
     return 1;
 }
 
-void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles, char *path, int length)
+void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
+              char *path, int length)
 {
     char newPath[100];
     struct dirent *dp;
@@ -34,12 +35,15 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles, c
             else
             {
                 // check config for recursive
-                if (dp->d_type == DT_DIR)
+                if (isRecursive)
                 {
-                    strcpy(newPath, path);
-                    strcat(newPath, "/");
-                    strcat(newPath, dp->d_name);
-                    getFiles(files, pos, isRecursive, excludedFiles, newPath, length);
+                    if (dp->d_type == DT_DIR)
+                    {
+                        strcpy(newPath, path);
+                        strcat(newPath, "/");
+                        strcat(newPath, dp->d_name);
+                        getFiles(files, pos, isRecursive, excludedFiles, newPath, length);
+                    }
                 }
             }
         }
