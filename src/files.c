@@ -1,3 +1,6 @@
+/*
+	THIS IS A HEADER FILE
+*/
 #include "files.h"
 
 int countLinesInFile(FILE *f)

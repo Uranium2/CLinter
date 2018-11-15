@@ -1,5 +1,21 @@
 #include "checkCoding.h"
 
+void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status)
+{
+    if (line > 5 || *status > 1)
+    {
+        //print_warning("Missing header", line, 0, fileName);
+        return;
+    }
+    for (int i = 0; i < nbToken - 1; i++)
+    {
+        if (*status == 0 && strcmp(listToken[i]->value, "/") == 0 && strcmp(listToken[i + 1]->value, "*") == 0)
+            *status = *status + 1;
+        else if (*status == 1 && strcmp(listToken[i]->value, "*") == 0 && strcmp(listToken[i + 1]->value, "/") == 0)
+            print_warning("Found header", line, listToken[i]->pos, fileName);
+    }
+}
+
 void checkmaxLineNumbers(int line, int nbChar, int maxLine, char *fileName)
 {
     if (nbChar > maxLine)

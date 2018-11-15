@@ -13,13 +13,14 @@ int main(int argc, char *argv[])
 	for (int o = 0; o < pos; o++)
 	{
 		int nbLines = 0;
+		int statusHeader = 0;
 		char **codeText = getAllLines(files[o], &nbLines);
 		for (int i = 0; i < nbLines; i++)
 		{
 			int nbNodes = 0;
 			Token **tokenList = parse(codeText[i], &nbNodes);
 			check(tokenList, nbNodes);
-			
+
 			for (int j = 0; j < nbNodes; j++)
 				printf("%s", tokenList[j]->value);
 
@@ -37,11 +38,13 @@ int main(int argc, char *argv[])
 				checkBracket(tokenList, i + 1, files[o]);
 			if (conf->operatorsSpacing)
 				checkOperator(tokenList, nbNodes, i + 1, files[o]);
+			if (conf->commentsHeader)
+				checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader);
 
 			// TokenList
 			free_tokenList(tokenList, nbNodes);
 		}
-		
+
 		if (conf->maxFileLineNumbers)
 			checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
 		free_text(codeText, nbLines);

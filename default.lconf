@@ -8,13 +8,14 @@ myConfig.lconf
 - max-line-numbers = 80
 - max-file-line-numbers = 80
 - no-multi-declaration = on
+- comments-header = on
 
 
 =excludedFiles
-- default.c
+- main.c
 - hello2.c
 - hello3.c
 - hello4.c
 
 =recursive
-false
+true
