@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 			if (conf->operatorsSpacing)
 				checkOperator(tokenList, nbNodes, i + 1, files[o]);
 			if (conf->commentsHeader)
-				checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader);
+				checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader, nbLines - 1);
 
 			// TokenList
 			free_tokenList(tokenList, nbNodes);

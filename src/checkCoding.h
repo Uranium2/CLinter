@@ -9,7 +9,7 @@
 #include "parser.h"
 
 
-void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status);
+void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status, int lastLine);
 void checkmaxLineNumbers(int line, int nbChar, int maxLine, char *fileName);
 void checkmaxFileLineNumbers(int nbLines, int linesConf, char *fileName);
 void checkOperator(Token **listToken, int nbToken, int line, char* fileName);
