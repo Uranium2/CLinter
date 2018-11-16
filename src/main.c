@@ -1,7 +1,7 @@
 #include "headers.h"
 
 /**
-* @file changeType.c
+* @file main.c
 * @brief This c file will contain all the logic to analyze and warn a user of it's bad C type skills.
 *
 * @author Antoine TAVERNIER

@@ -15,6 +15,8 @@
  * @param listToken List of Tokens
  * @param nbToken number of Tokens
  * @param line Line in the file
+ * @param status State of comment header. 0 no comment. 1 Only opening Comment. 2 closed Comment
+ * @param lastLine Helps to trigger the warning message at end of file
  * @param fileName File name we are working on
  */
 void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status, int lastLine)

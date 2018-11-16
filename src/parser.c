@@ -63,8 +63,10 @@ int isDelimNoSpace(char c)
 /**
  * @brief Get subString of str delimited by left and right
  * 
- * @param c character to check
- * @return int 0 false else true
+ * @param str String containing text
+ * @param left Left pointer on the str
+ * @param right Right pointer on the str
+ * @return char* Substring between left and right pointers
  */
 char *getSubString(char *str, int left, int right)
 {

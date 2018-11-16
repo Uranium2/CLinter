@@ -1,7 +1,7 @@
 #include "listFiles.h"
 
 /**
-* @file listfiles.c
+* @file listFiles.c
 * @brief This c file will contain all functions to list files we want to work on.
 *
 * @author Antoine TAVERNIER
