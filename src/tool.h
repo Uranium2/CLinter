@@ -15,4 +15,7 @@ void print_warning(char *message, int line, int pos, char* fileName);
 // Tell if string is a C key word
 int isKey(char *str);
 
+// Tell if a string is an Number
+int isNum(char *str);
+
 #endif

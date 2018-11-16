@@ -5,22 +5,7 @@ int isChar(char c)
     return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-// Tell if a string is an Number
-int isNum(char *str)
-{
-    if (str == NULL)
-        exit_m("isNum: str == NULL");
-    int len = strlen(str);
-    if (len <= 0)
-        return 0;
-    char *end;
-    strtod(str, &end);
-    if (end == str)
-        return 0;
-    if (strlen(end) > 0)
-        return 0;
-    return 1;
-}
+
 
 void assignTypes(Token **listToken, int nbNodes)
 {
