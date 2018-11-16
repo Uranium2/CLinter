@@ -12,3 +12,18 @@ void print_warning(char *message, int line, int pos, char *fileName)
 	//	printf("FileName is NULL %s", fileName);
 	printf(YEL "%s at line " RED "%d" YEL " character for " RED "%d " YEL "for file " RED "%s\n" RESET, message, line, pos, fileName);
 }
+
+// Tell if string is a C key word
+int isKey(char *str)
+{
+	return (!strcmp(str, "int") || !strcmp(str, "float") ||
+			!strcmp(str, "double") || !strcmp(str, "char") ||
+			!strcmp(str, "if") || !strcmp(str, "else") ||
+			!strcmp(str, "while") || !strcmp(str, "do") ||
+			!strcmp(str, "for") || !strcmp(str, "unsigned") ||
+			!strcmp(str, "break") || !strcmp(str, "continue") ||
+			!strcmp(str, "switch") || !strcmp(str, "return") ||
+			!strcmp(str, "case") || !strcmp(str, "short") ||
+			!strcmp(str, "static") || !strcmp(str, "void") ||
+			!strcmp(str, "struct"));
+}

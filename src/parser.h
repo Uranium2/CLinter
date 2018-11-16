@@ -43,6 +43,4 @@ int isVar(char *str);
 // Get subString of str delimited by left and right
 char *getSubString(char *str, int left, int right);
 
-// Tell if string is a C key word
-int isKey(char *str);
 #endif
