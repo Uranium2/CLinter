@@ -17,8 +17,16 @@
 
 #include "files.h"
 
+/**
+ * @brief Macro to return MAX between integers
+ * 
+ */
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 
+/**
+ * @brief Structure to store all configurations elements
+ * 
+ */
 typedef struct Config_t
 {
     char *extends;
@@ -43,9 +51,14 @@ typedef struct Config_t
     short recursive;
 } Config;
 
-// Reads a file and loads the configuration
+char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2);
+char *getConfigFile(int argc, char **argv);
+int isValidConfFile(char *filename);
+short getRecursive(char **file, int nbLines);
+char *getExtends(char **file, int nbLines);
+char **getFilesName(char **file, int nbLines, int *NbFiles);
+int getVal(char **file, char *rule, int nbLines);
 Config *loadConfig(char *path);
-
 char* getConfigFile(int argc, char** argv);
 
 #endif

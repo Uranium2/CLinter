@@ -1,5 +1,22 @@
 #include "config.h"
+/**
+* @file config.c
+* @brief This c file will contain all functions to load a lconf file.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
 
+/**
+ * @brief Merge 2 texts content
+ * 
+ * @param txt1 List of strings 1
+ * @param nb1  Number of strings in 1, updated with sum of nb1, nb2
+ * @param txt2 List of strings 2
+ * @param nb2 Number of strings in 2
+ * @return char** The total content of both texts
+ */
 char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2)
 {
     int nbTotal = *nb1 + *nb2;
@@ -18,6 +35,13 @@ char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2)
     return txt3;
 }
 
+/**
+ * @brief Get the Config File
+ * 
+ * @param argc Number of argument of main
+ * @param argv List of argument of main
+ * @return char* Name of config file
+ */
 char *getConfigFile(int argc, char **argv)
 {
     for (int i = 1; i < argc; i++)
@@ -26,6 +50,12 @@ char *getConfigFile(int argc, char **argv)
     return "default.lconf";
 }
 
+/**
+ * @brief Check if a given file has good name format
+ * 
+ * @param filename A file path
+ * @return int false (0) if not contains .lconf else true (1)
+ */
 int isValidConfFile(char *filename)
 {
     char *dot = strrchr(filename, '.');
@@ -37,6 +67,13 @@ int isValidConfFile(char *filename)
     return 0;
 }
 
+/**
+ * @brief Get the Recursive option value
+ * 
+ * @param file List of Strings represented by a file
+ * @param nbLines Number of lines in the file
+ * @return short 0 false else true
+ */
 short getRecursive(char **file, int nbLines)
 {
 
@@ -51,6 +88,13 @@ short getRecursive(char **file, int nbLines)
     return 0;
 }
 
+/**
+ * @brief Get the Extends file name
+ * 
+ * @param file List of Strings represented by a file
+ * @param nbLines Number of lines in the file
+ * @return char* A file name
+ */
 char *getExtends(char **file, int nbLines)
 {
 
@@ -66,6 +110,14 @@ char *getExtends(char **file, int nbLines)
     return "";
 }
 
+/**
+ * @brief Get list of excluded files in lconf
+ * 
+ * @param file List of Strings represented by a file 
+ * @param nbLines Number of lines in the file
+ * @param NbFiles Number of excluded files updated
+ * @return char** List of files name
+ */
 char **getFilesName(char **file, int nbLines, int *NbFiles)
 {
     int countFiles = 0;
@@ -99,6 +151,14 @@ char **getFilesName(char **file, int nbLines, int *NbFiles)
     return fileNames;
 }
 
+/**
+ * @brief Get the value of a field in a config
+ * 
+ * @param file List of Strings represented by a file
+ * @param rule String representation of a rule in the lconf file
+ * @param nbLines Number of lines in the lconf file
+ * @return int 0 false else true
+ */
 int getVal(char **file, char *rule, int nbLines)
 {
 
@@ -121,6 +181,12 @@ int getVal(char **file, char *rule, int nbLines)
     return 0;
 }
 
+/**
+ * @brief Merge 2 configurations
+ * 
+ * @param conf Original configuration structure
+ * @param path The path to the new configuration to merge with the original structure
+ */
 void mergeConf(Config *conf, char *path)
 {
     char **configText;
@@ -168,6 +234,12 @@ void mergeConf(Config *conf, char *path)
     conf->recursive += conf->recursive;
 }
 
+/**
+ * @brief Load the configuration from a file
+ * 
+ * @param path Configuration file
+ * @return Config* Configuration structure from given file
+ */
 Config *loadConfig(char *path)
 {
     char **configText;

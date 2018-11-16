@@ -1,5 +1,22 @@
 #include "listFiles.h"
 
+/**
+* @file listfiles.c
+* @brief This c file will contain all functions to list files we want to work on.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
+/**
+ * @brief Check if a given file is not in the list of excluded files from config
+ * 
+ * @param excludedFiles List of excluded files
+ * @param file The given file to check
+ * @param length Number of exlucded files in the list
+ * @return int 0 false else true
+ */
 int isNotExcluded(char **excludedFiles, char *file, int length)
 {
 
@@ -11,6 +28,16 @@ int isNotExcluded(char **excludedFiles, char *file, int length)
     return 1;
 }
 
+/**
+ * @brief Get the Files from list a path
+ * 
+ * @param files A list of File names
+ * @param pos Position in the list of File names
+ * @param isRecursive 0 false else true
+ * @param excludedFiles List of excluded files
+ * @param path Path of the file
+ * @param length Number of excluded files
+ */
 void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
               char *path, int length)
 {

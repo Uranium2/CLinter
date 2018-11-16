@@ -1,5 +1,22 @@
 #include "headers.h"
 
+/**
+* @file changeType.c
+* @brief This c file will contain all the logic to analyze and warn a user of it's bad C type skills.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
+
+/**
+ * @brief The main entrance point of the program containing all the Logic.
+ * 
+ * @param argc Number of arguments
+ * @param argv List of arguments
+ * @return int 0 Good else Bad
+ */
 int main(int argc, char *argv[])
 {
 	// Load Config file

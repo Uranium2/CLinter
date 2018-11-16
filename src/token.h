@@ -108,21 +108,6 @@ typedef struct Token_t
 	int pos; /**< The position of the Token in the list of characters of a line. */
 } Token;
 
-/**
- * @brief Get the Enum Name of a Type
- * 
- * @param type Given Type
- * @return char* Type cast to string
- */
 char* getEnumName(Type type);
-
-/**
- * @brief Create a Token structure
- * 
- * @param type Given Type
- * @param value Given String value
- * @param pos Given position of the Token in a line 
- * @return Token* A new Token
- */
 Token *createToken(Type type, char *value, int pos);
 #endif

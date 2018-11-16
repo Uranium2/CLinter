@@ -18,6 +18,7 @@
 
 #include "tool.h"
 
+int countLinesInFile(FILE *f);
 char **getAllLines(char *path, int *nbLines);
 
 #endif

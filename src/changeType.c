@@ -1,5 +1,20 @@
 #include "changeType.h"
 
+/**
+* @file changeType.c
+* @brief This c file will contain all functions to change type of a token.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
+/**
+ * @brief Assign Types for a list of Tokens
+ * 
+ * @param listToken List of Tokens
+ * @param nbNodes Number of Tokens
+ */
 void assignTypes(Token **listToken, int nbNodes)
 {
 

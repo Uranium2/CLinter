@@ -38,46 +38,10 @@
  */
 #define RESET "\x1B[0m"
 
-/**
- * @brief Reads a string and prints each token type
- * 
- * @param str input string (code from given file)
- * @param nbNodes number of nodes in string
- * @return Token** list of list of tokens
- */
 Token **parse(char *str, int *nbNodes);
-
-/**
- * @brief Tell if char is an operator
- * 
- * @param c character to check
- * @return int 0 false else true
- */
 int isOpe(char c);
-
-/**
- * @brief Tell if char is a delimiter + operator
- * 
- * @param c character to check
- * @return int 0 false else true
- */
 int isDelim(char c);
-
-
-/**
- * @brief Tell if char is a delimiter expect space ' '
- * 
- * @param c character to check
- * @return int 0 false else true
- */
 int isDelimNoSpace(char c);
-
-/**
- * @brief Get subString of str delimited by left and right
- * 
- * @param c character to check
- * @return int 0 false else true
- */
 char *getSubString(char *str, int left, int right);
 
 #endif

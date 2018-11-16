@@ -17,7 +17,7 @@
 #include <dirent.h>
 #include <string.h>
 
-
+int isNotExcluded(char **excludedFiles, char *file, int length);
 void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
               char *path, int length);
 #endif

@@ -1,6 +1,20 @@
 #include "parser.h"
 
-// Tell if char is an operator
+/**
+* @file parser.c
+* @brief This c file will contain all functions to parse a file.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
+/**
+ * @brief Tell if char is an operator
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isOpe(char c)
 {
 	return (c == '=' || c == '+' ||
@@ -11,7 +25,12 @@ int isOpe(char c)
 			c == '&');
 }
 
-// Tell if char is a delimiter + operator
+/**
+ * @brief Tell if char is a delimiter + operator
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isDelim(char c)
 {
 	return (isspace(c) || c == ';' ||
@@ -23,7 +42,12 @@ int isDelim(char c)
 			isOpe(c));
 }
 
-// Tell if char is a delimiter expect space ' '
+/**
+ * @brief Tell if char is a delimiter expect space ' '
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isDelimNoSpace(char c)
 {
 	if (c == ' ')
@@ -36,7 +60,12 @@ int isDelimNoSpace(char c)
 			c == '\'' || isOpe(c));
 }
 
-// Get subString of str delimited by left and right
+/**
+ * @brief Get subString of str delimited by left and right
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 char *getSubString(char *str, int left, int right)
 {
 	if (left > right)
@@ -58,9 +87,13 @@ int canBeExpe(char c, char *str, int right)
 	return isDelim(c) && (str[right - 1] == 'e' || str[right - 1] == 'E') && isdigit(str[right - 2]) && isdigit(str[right + 1]);
 }
 
-// Reads a string and prints each token type
-// char* str : input string (code from given file)
-// int nbNodes : nbNodes in str
+/**
+ * @brief Reads a string and prints each token type
+ * 
+ * @param str input string (code from given file)
+ * @param nbNodes number of nodes in string
+ * @return Token** list of list of tokens
+ */
 Token **parse(char *str, int *nbNodes)
 {
 	int left = 0;

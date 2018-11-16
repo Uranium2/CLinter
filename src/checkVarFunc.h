@@ -19,6 +19,8 @@
 #include "token.h"
 #include "parser.h"
 
+int skipSpaces(Token **listToken, int nbToken);
+int containsStr(Token **listToken, int nbToken, char *str);
 void multiDeclare(Token **listToken, int nbToken, int line, char* fileName);
 
 #endif

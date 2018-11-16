@@ -1,8 +1,22 @@
 #include "token.h"
 
+/**
+* @file token.c
+* @brief This c file will contain all functions to create a Token.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
+/**
+ * @brief Get the Enum Name of a Type
+ * 
+ * @param type Given Type
+ * @return char* Type cast to string
+ */
 char *getEnumName(Type type)
 {
-
         switch (type)
         {
         case DotComa:
@@ -155,6 +169,14 @@ char *getEnumName(Type type)
         return "Nothing";
 }
 
+/**
+ * @brief Create a Token structure
+ * 
+ * @param type Given Type
+ * @param value Given String value
+ * @param pos Given position of the Token in a line 
+ * @return Token* A new Token
+ */
 Token *createToken(Type type, char *value, int pos)
 {
         Token *token = malloc(sizeof(Token));
