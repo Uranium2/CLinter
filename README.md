@@ -1,16 +1,25 @@
 # CLinter
 Linter in C
 # To compile
-make
-# To run one file
-./linter
+```console
+CLinter:~$ make
+```
+# To generate and view documentation
+```console
+CLinter:~$ cd Doc/
+CLinter:~$ doxygen Doxyfile
+CLinter:~$ firefox html/index.html
+```
+# To run program
+```console
+CLinter:~$ ./linter
+```
 
 or
 
-./linter [path/to/config/file]
-
-# To run tests
-./test.sh
+```console
+CLinter:~$ ./linter [path/to/config/file]
+```
 
 # TODO:
 * Delimiter les tokens (Mot clés, délimiteurs, opérateurs, noms variables, espaces, reste?)	:+1: :-1:
