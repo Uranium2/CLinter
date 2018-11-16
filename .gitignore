@@ -62,5 +62,5 @@ dkms.conf
 cmake-build-debug/
 
 # Documentation
-./Doc/html/
-./Doc/latex/
+html/
+latex/
