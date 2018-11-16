@@ -1,12 +1,5 @@
 #include "changeType.h"
 
-int isChar(char c)
-{
-    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
-
-
-
 void assignTypes(Token **listToken, int nbNodes)
 {
 
