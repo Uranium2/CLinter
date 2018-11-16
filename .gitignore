@@ -60,3 +60,7 @@ dkms.conf
 # IDE
 .idea/*
 cmake-build-debug/
+
+# Documentation
+./Doc/html/
+./Doc/latex/
