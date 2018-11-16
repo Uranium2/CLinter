@@ -23,6 +23,8 @@ void assignTypes(Token **listToken, int nbNodes)
         switch (listToken[i]->value[0])
         {
         case '=':
+            listToken[i]->type = EQ_OP;
+            break;
         case '+':
         case '-':
         case '/':
@@ -69,15 +71,15 @@ void assignTypes(Token **listToken, int nbNodes)
         }
 
         if (strcmp("int", listToken[i]->value) == 0)
-            listToken[i]->type = INT;
+            listToken[i]->type = KeyWord;
         if (strcmp("char", listToken[i]->value) == 0)
-            listToken[i]->type = CHAR;
+            listToken[i]->type = KeyWord;
         if (strcmp("void", listToken[i]->value) == 0)
-            listToken[i]->type = VOID;
+            listToken[i]->type = KeyWord;
         if (strcmp("double", listToken[i]->value) == 0)
-            listToken[i]->type = DOUBLE;
+            listToken[i]->type = KeyWord;
         if (strcmp("float", listToken[i]->value) == 0)
-            listToken[i]->type = FLOAT;
+            listToken[i]->type = KeyWord;
         if (strcmp("const", listToken[i]->value) == 0)
             listToken[i]->type = CONST;
         if (strcmp("return", listToken[i]->value) == 0)

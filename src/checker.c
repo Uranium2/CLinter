@@ -86,9 +86,15 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
  */
 void varDeclare(Token **tokens, int* pos, int nbNode)
 {
-	tokens =tokens;
+	tokens = tokens;
 	pos = pos;
 	nbNode = nbNode;
+	/*nextTok(pos, nbNode, tokens);
+	if (eatToken(tokens, KeyWord, pos,nbNode))
+			if (eatToken(tokens, IDENTIFIER, pos,nbNode))
+				printf("Found Variable declaration\n");
+				// Do something clever here
+				*/
 }
 
 /**
