@@ -1,0 +1,108 @@
+\hypertarget{listFiles_8h}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/list\+Files.h File Reference}
+\label{listFiles_8h}\index{/home/a4742849/\+Documents/\+C\+Linter/src/list\+Files.\+h@{/home/a4742849/\+Documents/\+C\+Linter/src/list\+Files.\+h}}
+
+
+This header file will contain all required definitions and basic utilities functions to check grammar of a C file.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for list\+Files.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{listFiles_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{listFiles_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{listFiles_8h_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{listFiles_8h_a0c74c65f13b3f9f5870909701fdc33b1}{is\+Not\+Excluded} (char $\ast$$\ast$excluded\+Files, char $\ast$file, int length)
+\begin{DoxyCompactList}\small\item\em Check if a given file is not in the list of excluded files from config. \end{DoxyCompactList}\item 
+void \hyperlink{listFiles_8h_a0a47e47fbbdee433b7f4da7b3d57b288}{get\+Files} (char $\ast$$\ast$files, int $\ast$pos, short is\+Recursive, char $\ast$$\ast$excluded\+Files, char $\ast$path, int length)
+\begin{DoxyCompactList}\small\item\em Get the Files from list a path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header file will contain all required definitions and basic utilities functions to check grammar of a C file. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{listFiles_8h_a369266c24eacffb87046522897a570d5}\label{listFiles_8h_a369266c24eacffb87046522897a570d5}} 
+\index{list\+Files.\+h@{list\+Files.\+h}!\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE@{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}
+\index{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE@{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}!list\+Files.\+h@{list\+Files.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{listFiles_8h_a0a47e47fbbdee433b7f4da7b3d57b288}\label{listFiles_8h_a0a47e47fbbdee433b7f4da7b3d57b288}} 
+\index{list\+Files.\+h@{list\+Files.\+h}!get\+Files@{get\+Files}}
+\index{get\+Files@{get\+Files}!list\+Files.\+h@{list\+Files.\+h}}
+\subsubsection{\texorpdfstring{get\+Files()}{getFiles()}}
+{\footnotesize\ttfamily void get\+Files (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{files,  }\item[{int $\ast$}]{pos,  }\item[{short}]{is\+Recursive,  }\item[{char $\ast$$\ast$}]{excluded\+Files,  }\item[{char $\ast$}]{path,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+
+Get the Files from list a path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em files} & A list of File names \\
+\hline
+{\em pos} & Position in the list of File names \\
+\hline
+{\em is\+Recursive} & 0 false else true \\
+\hline
+{\em excluded\+Files} & List of excluded files \\
+\hline
+{\em path} & Path of the file \\
+\hline
+{\em length} & Number of excluded files \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{listFiles_8h_a0c74c65f13b3f9f5870909701fdc33b1}\label{listFiles_8h_a0c74c65f13b3f9f5870909701fdc33b1}} 
+\index{list\+Files.\+h@{list\+Files.\+h}!is\+Not\+Excluded@{is\+Not\+Excluded}}
+\index{is\+Not\+Excluded@{is\+Not\+Excluded}!list\+Files.\+h@{list\+Files.\+h}}
+\subsubsection{\texorpdfstring{is\+Not\+Excluded()}{isNotExcluded()}}
+{\footnotesize\ttfamily int is\+Not\+Excluded (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{excluded\+Files,  }\item[{char $\ast$}]{file,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+
+Check if a given file is not in the list of excluded files from config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em excluded\+Files} & List of excluded files \\
+\hline
+{\em file} & The given file to check \\
+\hline
+{\em length} & Number of exlucded files in the list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 false else true 
+\end{DoxyReturn}

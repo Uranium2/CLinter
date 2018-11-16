@@ -1,0 +1,74 @@
+\hypertarget{files_8c}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/files.c File Reference}
+\label{files_8c}\index{/home/a4742849/\+Documents/\+C\+Linter/src/files.\+c@{/home/a4742849/\+Documents/\+C\+Linter/src/files.\+c}}
+
+
+This c file will contain all functions to load a file in a char$\ast$$\ast$.  
+
+
+{\ttfamily \#include \char`\"{}files.\+h\char`\"{}}\newline
+Include dependency graph for files.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{files_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{files_8c_a35e14b890e4734b5d9d303bef756b965}{count\+Lines\+In\+File} (F\+I\+LE $\ast$f)
+\begin{DoxyCompactList}\small\item\em Get the number of lines in a file. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{files_8c_a91f0ab03ed084ddfee5ee7a8323d5dc1}{get\+All\+Lines} (char $\ast$path, int $\ast$nb\+Lines)
+\begin{DoxyCompactList}\small\item\em Get the All Lines in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This c file will contain all functions to load a file in a char$\ast$$\ast$. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{files_8c_a35e14b890e4734b5d9d303bef756b965}\label{files_8c_a35e14b890e4734b5d9d303bef756b965}} 
+\index{files.\+c@{files.\+c}!count\+Lines\+In\+File@{count\+Lines\+In\+File}}
+\index{count\+Lines\+In\+File@{count\+Lines\+In\+File}!files.\+c@{files.\+c}}
+\subsubsection{\texorpdfstring{count\+Lines\+In\+File()}{countLinesInFile()}}
+{\footnotesize\ttfamily int count\+Lines\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+Get the number of lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Given F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Number of line in F\+I\+LE f 
+\end{DoxyReturn}
+\mbox{\Hypertarget{files_8c_a91f0ab03ed084ddfee5ee7a8323d5dc1}\label{files_8c_a91f0ab03ed084ddfee5ee7a8323d5dc1}} 
+\index{files.\+c@{files.\+c}!get\+All\+Lines@{get\+All\+Lines}}
+\index{get\+All\+Lines@{get\+All\+Lines}!files.\+c@{files.\+c}}
+\subsubsection{\texorpdfstring{get\+All\+Lines()}{getAllLines()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+All\+Lines (\begin{DoxyParamCaption}\item[{char $\ast$}]{path,  }\item[{int $\ast$}]{nb\+Lines }\end{DoxyParamCaption})}
+
+
+
+Get the All Lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path of file \\
+\hline
+{\em nb\+Lines} & Number of lines updated in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$$\ast$ A list of string containing the text of file 
+\end{DoxyReturn}

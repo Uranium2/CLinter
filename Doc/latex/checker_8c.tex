@@ -1,0 +1,162 @@
+\hypertarget{checker_8c}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/checker.c File Reference}
+\label{checker_8c}\index{/home/a4742849/\+Documents/\+C\+Linter/src/checker.\+c@{/home/a4742849/\+Documents/\+C\+Linter/src/checker.\+c}}
+
+
+This c file will contain all functions to check a grammar.  
+
+
+{\ttfamily \#include \char`\"{}checker.\+h\char`\"{}}\newline
+Include dependency graph for checker.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{checker_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{checker_8c_a84b143f5680c24af3bcd620ecee4e931}{print\+Err} (char $\ast$expected, char $\ast$found)
+\begin{DoxyCompactList}\small\item\em Debug function to print Grammar errors. \end{DoxyCompactList}\item 
+int \hyperlink{checker_8c_a4a0082e3143bf0a85f55ccfa37619b98}{match} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$tok, \hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type} type, char $\ast$val)
+\begin{DoxyCompactList}\small\item\em Check if the Type matchs the type of the Token and the string content of the Token. \end{DoxyCompactList}\item 
+void \hyperlink{checker_8c_a340149104df3bcabd21e3114ef9ac7b5}{next\+Tok} (int $\ast$pos, int nb\+Node, \hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$tokens)
+\begin{DoxyCompactList}\small\item\em Updates the position value. \end{DoxyCompactList}\item 
+int \hyperlink{checker_8c_adde228c5e9e66958fe2e6af41235f71e}{eat\+Token} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$tokens, \hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type} type, int $\ast$pos, int nb\+Node)
+\begin{DoxyCompactList}\small\item\em Tries to go to the next Token. \end{DoxyCompactList}\item 
+void \hyperlink{checker_8c_ac036563d82d1d28457c1baa8dbdc5faa}{var\+Declare} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$tokens, int $\ast$pos, int nb\+Node)
+\begin{DoxyCompactList}\small\item\em Variables Declaration checker. \end{DoxyCompactList}\item 
+void \hyperlink{checker_8c_ac6e030b30b03379f03101651ad86340b}{check} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$tokens, int nb\+Node)
+\begin{DoxyCompactList}\small\item\em Checks a specific Grammar, not used at the moment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This c file will contain all functions to check a grammar. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{checker_8c_ac6e030b30b03379f03101651ad86340b}\label{checker_8c_ac6e030b30b03379f03101651ad86340b}} 
+\index{checker.\+c@{checker.\+c}!check@{check}}
+\index{check@{check}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily void check (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{tokens,  }\item[{int}]{nb\+Node }\end{DoxyParamCaption})}
+
+
+
+Checks a specific Grammar, not used at the moment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & List of Tokens \\
+\hline
+{\em nb\+Node} & Number of nodes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checker_8c_adde228c5e9e66958fe2e6af41235f71e}\label{checker_8c_adde228c5e9e66958fe2e6af41235f71e}} 
+\index{checker.\+c@{checker.\+c}!eat\+Token@{eat\+Token}}
+\index{eat\+Token@{eat\+Token}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{eat\+Token()}{eatToken()}}
+{\footnotesize\ttfamily int eat\+Token (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{tokens,  }\item[{\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type}}]{type,  }\item[{int $\ast$}]{pos,  }\item[{int}]{nb\+Node }\end{DoxyParamCaption})}
+
+
+
+Tries to go to the next Token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & List of Tokens \\
+\hline
+{\em type} & Type of the expected Token \\
+\hline
+{\em pos} & Position in the list of Tokens \\
+\hline
+{\em nb\+Node} & Number of tokens in the list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 false else true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{checker_8c_a4a0082e3143bf0a85f55ccfa37619b98}\label{checker_8c_a4a0082e3143bf0a85f55ccfa37619b98}} 
+\index{checker.\+c@{checker.\+c}!match@{match}}
+\index{match@{match}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{match()}{match()}}
+{\footnotesize\ttfamily int match (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$}]{tok,  }\item[{\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type}}]{type,  }\item[{char $\ast$}]{val }\end{DoxyParamCaption})}
+
+
+
+Check if the Type matchs the type of the Token and the string content of the Token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tok} & Specific Token \\
+\hline
+{\em type} & Wanted Type to check \\
+\hline
+{\em val} & String to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 false else true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{checker_8c_a340149104df3bcabd21e3114ef9ac7b5}\label{checker_8c_a340149104df3bcabd21e3114ef9ac7b5}} 
+\index{checker.\+c@{checker.\+c}!next\+Tok@{next\+Tok}}
+\index{next\+Tok@{next\+Tok}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{next\+Tok()}{nextTok()}}
+{\footnotesize\ttfamily void next\+Tok (\begin{DoxyParamCaption}\item[{int $\ast$}]{pos,  }\item[{int}]{nb\+Node,  }\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{tokens }\end{DoxyParamCaption})}
+
+
+
+Updates the position value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position in the list of Tokens \\
+\hline
+{\em nb\+Node} & Number of tokens in the list of Tokens \\
+\hline
+{\em tokens} & List of Tokens \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checker_8c_a84b143f5680c24af3bcd620ecee4e931}\label{checker_8c_a84b143f5680c24af3bcd620ecee4e931}} 
+\index{checker.\+c@{checker.\+c}!print\+Err@{print\+Err}}
+\index{print\+Err@{print\+Err}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{print\+Err()}{printErr()}}
+{\footnotesize\ttfamily void print\+Err (\begin{DoxyParamCaption}\item[{char $\ast$}]{expected,  }\item[{char $\ast$}]{found }\end{DoxyParamCaption})}
+
+
+
+Debug function to print Grammar errors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expected} & String expected \\
+\hline
+{\em found} & String found \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checker_8c_ac036563d82d1d28457c1baa8dbdc5faa}\label{checker_8c_ac036563d82d1d28457c1baa8dbdc5faa}} 
+\index{checker.\+c@{checker.\+c}!var\+Declare@{var\+Declare}}
+\index{var\+Declare@{var\+Declare}!checker.\+c@{checker.\+c}}
+\subsubsection{\texorpdfstring{var\+Declare()}{varDeclare()}}
+{\footnotesize\ttfamily void var\+Declare (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{tokens,  }\item[{int $\ast$}]{pos,  }\item[{int}]{nb\+Node }\end{DoxyParamCaption})}
+
+
+
+Variables Declaration checker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & List of Tokens \\
+\hline
+{\em pos} & Position in the list of Tokens \\
+\hline
+{\em nb\+Node} & Number of tokens in the list \\
+\hline
+\end{DoxyParams}

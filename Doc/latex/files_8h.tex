@@ -1,0 +1,99 @@
+\hypertarget{files_8h}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/files.h File Reference}
+\label{files_8h}\index{/home/a4742849/\+Documents/\+C\+Linter/src/files.\+h@{/home/a4742849/\+Documents/\+C\+Linter/src/files.\+h}}
+
+
+This header file will contain all required definitions and basic utilities functions to read and load a file into a char$\ast$$\ast$.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tool.\+h\char`\"{}}\newline
+Include dependency graph for files.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{files_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{files_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{files_8h_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{files_8h_a35e14b890e4734b5d9d303bef756b965}{count\+Lines\+In\+File} (F\+I\+LE $\ast$f)
+\begin{DoxyCompactList}\small\item\em Get the number of lines in a file. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{files_8h_a91f0ab03ed084ddfee5ee7a8323d5dc1}{get\+All\+Lines} (char $\ast$path, int $\ast$nb\+Lines)
+\begin{DoxyCompactList}\small\item\em Get the All Lines in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header file will contain all required definitions and basic utilities functions to read and load a file into a char$\ast$$\ast$. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{files_8h_a369266c24eacffb87046522897a570d5}\label{files_8h_a369266c24eacffb87046522897a570d5}} 
+\index{files.\+h@{files.\+h}!\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE@{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}
+\index{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE@{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}!files.\+h@{files.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{files_8h_a35e14b890e4734b5d9d303bef756b965}\label{files_8h_a35e14b890e4734b5d9d303bef756b965}} 
+\index{files.\+h@{files.\+h}!count\+Lines\+In\+File@{count\+Lines\+In\+File}}
+\index{count\+Lines\+In\+File@{count\+Lines\+In\+File}!files.\+h@{files.\+h}}
+\subsubsection{\texorpdfstring{count\+Lines\+In\+File()}{countLinesInFile()}}
+{\footnotesize\ttfamily int count\+Lines\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+Get the number of lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Given F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Number of line in F\+I\+LE f 
+\end{DoxyReturn}
+\mbox{\Hypertarget{files_8h_a91f0ab03ed084ddfee5ee7a8323d5dc1}\label{files_8h_a91f0ab03ed084ddfee5ee7a8323d5dc1}} 
+\index{files.\+h@{files.\+h}!get\+All\+Lines@{get\+All\+Lines}}
+\index{get\+All\+Lines@{get\+All\+Lines}!files.\+h@{files.\+h}}
+\subsubsection{\texorpdfstring{get\+All\+Lines()}{getAllLines()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+All\+Lines (\begin{DoxyParamCaption}\item[{char $\ast$}]{path,  }\item[{int $\ast$}]{nb\+Lines }\end{DoxyParamCaption})}
+
+
+
+Get the All Lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path of file \\
+\hline
+{\em nb\+Lines} & Number of lines updated in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$$\ast$ A list of string containing the text of file 
+\end{DoxyReturn}

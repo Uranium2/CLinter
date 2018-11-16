@@ -1,0 +1,178 @@
+\hypertarget{checkCoding_8h}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/check\+Coding.h File Reference}
+\label{checkCoding_8h}\index{/home/a4742849/\+Documents/\+C\+Linter/src/check\+Coding.\+h@{/home/a4742849/\+Documents/\+C\+Linter/src/check\+Coding.\+h}}
+
+
+This header file will contain all required definitions and basic utilities functions to check rules on a C file.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}token.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}parser.\+h\char`\"{}}\newline
+Include dependency graph for check\+Coding.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{checkCoding_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{checkCoding_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{checkCoding_8h_a970a5abd1aa70c5c011251a409bb7cef}{check\+Comments\+Header} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$list\+Token, int nb\+Token, int line, char $\ast$file\+Name, int $\ast$status, int last\+Line)
+\begin{DoxyCompactList}\small\item\em Check the rule comments-\/header. \end{DoxyCompactList}\item 
+void \hyperlink{checkCoding_8h_a895b80e00435b977923e6c76b0e5e8a4}{checkmax\+Line\+Numbers} (int line, int nb\+Char, int max\+Line, char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em max-\/line-\/numbers \end{DoxyCompactList}\item 
+void \hyperlink{checkCoding_8h_a8e9e839cbbd088458cb97acaee5d76f6}{checkmax\+File\+Line\+Numbers} (int nb\+Lines, int lines\+Conf, char $\ast$file\+Name)
+\item 
+void \hyperlink{checkCoding_8h_aef74e3a94fd44ceeb0d9507b23377039}{check\+Operator} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$list\+Token, int nb\+Token, int line, char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Check the rule operators-\/spacing. \end{DoxyCompactList}\item 
+void \hyperlink{checkCoding_8h_a5211ee8ffa38f96f2d5655f1a0d61f34}{check\+Space} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$list\+Token, int nb\+Token, int line, char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Check the rule no-\/trailing-\/spaces. \end{DoxyCompactList}\item 
+void \hyperlink{checkCoding_8h_a3d0c3d0ce365b355468e2deddfb921cb}{check\+Bracket} (\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$list\+Token, int line, char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Check the rule array-\/bracket-\/eol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header file will contain all required definitions and basic utilities functions to check rules on a C file. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{checkCoding_8h_a3d0c3d0ce365b355468e2deddfb921cb}\label{checkCoding_8h_a3d0c3d0ce365b355468e2deddfb921cb}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!check\+Bracket@{check\+Bracket}}
+\index{check\+Bracket@{check\+Bracket}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{check\+Bracket()}{checkBracket()}}
+{\footnotesize\ttfamily void check\+Bracket (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{list\+Token,  }\item[{int}]{line,  }\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Check the rule array-\/bracket-\/eol. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Token} & List of Tokens \\
+\hline
+{\em line} & Line in the file \\
+\hline
+{\em file\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checkCoding_8h_a970a5abd1aa70c5c011251a409bb7cef}\label{checkCoding_8h_a970a5abd1aa70c5c011251a409bb7cef}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!check\+Comments\+Header@{check\+Comments\+Header}}
+\index{check\+Comments\+Header@{check\+Comments\+Header}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{check\+Comments\+Header()}{checkCommentsHeader()}}
+{\footnotesize\ttfamily void check\+Comments\+Header (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{list\+Token,  }\item[{int}]{nb\+Token,  }\item[{int}]{line,  }\item[{char $\ast$}]{file\+Name,  }\item[{int $\ast$}]{status,  }\item[{int}]{last\+Line }\end{DoxyParamCaption})}
+
+
+
+Check the rule comments-\/header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Token} & List of Tokens \\
+\hline
+{\em nb\+Token} & number of Tokens \\
+\hline
+{\em line} & Line in the file \\
+\hline
+{\em status} & State of comment header. 0 no comment. 1 Only opening Comment. 2 closed Comment \\
+\hline
+{\em last\+Line} & Helps to trigger the warning message at end of file \\
+\hline
+{\em file\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checkCoding_8h_a8e9e839cbbd088458cb97acaee5d76f6}\label{checkCoding_8h_a8e9e839cbbd088458cb97acaee5d76f6}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!checkmax\+File\+Line\+Numbers@{checkmax\+File\+Line\+Numbers}}
+\index{checkmax\+File\+Line\+Numbers@{checkmax\+File\+Line\+Numbers}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{checkmax\+File\+Line\+Numbers()}{checkmaxFileLineNumbers()}}
+{\footnotesize\ttfamily void checkmax\+File\+Line\+Numbers (\begin{DoxyParamCaption}\item[{int}]{nb\+Lines,  }\item[{int}]{lines\+Conf,  }\item[{char $\ast$}]{fil\+Name }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+Lines} & Number of lines in the file \\
+\hline
+{\em lines\+Conf} & Number max of lines in a file from configuration \\
+\hline
+{\em fil\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checkCoding_8h_a895b80e00435b977923e6c76b0e5e8a4}\label{checkCoding_8h_a895b80e00435b977923e6c76b0e5e8a4}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!checkmax\+Line\+Numbers@{checkmax\+Line\+Numbers}}
+\index{checkmax\+Line\+Numbers@{checkmax\+Line\+Numbers}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{checkmax\+Line\+Numbers()}{checkmaxLineNumbers()}}
+{\footnotesize\ttfamily void checkmax\+Line\+Numbers (\begin{DoxyParamCaption}\item[{int}]{line,  }\item[{int}]{nb\+Char,  }\item[{int}]{max\+Line,  }\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+max-\/line-\/numbers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Line in the file \\
+\hline
+{\em nb\+Char} & Number of character in the line \\
+\hline
+{\em max\+Line} & Number max of character in the line \\
+\hline
+{\em file\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checkCoding_8h_aef74e3a94fd44ceeb0d9507b23377039}\label{checkCoding_8h_aef74e3a94fd44ceeb0d9507b23377039}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!check\+Operator@{check\+Operator}}
+\index{check\+Operator@{check\+Operator}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{check\+Operator()}{checkOperator()}}
+{\footnotesize\ttfamily void check\+Operator (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{list\+Token,  }\item[{int}]{nb\+Token,  }\item[{int}]{line,  }\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Check the rule operators-\/spacing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Token} & List of Tokens \\
+\hline
+{\em nb\+Token} & number of Tokens \\
+\hline
+{\em line} & Line in the file \\
+\hline
+{\em file\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{checkCoding_8h_a5211ee8ffa38f96f2d5655f1a0d61f34}\label{checkCoding_8h_a5211ee8ffa38f96f2d5655f1a0d61f34}} 
+\index{check\+Coding.\+h@{check\+Coding.\+h}!check\+Space@{check\+Space}}
+\index{check\+Space@{check\+Space}!check\+Coding.\+h@{check\+Coding.\+h}}
+\subsubsection{\texorpdfstring{check\+Space()}{checkSpace()}}
+{\footnotesize\ttfamily void check\+Space (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$$\ast$}]{list\+Token,  }\item[{int}]{nb\+Token,  }\item[{int}]{line,  }\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Check the rule no-\/trailing-\/spaces. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Token} & List of Tokens \\
+\hline
+{\em nb\+Token} & number of Tokens \\
+\hline
+{\em line} & Line in the file \\
+\hline
+{\em file\+Name} & File name we are working on \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,231 @@
+\hypertarget{config_8c}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/config.c File Reference}
+\label{config_8c}\index{/home/a4742849/\+Documents/\+C\+Linter/src/config.\+c@{/home/a4742849/\+Documents/\+C\+Linter/src/config.\+c}}
+
+
+This c file will contain all functions to load a lconf file.  
+
+
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\newline
+Include dependency graph for config.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$$\ast$ \hyperlink{config_8c_a82020b88c3cb7b3a466111c664b75155}{merge\+Text} (char $\ast$$\ast$txt1, int $\ast$nb1, char $\ast$$\ast$txt2, int $\ast$nb2)
+\begin{DoxyCompactList}\small\item\em Merge 2 texts content. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{config_8c_a28bfb244776a5451f78bcac5b8ec6243}{get\+Config\+File} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Get the Config File. \end{DoxyCompactList}\item 
+int \hyperlink{config_8c_ad2e7ef347a4d034021d1566ea90cb0d0}{is\+Valid\+Conf\+File} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Check if a given file has good name format. \end{DoxyCompactList}\item 
+short \hyperlink{config_8c_a4d35009c11af9311968664a3a935b6f4}{get\+Recursive} (char $\ast$$\ast$file, int nb\+Lines)
+\begin{DoxyCompactList}\small\item\em Get the Recursive option value. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{config_8c_a83d1ffc670b07f107d76c7cc14149dee}{get\+Extends} (char $\ast$$\ast$file, int nb\+Lines)
+\begin{DoxyCompactList}\small\item\em Get the Extends file name. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{config_8c_a9b64c40c31b3d2868db2b8c878cb1ccb}{get\+Files\+Name} (char $\ast$$\ast$file, int nb\+Lines, int $\ast$Nb\+Files)
+\begin{DoxyCompactList}\small\item\em Get list of excluded files in lconf. \end{DoxyCompactList}\item 
+int \hyperlink{config_8c_a59f7de2bafbfcb3bbda1c089065532ec}{get\+Val} (char $\ast$$\ast$file, char $\ast$rule, int nb\+Lines)
+\begin{DoxyCompactList}\small\item\em Get the value of a field in a config. \end{DoxyCompactList}\item 
+void \hyperlink{config_8c_ad850ee50eebe9ab9747ade7890133a19}{merge\+Conf} (\hyperlink{config_8h_a88ebb5d72d9993f342c6a9ae222a743c}{Config} $\ast$conf, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Merge 2 configurations. \end{DoxyCompactList}\item 
+\hyperlink{config_8h_a88ebb5d72d9993f342c6a9ae222a743c}{Config} $\ast$ \hyperlink{config_8c_a07a52dee4b7fa099a0e8a73c3a379ad1}{load\+Config} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Load the configuration from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This c file will contain all functions to load a lconf file. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{config_8c_a28bfb244776a5451f78bcac5b8ec6243}\label{config_8c_a28bfb244776a5451f78bcac5b8ec6243}} 
+\index{config.\+c@{config.\+c}!get\+Config\+File@{get\+Config\+File}}
+\index{get\+Config\+File@{get\+Config\+File}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{get\+Config\+File()}{getConfigFile()}}
+{\footnotesize\ttfamily char $\ast$ get\+Config\+File (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Get the Config File. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of argument of main \\
+\hline
+{\em argv} & List of argument of main \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Name of config file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_a83d1ffc670b07f107d76c7cc14149dee}\label{config_8c_a83d1ffc670b07f107d76c7cc14149dee}} 
+\index{config.\+c@{config.\+c}!get\+Extends@{get\+Extends}}
+\index{get\+Extends@{get\+Extends}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{get\+Extends()}{getExtends()}}
+{\footnotesize\ttfamily char$\ast$ get\+Extends (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{file,  }\item[{int}]{nb\+Lines }\end{DoxyParamCaption})}
+
+
+
+Get the Extends file name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & List of Strings represented by a file \\
+\hline
+{\em nb\+Lines} & Number of lines in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ A file name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_a9b64c40c31b3d2868db2b8c878cb1ccb}\label{config_8c_a9b64c40c31b3d2868db2b8c878cb1ccb}} 
+\index{config.\+c@{config.\+c}!get\+Files\+Name@{get\+Files\+Name}}
+\index{get\+Files\+Name@{get\+Files\+Name}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{get\+Files\+Name()}{getFilesName()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Files\+Name (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{file,  }\item[{int}]{nb\+Lines,  }\item[{int $\ast$}]{Nb\+Files }\end{DoxyParamCaption})}
+
+
+
+Get list of excluded files in lconf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & List of Strings represented by a file \\
+\hline
+{\em nb\+Lines} & Number of lines in the file \\
+\hline
+{\em Nb\+Files} & Number of excluded files updated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$$\ast$ List of files name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_a4d35009c11af9311968664a3a935b6f4}\label{config_8c_a4d35009c11af9311968664a3a935b6f4}} 
+\index{config.\+c@{config.\+c}!get\+Recursive@{get\+Recursive}}
+\index{get\+Recursive@{get\+Recursive}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{get\+Recursive()}{getRecursive()}}
+{\footnotesize\ttfamily short get\+Recursive (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{file,  }\item[{int}]{nb\+Lines }\end{DoxyParamCaption})}
+
+
+
+Get the Recursive option value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & List of Strings represented by a file \\
+\hline
+{\em nb\+Lines} & Number of lines in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+short 0 false else true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_a59f7de2bafbfcb3bbda1c089065532ec}\label{config_8c_a59f7de2bafbfcb3bbda1c089065532ec}} 
+\index{config.\+c@{config.\+c}!get\+Val@{get\+Val}}
+\index{get\+Val@{get\+Val}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{get\+Val()}{getVal()}}
+{\footnotesize\ttfamily int get\+Val (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{file,  }\item[{char $\ast$}]{rule,  }\item[{int}]{nb\+Lines }\end{DoxyParamCaption})}
+
+
+
+Get the value of a field in a config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & List of Strings represented by a file \\
+\hline
+{\em rule} & String representation of a rule in the lconf file \\
+\hline
+{\em nb\+Lines} & Number of lines in the lconf file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 false else true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_ad2e7ef347a4d034021d1566ea90cb0d0}\label{config_8c_ad2e7ef347a4d034021d1566ea90cb0d0}} 
+\index{config.\+c@{config.\+c}!is\+Valid\+Conf\+File@{is\+Valid\+Conf\+File}}
+\index{is\+Valid\+Conf\+File@{is\+Valid\+Conf\+File}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{is\+Valid\+Conf\+File()}{isValidConfFile()}}
+{\footnotesize\ttfamily int is\+Valid\+Conf\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Check if a given file has good name format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & A file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int false (0) if not contains .lconf else true (1) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_a07a52dee4b7fa099a0e8a73c3a379ad1}\label{config_8c_a07a52dee4b7fa099a0e8a73c3a379ad1}} 
+\index{config.\+c@{config.\+c}!load\+Config@{load\+Config}}
+\index{load\+Config@{load\+Config}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{load\+Config()}{loadConfig()}}
+{\footnotesize\ttfamily \hyperlink{config_8h_a88ebb5d72d9993f342c6a9ae222a743c}{Config}$\ast$ load\+Config (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Load the configuration from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Configuration file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Config$\ast$ Configuration structure from given file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{config_8c_ad850ee50eebe9ab9747ade7890133a19}\label{config_8c_ad850ee50eebe9ab9747ade7890133a19}} 
+\index{config.\+c@{config.\+c}!merge\+Conf@{merge\+Conf}}
+\index{merge\+Conf@{merge\+Conf}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{merge\+Conf()}{mergeConf()}}
+{\footnotesize\ttfamily void merge\+Conf (\begin{DoxyParamCaption}\item[{\hyperlink{config_8h_a88ebb5d72d9993f342c6a9ae222a743c}{Config} $\ast$}]{conf,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Merge 2 configurations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conf} & Original configuration structure \\
+\hline
+{\em path} & The path to the new configuration to merge with the original structure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{config_8c_a82020b88c3cb7b3a466111c664b75155}\label{config_8c_a82020b88c3cb7b3a466111c664b75155}} 
+\index{config.\+c@{config.\+c}!merge\+Text@{merge\+Text}}
+\index{merge\+Text@{merge\+Text}!config.\+c@{config.\+c}}
+\subsubsection{\texorpdfstring{merge\+Text()}{mergeText()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ merge\+Text (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{txt1,  }\item[{int $\ast$}]{nb1,  }\item[{char $\ast$$\ast$}]{txt2,  }\item[{int $\ast$}]{nb2 }\end{DoxyParamCaption})}
+
+
+
+Merge 2 texts content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt1} & List of strings 1 \\
+\hline
+{\em nb1} & Number of strings in 1, updated with sum of nb1, nb2 \\
+\hline
+{\em txt2} & List of strings 2 \\
+\hline
+{\em nb2} & Number of strings in 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$$\ast$ The total content of both texts 
+\end{DoxyReturn}

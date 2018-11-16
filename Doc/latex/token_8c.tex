@@ -1,0 +1,76 @@
+\hypertarget{token_8c}{}\section{/home/a4742849/\+Documents/\+C\+Linter/src/token.c File Reference}
+\label{token_8c}\index{/home/a4742849/\+Documents/\+C\+Linter/src/token.\+c@{/home/a4742849/\+Documents/\+C\+Linter/src/token.\+c}}
+
+
+This c file will contain all functions to create a Token.  
+
+
+{\ttfamily \#include \char`\"{}token.\+h\char`\"{}}\newline
+Include dependency graph for token.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{token_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{token_8c_ac0b85853d622a09357cdda081995170c}{get\+Enum\+Name} (\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type} type)
+\begin{DoxyCompactList}\small\item\em Get the Enum Name of a Type. \end{DoxyCompactList}\item 
+\hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token} $\ast$ \hyperlink{token_8c_abebe689541881c2fe2c2ea2b516dd2c0}{create\+Token} (\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type} type, char $\ast$value, int pos)
+\begin{DoxyCompactList}\small\item\em Create a Token structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This c file will contain all functions to create a Token. 
+
+\begin{DoxyAuthor}{Author}
+Antoine T\+A\+V\+E\+R\+N\+I\+ER
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+16/11/2018 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{token_8c_abebe689541881c2fe2c2ea2b516dd2c0}\label{token_8c_abebe689541881c2fe2c2ea2b516dd2c0}} 
+\index{token.\+c@{token.\+c}!create\+Token@{create\+Token}}
+\index{create\+Token@{create\+Token}!token.\+c@{token.\+c}}
+\subsubsection{\texorpdfstring{create\+Token()}{createToken()}}
+{\footnotesize\ttfamily \hyperlink{token_8h_af79b1a4f53ad41cc0de4b364b9455dba}{Token}$\ast$ create\+Token (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type}}]{type,  }\item[{char $\ast$}]{value,  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Create a Token structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Given Type \\
+\hline
+{\em value} & Given String value \\
+\hline
+{\em pos} & Given position of the Token in a line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Token$\ast$ A new Token 
+\end{DoxyReturn}
+\mbox{\Hypertarget{token_8c_ac0b85853d622a09357cdda081995170c}\label{token_8c_ac0b85853d622a09357cdda081995170c}} 
+\index{token.\+c@{token.\+c}!get\+Enum\+Name@{get\+Enum\+Name}}
+\index{get\+Enum\+Name@{get\+Enum\+Name}!token.\+c@{token.\+c}}
+\subsubsection{\texorpdfstring{get\+Enum\+Name()}{getEnumName()}}
+{\footnotesize\ttfamily char$\ast$ get\+Enum\+Name (\begin{DoxyParamCaption}\item[{\hyperlink{token_8h_a16a6868f96564b3446a7f86b122b253e}{Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+Get the Enum Name of a Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Given Type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Type cast to string 
+\end{DoxyReturn}
