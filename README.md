@@ -5,8 +5,8 @@ make
 # To run one file
 ./linter
 
-	or
-	
+or
+
 ./linter [path/to/config/file]
 
 # To run tests
