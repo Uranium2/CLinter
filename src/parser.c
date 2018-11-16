@@ -19,7 +19,7 @@ int isDelim(char c)
 			c == '(' || c == ')' ||
 			c == '{' || c == '}' ||
 			c == ',' || c == '"' ||
-			c == '\''|| c == '@' ||
+			c == '\'' || c == '@' ||
 			isOpe(c));
 }
 
@@ -34,19 +34,6 @@ int isDelimNoSpace(char c)
 			c == '{' || c == '}' ||
 			c == '\t' || c == '"' ||
 			c == '\'' || isOpe(c));
-}
-
-// Tell if a string has variable format
-int isVar(char *str)
-{
-	if (str[0] == '0' || str[0] == '1' ||
-		str[0] == '2' || str[0] == '3' ||
-		str[0] == '4' || str[0] == '5' ||
-		str[0] == '6' || str[0] == '7' ||
-		str[0] == '8' || str[0] == '9' ||
-		isDelim(str[0] == 1))
-		return 0;
-	return 1;
 }
 
 // Get subString of str delimited by left and right
@@ -66,8 +53,6 @@ char *getSubString(char *str, int left, int right)
 	return res;
 }
 
-
-
 int canBeExpe(char c, char *str, int right)
 {
 	return isDelim(c) && (str[right - 1] == 'e' || str[right - 1] == 'E') && isdigit(str[right - 2]) && isdigit(str[right + 1]);
@@ -76,7 +61,7 @@ int canBeExpe(char c, char *str, int right)
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
 // int nbNodes : nbNodes in str
-Token **parse(char *str, int* nbNodes)
+Token **parse(char *str, int *nbNodes)
 {
 	int left = 0;
 	int right = 0;

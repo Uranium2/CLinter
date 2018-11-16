@@ -25,8 +25,7 @@
 // Reads a string and prints each token type
 // char* str : input string (code from given file)
 // int nbNodes : nbNodes in str
-Token **parse(char *str, int* nbNodes);
-
+Token **parse(char *str, int *nbNodes);
 
 // Tell if char is an operator
 int isOpe(char c);
@@ -36,9 +35,6 @@ int isDelim(char c);
 
 // Tell if char is a delimiter expect space ' '
 int isDelimNoSpace(char c);
-
-// Tell if a string has variable format
-int isVar(char *str);
 
 // Get subString of str delimited by left and right
 char *getSubString(char *str, int left, int right);
