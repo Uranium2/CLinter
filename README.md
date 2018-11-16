@@ -7,8 +7,8 @@ CLinter:~$ make
 # To generate and view documentation
 ```console
 CLinter:~$ cd Doc/
-CLinter:~$ doxygen Doxyfile
-CLinter:~$ firefox html/index.html
+CLinter/Doc:~$ doxygen Doxyfile
+CLinter/Doc:~$ firefox html/index.html
 ```
 # To run program
 ```console
