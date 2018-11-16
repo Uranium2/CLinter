@@ -1,6 +1,16 @@
 #ifndef PARSER
 #define PARSER
 
+/**
+* @file parser.h
+* @brief This header file will contain all required
+* definitions and basic utilities functions to transform text into Tokens.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -12,31 +22,62 @@
 #include "checker.h"
 #include "changeType.h"
 
-// Color defines
+/**
+ * @brief Color Macro for pretty printing in RED
+ * 
+ */
 #define RED "\x1B[31m"
-#define GRN "\x1B[32m"
+/**
+ * @brief Color Macro for pretty printing in YELLOW
+ * 
+ */
 #define YEL "\x1B[33m"
-#define BLU "\x1B[34m"
-#define MAG "\x1B[35m"
-#define CYN "\x1B[36m"
-#define WHT "\x1B[37m"
+/**
+ * @brief Reset to default color the printing color
+ * 
+ */
 #define RESET "\x1B[0m"
 
-// Reads a string and prints each token type
-// char* str : input string (code from given file)
-// int nbNodes : nbNodes in str
+/**
+ * @brief Reads a string and prints each token type
+ * 
+ * @param str input string (code from given file)
+ * @param nbNodes number of nodes in string
+ * @return Token** list of list of tokens
+ */
 Token **parse(char *str, int *nbNodes);
 
-// Tell if char is an operator
+/**
+ * @brief Tell if char is an operator
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isOpe(char c);
 
-// Tell if char is a delimiter + operator
+/**
+ * @brief Tell if char is a delimiter + operator
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isDelim(char c);
 
-// Tell if char is a delimiter expect space ' '
+
+/**
+ * @brief Tell if char is a delimiter expect space ' '
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 int isDelimNoSpace(char c);
 
-// Get subString of str delimited by left and right
+/**
+ * @brief Get subString of str delimited by left and right
+ * 
+ * @param c character to check
+ * @return int 0 false else true
+ */
 char *getSubString(char *str, int left, int right);
 
 #endif

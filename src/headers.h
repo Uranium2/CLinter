@@ -1,6 +1,16 @@
 #ifndef HEADERS
 #define HEADERS
 
+/**
+* @file headers.h
+* @brief This header file will contain all required
+* definitions and basic header files for main function.
+*
+* @author Antoine TAVERNIER
+*
+* @date 16/11/2018
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
