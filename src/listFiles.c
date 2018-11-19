@@ -50,7 +50,7 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
     {
         if (!(strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0))
         {
-            if (strstr(dp->d_name, ".c") != NULL && isNotExcluded(excludedFiles, dp->d_name, length))
+            if (strstr(dp->d_name, ".c") != NULL && isNotExcluded(excludedFiles, dp->d_name, length) && dp->d_name[strlen(dp->d_name) - 1] == 'c')
             {
                 char *str = malloc(sizeof(char) * 255); // length max file name 255
                 strcpy(str, path);
