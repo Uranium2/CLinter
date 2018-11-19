@@ -89,12 +89,19 @@ void varDeclare(Token **tokens, int* pos, int nbNode)
 	tokens = tokens;
 	pos = pos;
 	nbNode = nbNode;
-	/*nextTok(pos, nbNode, tokens);
+	//nextTok(pos, nbNode, tokens);
 	if (eatToken(tokens, KeyWord, pos,nbNode))
+	{
 			if (eatToken(tokens, IDENTIFIER, pos,nbNode))
-				printf("Found Variable declaration\n");
+			{
+				if (eatToken(tokens, OpenPar, pos,nbNode))
+					printf(RED "Found Function declaration\n" RESET);
+				else
+					printf(RED "Found Variable declaration\n" RESET);
+			}
+	}
 				// Do something clever here
-				*/
+				
 }
 
 /**
