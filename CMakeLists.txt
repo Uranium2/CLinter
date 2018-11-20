@@ -60,6 +60,8 @@ add_library(
         src/checkCoding.h
         src/checker.c
         src/checker.h
+        src/freeAll.c
+        src/freeAll.h
         src/checkVarFunc.c
         src/checkVarFunc.h
         src/config.c
