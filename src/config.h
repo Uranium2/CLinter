@@ -1,34 +1,27 @@
-#ifndef CONFIG
-#define CONFIG
-
 /**
 * @file config.h
 * @brief This header file will contain all required
 * definitions and basic utilities functions to read and load a configuration file.
-*
 * @author Antoine TAVERNIER
-*
 * @date 16/11/2018
 */
+#ifndef CONFIG
+#define CONFIG
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include "files.h"
-
 /**
  * @brief Macro to return MAX between integers
- * 
  */
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 
 /**
  * @brief Structure to store all configurations elements
- * 
  */
-typedef struct Config_t
-{
+typedef struct Config_t {
     char *extends;
     short arrayBracketEol;
     short operatorsSpacing;
@@ -51,14 +44,22 @@ typedef struct Config_t
     short recursive;
 } Config;
 
-char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2);
+char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2);
+
 char *getConfigFile(int argc, char **argv);
+
 int isValidConfFile(char *filename);
+
 short getRecursive(char **file, int nbLines);
+
 char *getExtends(char **file, int nbLines);
+
 char **getFilesName(char **file, int nbLines, int *NbFiles);
+
 int getVal(char **file, char *rule, int nbLines);
+
 Config *loadConfig(char *path);
-char* getConfigFile(int argc, char** argv);
+
+char *getConfigFile(int argc, char **argv);
 
 #endif

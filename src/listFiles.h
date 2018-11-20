@@ -1,6 +1,3 @@
-#ifndef LISTFILES
-#define LISTFILES
-
 /**
 * @file listFiles.h
 * @brief This header file will contain all required
@@ -10,14 +7,17 @@
 *
 * @date 16/11/2018
 */
+#ifndef LISTFILES
+#define LISTFILES
 
-#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
-#include <dirent.h>
+#include "../vendor/dirent.h"
 #include <string.h>
 
 int isNotExcluded(char **excludedFiles, char *file, int length);
+
 void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
               char *path, int length);
+
 #endif

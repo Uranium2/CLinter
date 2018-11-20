@@ -1,33 +1,28 @@
-#include "config.h"
 /**
 * @file config.c
 * @brief This c file will contain all functions to load a lconf file.
-*
 * @author Antoine TAVERNIER
-*
 * @date 16/11/2018
 */
+#include "config.h"
 
 /**
  * @brief Merge 2 texts content
- * 
  * @param txt1 List of strings 1
  * @param nb1  Number of strings in 1, updated with sum of nb1, nb2
  * @param txt2 List of strings 2
  * @param nb2 Number of strings in 2
  * @return char** The total content of both texts
  */
-char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2)
-{
+char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2) {
     int nbTotal = *nb1 + *nb2;
-    char **txt3 = malloc(sizeof(char*) * nbTotal);
+    char **txt3 = malloc(sizeof(char *) * nbTotal);
     int j = 0;
-    
-    for(int i = 0; i < *nb1; i++)
+
+    for (int i = 0; i < *nb1; i++)
         txt3[i] = txt1[i];
-    
-    for(int i = *nb1 ; i < nbTotal; i++)
-    {
+
+    for (int i = *nb1; i < nbTotal; i++) {
         txt3[i] = txt2[j];
         j++;
     }
@@ -37,13 +32,11 @@ char **mergeText(char** txt1, int *nb1, char** txt2, int *nb2)
 
 /**
  * @brief Get the Config File
- * 
  * @param argc Number of argument of main
  * @param argv List of argument of main
  * @return char* Name of config file
  */
-char *getConfigFile(int argc, char **argv)
-{
+char *getConfigFile(int argc, char **argv) {
     for (int i = 1; i < argc; i++)
         if (strstr(argv[i], ".lconf") != NULL)
             return argv[i];
@@ -52,12 +45,10 @@ char *getConfigFile(int argc, char **argv)
 
 /**
  * @brief Check if a given file has good name format
- * 
  * @param filename A file path
  * @return int false (0) if not contains .lconf else true (1)
  */
-int isValidConfFile(char *filename)
-{
+int isValidConfFile(char *filename) {
     char *dot = strrchr(filename, '.');
     if (!dot || dot == filename)
         return 0;
@@ -69,18 +60,14 @@ int isValidConfFile(char *filename)
 
 /**
  * @brief Get the Recursive option value
- * 
  * @param file List of Strings represented by a file
  * @param nbLines Number of lines in the file
  * @return short 0 false else true
  */
-short getRecursive(char **file, int nbLines)
-{
+short getRecursive(char **file, int nbLines) {
 
-    for (int i = 0; i < nbLines - 1; i++)
-    {
-        if (strstr(file[i], "=recursive") != NULL)
-        {
+    for (int i = 0; i < nbLines - 1; i++) {
+        if (strstr(file[i], "=recursive") != NULL) {
             if (strstr(file[i + 1], "true") != NULL)
                 return 1;
         }
@@ -90,18 +77,14 @@ short getRecursive(char **file, int nbLines)
 
 /**
  * @brief Get the Extends file name
- * 
  * @param file List of Strings represented by a file
  * @param nbLines Number of lines in the file
  * @return char* A file name
  */
-char *getExtends(char **file, int nbLines)
-{
+char *getExtends(char **file, int nbLines) {
 
-    for (int i = 0; i < nbLines - 1; i++)
-    {
-        if (strstr(file[i], "extends") != NULL)
-        {
+    for (int i = 0; i < nbLines - 1; i++) {
+        if (strstr(file[i], "extends") != NULL) {
             char *res = malloc(sizeof(char) * strlen(file[i + 1]));
             res = file[i + 1];
             return res;
@@ -112,27 +95,21 @@ char *getExtends(char **file, int nbLines)
 
 /**
  * @brief Get list of excluded files in lconf
- * 
  * @param file List of Strings represented by a file 
  * @param nbLines Number of lines in the file
  * @param NbFiles Number of excluded files updated
  * @return char** List of files name
  */
-char **getFilesName(char **file, int nbLines, int *NbFiles)
-{
+char **getFilesName(char **file, int nbLines, int *NbFiles) {
     int countFiles = 0;
     char **fileNames = malloc(sizeof(char *) * 20); // MAX 20 FILES. BAD IDEA
-    for (int i = 0; i < nbLines - 1; i++)
-    {
-        if (strstr(file[i], "excludedFiles") != NULL)
-        {
+    for (int i = 0; i < nbLines - 1; i++) {
+        if (strstr(file[i], "excludedFiles") != NULL) {
             i++;
             char *p = NULL;
-            while (file[i][0] == '-')
-            {
+            while (file[i][0] == '-') {
                 p = strrchr(file[i], ' ');
-                if (p && *(p + 1))
-                {
+                if (p && *(p + 1)) {
                     fileNames[countFiles] = p + 1;
                     countFiles++;
                 }
@@ -159,17 +136,13 @@ char **getFilesName(char **file, int nbLines, int *NbFiles)
  * @param nbLines Number of lines in the lconf file
  * @return int 0 false else true
  */
-int getVal(char **file, char *rule, int nbLines)
-{
+int getVal(char **file, char *rule, int nbLines) {
 
-    for (int i = 0; i < nbLines; i++)
-    {
+    for (int i = 0; i < nbLines; i++) {
 
-        if (strstr(file[i], rule) != NULL)
-        {
+        if (strstr(file[i], rule) != NULL) {
             char *p = strrchr(file[i], ' ');
-            if (p && *(p + 1))
-            {
+            if (p && *(p + 1)) {
                 if (strstr(file[i], "on") != NULL)
                     return 1;
                 if (strstr(file[i], "off") != NULL)
@@ -187,8 +160,7 @@ int getVal(char **file, char *rule, int nbLines)
  * @param conf Original configuration structure
  * @param path The path to the new configuration to merge with the original structure
  */
-void mergeConf(Config *conf, char *path)
-{
+void mergeConf(Config *conf, char *path) {
     char **configText;
     int nbLines = 0;
     configText = getAllLines(path, &nbLines);
@@ -230,7 +202,8 @@ void mergeConf(Config *conf, char *path)
     conf->undeclaredFunction += conf->undeclaredFunction;
     conf->variableAssignmentType += conf->variableAssignmentType;
     conf->functionParametersType += conf->functionParametersType;
-    conf->excludedFiles = mergeText(conf->excludedFiles, &conf->nbExcludedFiles, conf2->excludedFiles, &conf2->nbExcludedFiles);
+    conf->excludedFiles = mergeText(conf->excludedFiles, &conf->nbExcludedFiles, conf2->excludedFiles,
+                                    &conf2->nbExcludedFiles);
     conf->recursive += conf->recursive;
 }
 
@@ -240,8 +213,7 @@ void mergeConf(Config *conf, char *path)
  * @param path Configuration file
  * @return Config* Configuration structure from given file
  */
-Config *loadConfig(char *path)
-{
+Config *loadConfig(char *path) {
     char **configText;
     int nbLines = 0;
     if (!isValidConfFile(path))

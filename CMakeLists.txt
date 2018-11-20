@@ -10,7 +10,7 @@ if (WIN32)
 
     find_library(MYSQL_LIBRARY
             NAMES "libmysql.dll"
-            PATHS "lib")
+            PATHS "vendor")
 else ()
     find_path(MYSQL_INCLUDE_DIR
             NAMES "mysql.h"
@@ -20,7 +20,7 @@ else ()
 
     find_library(MYSQL_LIBRARY
             NAMES "mysqlclient" "mysqlclient_r"
-            PATHS "/lib/mysql"
+            PATHS "/vendor/mysql"
             "/lib64/mysql"
             "/usr/lib/mysql"
             "/usr/lib64/mysql"
@@ -77,10 +77,10 @@ add_library(
         src/token.h
         src/tool.c
         src/tool.h
-)
+        src/debug.c src/debug.h)
 
 # Main
-add_executable(clinter src/main.c)
+add_executable(clinter src/main.c vendor/dirent.h)
 target_link_libraries(clinter ${MYSQLLIBRARY} MainLibrary)
 
 

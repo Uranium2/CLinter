@@ -1,5 +1,3 @@
-#include "checkVarFunc.h"
-
 /**
 * @file checkVarFunc.c
 * @brief This c file will contain all functions to check rules on functions or variables.
@@ -8,6 +6,8 @@
 *
 * @date 16/11/2018
 */
+#include "checkVarFunc.h"
+
 
 /**
  * @brief Skips the tokens with Delimiter Type
@@ -16,8 +16,7 @@
  * @param nbToken Number of Tokens
  * @return int 0 false else true
  */
-int skipSpaces(Token **listToken, int nbToken)
-{
+int skipSpaces(Token **listToken, int nbToken) {
     int i = 0;
     while (listToken[i]->type == Delimiter && i == nbToken - 1)
         i++;
@@ -32,8 +31,7 @@ int skipSpaces(Token **listToken, int nbToken)
  * @param str String to check
  * @return int 0 false else true
  */
-int containsStr(Token **listToken, int nbToken, char *str)
-{
+int containsStr(Token **listToken, int nbToken, char *str) {
     for (int i = 0; i < nbToken; i++)
         if (strcmp(listToken[i]->value, str) == 0)
             return i;
@@ -48,8 +46,7 @@ int containsStr(Token **listToken, int nbToken, char *str)
  * @param line At which line we are in the File
  * @param fileName The file name
  */
-void multiDeclare(Token **listToken, int nbToken, int line, char* fileName)
-{
+void multiDeclare(Token **listToken, int nbToken, int line, char *fileName) {
     int i = skipSpaces(listToken, nbToken);
     if (!(listToken[i]->type == KeyWord))
         return;

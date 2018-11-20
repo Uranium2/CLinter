@@ -1,6 +1,3 @@
-#ifndef PARSER
-#define PARSER
-
 /**
 * @file parser.h
 * @brief This header file will contain all required
@@ -10,6 +7,8 @@
 *
 * @date 16/11/2018
 */
+#ifndef PARSER
+#define PARSER
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -39,9 +38,13 @@
 #define RESET "\x1B[0m"
 
 Token **parse(char *str, int *nbNodes);
+
 int isOpe(char c);
+
 int isDelim(char c);
+
 int isDelimNoSpace(char c);
+
 char *getSubString(char *str, int left, int right);
 
 #endif

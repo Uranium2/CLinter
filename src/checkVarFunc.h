@@ -1,6 +1,3 @@
-#ifndef CHECKVARFUN
-#define CHECKVARFUN
-
 /**
 * @file checkVarFunc.h
 * @brief This header file will contain all required
@@ -11,6 +8,8 @@
 *
 * @date 16/11/2018
 */
+#ifndef CHECKVARFUN
+#define CHECKVARFUN
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,7 +19,9 @@
 #include "parser.h"
 
 int skipSpaces(Token **listToken, int nbToken);
+
 int containsStr(Token **listToken, int nbToken, char *str);
-void multiDeclare(Token **listToken, int nbToken, int line, char* fileName);
+
+void multiDeclare(Token **listToken, int nbToken, int line, char *fileName);
 
 #endif

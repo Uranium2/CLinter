@@ -1,6 +1,3 @@
-#ifndef CHANGETYPE
-#define CHANGETYPE
-
 /**
 * @file changeType.h
 * @brief This header file will contain all required
@@ -10,6 +7,8 @@
 *
 * @date 16/11/2018
 */
+#ifndef CHANGETYPE
+#define CHANGETYPE
 
 #include <stdlib.h>
 #include <stdio.h>
