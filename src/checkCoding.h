@@ -1,16 +1,12 @@
-#ifndef CHECKCODING
-#define CHECKCODING
-
 /**
 * @file checkCoding.h
 * @brief This header file will contain all required
 * definitions and basic utilities functions to check rules on a C file.
-*
 * @author Antoine TAVERNIER
-*
 * @date 16/11/2018
 */
-
+#ifndef CHECKCODING
+#define CHECKCODING
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

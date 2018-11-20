@@ -1,6 +1,3 @@
-#ifndef HEADERS
-#define HEADERS
-
 /**
 * @file headers.h
 * @brief This header file will contain all required
@@ -10,6 +7,8 @@
 *
 * @date 16/11/2018
 */
+#ifndef HEADERS
+#define HEADERS
 
 #include <stdlib.h>
 #include <stdio.h>

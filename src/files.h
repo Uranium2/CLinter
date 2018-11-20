@@ -2,6 +2,7 @@
 #define FILES
 
 #define _GNU_SOURCE
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,6 +20,7 @@
 #include "tool.h"
 
 int countLinesInFile(FILE *f);
+
 char **getAllLines(char *path, int *nbLines);
 
 #endif
