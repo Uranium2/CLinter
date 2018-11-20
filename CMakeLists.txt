@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 project(CLinter)
 set(CMAKE_C_STANDARD 99)
 
-
 if (WIN32)
     find_path(MYSQL_INCLUDE_DIR
             NAMES "mysql.h"
@@ -42,7 +41,8 @@ endif ()
 # handle the QUIETLY and REQUIRED arguments and set MYSQL_FOUND to TRUE if
 # all listed variables are TRUE
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(MYSQL DEFAULT_MSG
+find_package_handle_standard_args(
+        MYSQL DEFAULT_MSG
         REQUIRED_VARS MYSQL_LIBRARY MYSQL_INCLUDE_DIR
         VERSION_VAR MYSQL_VERSION_STRING)
 
@@ -80,7 +80,7 @@ add_library(
         src/debug.c src/debug.h)
 
 # Main
-add_executable(clinter src/main.c vendor/dirent.h)
+add_executable(clinter src/main.c)
 target_link_libraries(clinter ${MYSQLLIBRARY} MainLibrary)
 
 
