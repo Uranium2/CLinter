@@ -77,7 +77,7 @@ add_library(
         src/token.h
         src/tool.c
         src/tool.h
-        src/debug.c src/debug.h)
+)
 
 # Main
 add_executable(clinter src/main.c)

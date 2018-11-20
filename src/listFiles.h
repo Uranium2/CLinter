@@ -12,7 +12,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "../vendor/dirent.h"
 #include <string.h>
 
 int isNotExcluded(char **excludedFiles, char *file, int length);

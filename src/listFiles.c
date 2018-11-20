@@ -1,5 +1,3 @@
-#include "listFiles.h"
-
 /**
 * @file listFiles.c
 * @brief This c file will contain all functions to list files we want to work on.
@@ -8,6 +6,8 @@
 *
 * @date 16/11/2018
 */
+#include "listFiles.h"
+#include <dirent.h>
 
 /**
  * @brief Check if a given file is not in the list of excluded files from config
