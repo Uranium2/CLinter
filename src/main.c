@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
     char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
     int pos = 0;
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
-
     // Run parsing
+
     for (int o = 0; o < pos; o++) {
         int nbLines = 0;
         int statusHeader = 0;
@@ -36,8 +36,11 @@ int main(int argc, char *argv[]) {
             if (conf->NoMultiDeclaration)
                 multiDeclare(tokenList, nbNodes, nbLines, files[o]);
             if (conf->maxLineNumbers)
-                checkmaxLineNumbers(i + 1, (int) (tokenList[nbNodes - 1]->pos + strlen(tokenList[nbNodes - 1]->value)),
-                                    conf->maxLineNumbers, files[o]);
+                checkmaxLineNumbers(i + 1,
+                                    tokenList[nbNodes - 1]->pos +
+                                    strlen(tokenList[nbNodes - 1]->value),
+                                    conf->maxLineNumbers,
+                                    files[o]);
             if (conf->noTrallingSpaces)
                 checkSpace(tokenList, nbNodes, i + 1, files[o]);
             if (conf->arrayBracketEol)
