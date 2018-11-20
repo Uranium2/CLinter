@@ -66,6 +66,8 @@ add_library(
         src/checkVarFunc.h
         src/config.c
         src/config.h
+        src/debug.h
+        src/debug.c
         src/files.c
         src/files.h
         src/headers.h

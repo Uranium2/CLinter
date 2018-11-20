@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {
     int pos = 0;
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
     // Run parsing
-
     for (int o = 0; o < pos; o++) {
         int nbLines = 0;
         int statusHeader = 0;
