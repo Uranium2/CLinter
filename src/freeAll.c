@@ -15,8 +15,9 @@
  * @param nbLines Number of strings in the list
  */
 void clean_text(char **codeText, int nbLines) {
-    if (nbLines < 1)
+    if (nbLines < 1) {
         return;
+    }
 
     for (int i = 0; i < nbLines; i++) {
 
@@ -35,8 +36,9 @@ void clean_text(char **codeText, int nbLines) {
  * @param nbFiles Number of files in the list
  */
 void free_files(char **files, int nbFiles) {
-    if (nbFiles < 1)
+    if (nbFiles < 1) {
         return;
+    }
 
     for (int i = 0; i < nbFiles; i++)
         free(files[i]);
@@ -51,8 +53,9 @@ void free_files(char **files, int nbFiles) {
  * @param nbNodes Numbers of Tokens in the list
  */
 void free_tokenList(Token **tokenList, int nbNodes) {
-    if (nbNodes < 1)
+    if (nbNodes < 1) {
         return;
+    }
 
     for (int j = 0; j < nbNodes; j++) {
         free(tokenList[j]->value);
@@ -68,8 +71,9 @@ void free_tokenList(Token **tokenList, int nbNodes) {
  * @param nbLines Number of strings in the list
  */
 void free_text(char **codeText, int nbLines) {
-    if (nbLines < 1)
+    if (nbLines < 1) {
         return;
+    }
 
     for (int i = 0; i < nbLines; i++)
         free(codeText[i]);
@@ -81,12 +85,14 @@ void free_text(char **codeText, int nbLines) {
  * @param conf Config structure
  */
 void free_conf(Config *conf) {
-    if (conf == NULL)
+    if (conf == NULL){
         return;
+    }
     //Free ExcludedFiles[i]?
 
     free(conf->excludedFiles);
-    if (conf->extends == NULL)
+    if (conf->extends == NULL) {
         free(conf->extends);
+    }
     free(conf);
 }
