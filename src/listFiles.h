@@ -10,9 +10,11 @@
 #ifndef LISTFILES
 #define LISTFILES
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <dirent.h>
 
 int isNotExcluded(char **excludedFiles, char *file, int length);
 
