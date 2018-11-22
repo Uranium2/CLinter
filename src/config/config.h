@@ -13,7 +13,7 @@
 #include <string.h>
 
 #include "../file/files.h"
-#include "../tools/debug.h"
+
 /**
  * @brief Macro to return MAX between integers
  */
@@ -44,6 +44,8 @@ typedef struct Config_t {
     int nbExcludedFiles;
     short recursive;
 } Config;
+
+void debug_config(Config * r);
 
 char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2);
 

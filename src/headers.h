@@ -24,7 +24,6 @@
 #include "rules/checkVarFunc.h"
 #include "file/listFiles.h"
 #include "tools/freeAll.h"
-#include "tools/debug.h"
 
 
 #endif
