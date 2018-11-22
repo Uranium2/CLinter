@@ -54,31 +54,28 @@ mark_as_advanced(MYSQL_INCLUDE_DIR MYSQL_LIBRARY)
 # Library database
 add_library(
         MainLibrary
-        src/changeType.c
-        src/changeType.h
-        src/checkCoding.c
-        src/checkCoding.h
-        src/checker.c
-        src/checker.h
-        src/freeAll.c
-        src/freeAll.h
-        src/checkVarFunc.c
-        src/checkVarFunc.h
-        src/config.c
-        src/config.h
-        src/debug.h
-        src/debug.c
-        src/files.c
-        src/files.h
+        src/config/config.c
+        src/config/config.h
+        src/file/files.c
+        src/file/files.h
+        src/file/listFiles.c
+        src/file/listFiles.h
+        src/parse/changeType.c
+        src/parse/changeType.h
+        src/parse/parser.c
+        src/parse/parser.h
+        src/parse/token.c
+        src/parse/token.h
+        src/rules/checkCoding.c
+        src/rules/checkCoding.h
+        src/rules/checker.c
+        src/rules/checker.h
+        src/rules/checkVarFunc.c
+        src/rules/checkVarFunc.c
+        src/rules/checkVarFunc.h
+        src/tools/debug.c
+        src/tools/debug.h
         src/headers.h
-        src/listFiles.c
-        src/listFiles.h
-        src/parser.c
-        src/parser.h
-        src/token.c
-        src/token.h
-        src/tool.c
-        src/tool.h
 )
 
 # Main

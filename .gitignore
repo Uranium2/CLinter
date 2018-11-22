@@ -64,3 +64,4 @@ cmake-build-debug/
 # Documentation
 html/
 latex/
+test/bad/clinter

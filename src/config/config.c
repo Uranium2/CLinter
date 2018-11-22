@@ -163,7 +163,10 @@ int getVal(char **file, char *rule, int nbLines) {
 void mergeConf(Config *conf, char *path) {
     char **configText;
     int nbLines = 0;
-    configText = getAllLines(path, &nbLines);
+    if (!isValidConfFile(path))
+        return;
+    else
+        configText = getAllLines(path, &nbLines);
 
     Config *conf2 = malloc(sizeof(Config));
     conf2->extends = getExtends(configText, nbLines);
@@ -241,6 +244,7 @@ Config *loadConfig(char *path) {
     conf->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
     conf->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles));
     conf->recursive = getRecursive(configText, nbLines);
+    debug_config(conf);
 
     if (conf->extends != NULL || conf->extends[0] != '\0')
         mergeConf(conf, conf->extends);

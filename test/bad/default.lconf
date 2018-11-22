@@ -1,5 +1,4 @@
 =extends
-myConfig.lconf
 
 =rules
 - array-bracket-eol = on

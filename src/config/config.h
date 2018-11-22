@@ -13,6 +13,7 @@
 #include <string.h>
 
 #include "../file/files.h"
+#include "../tools/debug.h"
 /**
  * @brief Macro to return MAX between integers
  */

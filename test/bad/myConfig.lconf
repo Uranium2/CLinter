@@ -1,5 +1,5 @@
 =extends
-myConfig.lconf
+default.lconf
 
 =rules
 - array-bracket-eol = on
@@ -8,11 +8,10 @@ myConfig.lconf
 - max-line-numbers = 80
 - max-file-line-numbers = 80
 - no-multi-declaration = on
-- comments-header = on
 
 
 =excludedFiles
-- main.c
+- test.c
 - hello2.c
 - hello3.c
 - hello4.c
