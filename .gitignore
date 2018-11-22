@@ -57,9 +57,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# IDE
+# IDE & Editor
 .idea/
 cmake-build-debug/
+.vscode/
 
 # Documentation
 html/
