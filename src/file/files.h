@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "tool.h"
+#include "../tools/tool.h"
 
 int countLinesInFile(FILE *f);
 

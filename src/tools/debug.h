@@ -5,7 +5,7 @@
 #ifndef CLINTER_DEBUG_H
 #define CLINTER_DEBUG_H
 
-#include "config.h"
+#include "../config/config.h"
 
 void debug_config(Config * r);
 

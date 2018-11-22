@@ -15,7 +15,7 @@
 #include <string.h>
 
 #include "token.h"
-#include "parser.h"
+#include "../parse/parser.h"
 
 /**
  * @brief Assign new types to tokens

@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "config.h"
+#include "../config/config.h"
 
 void clean_text(char **codeText, int nbLines);
 

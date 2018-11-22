@@ -14,8 +14,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "token.h"
-#include "parser.h"
+#include "../parse/token.h"
+#include "../parse/parser.h"
 
 void check(Token **listToken, int nbToken);
 

@@ -16,10 +16,10 @@
 #include <math.h>
 #include <ctype.h>
 
-#include "tool.h"
-#include "token.h"
-#include "checker.h"
-#include "changeType.h"
+#include "../tools/tool.h"
+#include "../parse/token.h"
+#include "../rules/checker.h"
+#include "../parse/changeType.h"
 
 /**
  * @brief Color Macro for pretty printing in RED

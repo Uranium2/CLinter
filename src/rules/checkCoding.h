@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "token.h"
-#include "parser.h"
+#include "../parse/token.h"
+#include "../parse/parser.h"
 
 
 void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status, int lastLine);
