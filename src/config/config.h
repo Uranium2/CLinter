@@ -43,6 +43,8 @@ typedef struct Config_t {
     char **excludedFiles;
     int nbExcludedFiles;
     short recursive;
+    char **configFileName;
+    int nbconfigFileName;
 } Config;
 
 void debug_config(Config * r);

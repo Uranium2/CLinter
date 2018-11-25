@@ -287,12 +287,24 @@ Config *loadConfig(char *path)
 {
     char **configText;
     int nbLines = 0;
-    if (!isValidConfFile(path))
-        configText = getAllLines("default.lconf", &nbLines);
-    else
-        configText = getAllLines(path, &nbLines);
-
     Config *conf = malloc(sizeof(Config));
+    conf->nbconfigFileName = 0;
+     conf->configFileName = malloc(sizeof(char *) * 100); // "only 100 files"
+
+    if (!isValidConfFile(path))
+    {
+        configText = getAllLines("default.lconf", &nbLines);
+        conf->configFileName[conf->nbconfigFileName] = "default.lconf";
+        conf->nbconfigFileName++;
+    }
+    else
+    {
+        configText = getAllLines(path, &nbLines);
+        conf->configFileName[conf->nbconfigFileName] = path;
+        conf->nbconfigFileName++;
+    }
+
+    
     conf->extends = getExtends(configText, nbLines);
     conf->arrayBracketEol = getVal(configText, "array-bracket-eol", nbLines);
     conf->operatorsSpacing = getVal(configText, "operators-spacing", nbLines);
