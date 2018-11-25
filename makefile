@@ -6,7 +6,7 @@ SRC=$(wildcard src/*.c)
 SRC+=$(wildcard src/*/*.c)
 
 all:
-	$(CC) -o $(EXEC) $(SRC) $(CFLAGS)
+	$(CC) -o test/$(EXEC) $(SRC) $(CFLAGS)
 
 clean:
 	rm -rf *.o $(EXEC)

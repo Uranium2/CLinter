@@ -27,10 +27,12 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < nbLines; i++) {
             int nbNodes = 0;
             Token **tokenList = parse(codeText[i], &nbNodes);
-            check(tokenList, nbNodes);
+            
 
             for (int j = 0; j < nbNodes; j++)
-                printf("%s", tokenList[j]->value);
+                printf("%s %s", tokenList[j]->value, getEnumName(tokenList[j]->type));
+            
+            check(tokenList, nbNodes);
 
             if (conf->NoMultiDeclaration)
                 multiDeclare(tokenList, nbNodes, nbLines, files[o]);
