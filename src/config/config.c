@@ -221,6 +221,29 @@ int getVal(char **file, char *rule, int nbLines)
 }
 
 /**
+ * @brief Check if a given file has already been loaded.
+ * 
+ * @param conf Original configuration structure
+ * @param path The path to the new configuration to merge with the original structure
+ * @return 0 false else true
+ */
+int containsConfigFile(Config *conf, char *path)
+{
+    int index = 0;
+    while(path[index] != '\0')
+        index++;
+    path[index - 1] = '\0'; // remove \n and the end of path
+
+    for(int i = 0; i < conf->nbconfigFileName; i++)
+    {
+        printf("'%s' '%s' \n",conf->configFileName[i], path );
+        if (strcmp(conf->configFileName[i], path) == 0)
+            return 1;
+    }
+    return 0;
+}
+
+/**
  * @brief Merge 2 configurations
  * 
  * @param conf Original configuration structure
@@ -228,6 +251,10 @@ int getVal(char **file, char *rule, int nbLines)
  */
 void mergeConf(Config *conf, char *path)
 {
+    // check if conf is already loaded
+    if (containsConfigFile(conf, path))
+        return;
+
     char **configText;
     int nbLines = 0;
     if (!isValidConfFile(path))
@@ -256,6 +283,7 @@ void mergeConf(Config *conf, char *path)
     conf2->excludedFiles = getFilesName(configText, nbLines, &(conf2->nbExcludedFiles));
     conf2->recursive = getRecursive(configText, nbLines);
 
+    conf->extends = conf2->extends;
     conf->arrayBracketEol += conf2->arrayBracketEol;
     conf->operatorsSpacing += conf2->operatorsSpacing;
     conf->commaSpacing += conf2->commaSpacing;
@@ -275,6 +303,8 @@ void mergeConf(Config *conf, char *path)
     conf->excludedFiles = mergeText(conf->excludedFiles, &conf->nbExcludedFiles, conf2->excludedFiles,
                                     &conf2->nbExcludedFiles);
     conf->recursive += conf->recursive;
+
+    mergeConf(conf, conf->extends);
 }
 
 /**

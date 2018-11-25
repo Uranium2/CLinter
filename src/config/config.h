@@ -47,6 +47,8 @@ typedef struct Config_t {
     int nbconfigFileName;
 } Config;
 
+int containsConfigFile(Config *conf, char *path);
+
 void debug_config(Config * r);
 
 char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2);
