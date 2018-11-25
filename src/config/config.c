@@ -235,11 +235,8 @@ int containsConfigFile(Config *conf, char *path)
     path[index - 1] = '\0'; // remove \n and the end of path
 
     for(int i = 0; i < conf->nbconfigFileName; i++)
-    {
-        printf("'%s' '%s' \n",conf->configFileName[i], path );
         if (strcmp(conf->configFileName[i], path) == 0)
             return 1;
-    }
     return 0;
 }
 
