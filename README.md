@@ -2,7 +2,7 @@
 Linter in C
 # To compile
 ```console
-CLinter:~$ make
+CLinter:~$ make all
 ```
 # To generate and view documentation
 - Prerequisite: Install doxygen and graphviz 
@@ -23,7 +23,7 @@ CLinter:~$ sudo apt-get install gcc
 CLinter:~$ sudo apt-get install make
 ```
 # To run program
-- Without arguments
+- Without arguments: Make sure you have at least *default.lconf* file in the folder you are running *linter*
 ```console
 CLinter:~$ ./linter
 ```
