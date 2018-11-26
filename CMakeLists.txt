@@ -73,8 +73,6 @@ add_library(
         src/rules/checkVarFunc.c
         src/rules/checkVarFunc.c
         src/rules/checkVarFunc.h
-        src/tools/debug.c
-        src/tools/debug.h
         src/headers.h
 )
 

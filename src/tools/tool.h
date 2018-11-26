@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../parse/parser.h"
 
 void exit_m(char *message);
 
