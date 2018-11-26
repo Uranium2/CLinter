@@ -1,0 +1,21 @@
+=extends
+myConfig.lconf
+
+=rules
+- array-bracket-eol = on
+- no-trailing-spaces = on
+- operators-spacing = on
+- max-line-numbers = 80
+- max-file-line-numbers = 80
+- no-multi-declaration = on
+- comments-header = on
+
+
+=excludedFiles
+- main.c
+- hello2.c
+- hello3.c
+- hello4.c
+
+=recursive
+false
