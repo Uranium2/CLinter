@@ -12,6 +12,23 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
+/**
+ * @brief Color Macro for pretty printing in RED
+ *
+ */
+#define RED "\x1B[31m"
+/**
+ * @brief Color Macro for pretty printing in YELLOW
+ *
+ */
+#define YEL "\x1B[33m"
+/**
+ * @brief Reset to default color the printing color
+ *
+ */
+#define RESET "\x1B[0m"
 
 
 void exit_m(char *message);

@@ -59,7 +59,9 @@ int isEmpty(Stack *st)
 void functionCall(Stack *st, Token *tokens, int nbToken)
 {
     // get name of fonction in tokens
-    
+    st = st;
+    tokens = tokens;
+    nbToken = nbToken;
     for(int i = 0; i < nbToken; i++)
     {
         /* code */

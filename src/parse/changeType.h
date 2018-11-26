@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "token.h"
+#include "../tools/tool.h"
 
 /**
  * @brief Assign new types to tokens

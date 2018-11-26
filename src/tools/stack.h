@@ -8,8 +8,8 @@
  */
 typedef struct Stack_t
 {
-    unsigned capacity; /**< The capacity in Token Array */
-    unsigned capPos;   /**< The capacity in int baseTopArray */
+    int capacity; /**< The capacity in Token Array */
+    int capPos;   /**< The capacity in int baseTopArray */
     int posStack;      /**< The position of our Stack Array*/
     int posBaseTop;    /**< The position of our base/top pointer in baseTopArray*/
     Token *stack;      /**< The stack of Tokens */
