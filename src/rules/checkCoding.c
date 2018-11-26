@@ -52,7 +52,7 @@ void checkmaxLineNumbers(int line, int nbChar, int maxLine, char *fileName) {
  */
 void checkmaxFileLineNumbers(int nbLines, int linesConf, char *filName) {
     if (nbLines > linesConf)
-        printf(RED "%d Lines in file for file %s. Max is %d.\n" RESET, nbLines, filName, linesConf);
+        printf(RED "%d Lines in file for file %s. Max is %d.\n" RESET, nbLines - 1, filName, linesConf);
 }
 
 /**
