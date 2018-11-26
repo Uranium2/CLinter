@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #include "../config/config.h"
+#include "../parse/token.h"
 
 void clean_text(char **codeText, int nbLines);
 

@@ -10,6 +10,22 @@
 #ifndef PARSER
 #define PARSER
 
+/**
+ * @brief Color Macro for pretty printing in RED
+ *
+ */
+#define RED "\x1B[31m"
+/**
+ * @brief Color Macro for pretty printing in YELLOW
+ *
+ */
+#define YEL "\x1B[33m"
+/**
+ * @brief Reset to default color the printing color
+ *
+ */
+#define RESET "\x1B[0m"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,24 +34,8 @@
 
 #include "../tools/tool.h"
 #include "../parse/token.h"
-#include "../rules/checker.h"
-#include "../parse/changeType.h"
+#include "changeType.h"
 
-/**
- * @brief Color Macro for pretty printing in RED
- * 
- */
-#define RED "\x1B[31m"
-/**
- * @brief Color Macro for pretty printing in YELLOW
- * 
- */
-#define YEL "\x1B[33m"
-/**
- * @brief Reset to default color the printing color
- * 
- */
-#define RESET "\x1B[0m"
 
 Token **parse(char *str, int *nbNodes);
 

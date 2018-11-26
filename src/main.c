@@ -32,13 +32,13 @@ int main(int argc, char *argv[]) {
 
             for (int j = 0; j < nbNodes; j++)
                 printf("%s", tokenList[j]->value);
-            
+
             check(tokenList, nbNodes);
 
             if (conf->NoMultiDeclaration)
                 multiDeclare(tokenList, nbNodes, nbLines, files[o]);
             if (conf->maxLineNumbers)
-                checkmaxLineNumbers(i + 1,
+                checkMaxLineNumbers(i + 1,
                                     tokenList[nbNodes - 1]->pos +
                                     strlen(tokenList[nbNodes - 1]->value),
                                     conf->maxLineNumbers,
@@ -51,6 +51,8 @@ int main(int argc, char *argv[]) {
                 checkOperator(tokenList, nbNodes, i + 1, files[o]);
             if (conf->commentsHeader)
                 checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader, nbLines - 1);
+            if (conf->unusedVariable)
+                checkUnusedVariable(tokenList, nbNodes, i + 1, files[o]);
 
             // TokenList
             free_tokenList(tokenList, nbNodes);

@@ -38,7 +38,7 @@ void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileNam
  * @param maxLine Number max of character in the line
  * @param fileName File name we are working on
  */
-void checkmaxLineNumbers(int line, int nbChar, int maxLine, char *fileName) {
+void checkMaxLineNumbers(int line, int nbChar, int maxLine, char *fileName) {
     if (nbChar > maxLine)
         printf(RED "%d characters in line %d for file %s. Max is %d.\n" RESET, nbChar, line, fileName, maxLine);
 }
