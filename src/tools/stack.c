@@ -81,14 +81,14 @@ void functionCall(Stack *st, Token *tokens, int nbToken)
  */
 void stackPush(Stack *st, Token *tok)
 {
-    if (st->capacity == st->posStack || st->capPos == st->posBaseTop)
+    if (st->capacity == st->posBaseTop || st->capPos == st->posBaseTop)
     {
         // realloc Stack and baseTopArray and double capacity
     }
 
-    st->posStack++;
-    st->stack[st->posStack] = *tok;
     st->baseTopArray[st->posBaseTop]++;
+    st->stack[st->posBaseTop] = *tok;
+
 }
 
 /** 
@@ -98,7 +98,6 @@ void stackPush(Stack *st, Token *tok)
  */
 void stackPop(Stack *st)
 {
-    st->posStack--;
     st->baseTopArray[st->posBaseTop]--;
 }
 

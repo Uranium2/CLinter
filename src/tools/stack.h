@@ -10,7 +10,6 @@ typedef struct Stack_t
 {
     int capacity; /**< The capacity in Token Array */
     int capPos;   /**< The capacity in int baseTopArray */
-    int posStack;      /**< The position of our Stack Array*/
     int posBaseTop;    /**< The position of our base/top pointer in baseTopArray*/
     Token *stack;      /**< The stack of Tokens */
     int *baseTopArray; /**< list of base/top pointer. Push 2, pop 2. Increase top one by one. When we call a new fonction, we push a new push with top value amd push a new top*/
