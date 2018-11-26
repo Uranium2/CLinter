@@ -74,7 +74,7 @@ add_library(
         src/rules/checkVarFunc.c
         src/rules/checkVarFunc.h
         src/headers.h
-)
+        src/rules/checkUnusedVariable.c src/rules/checkUnusedVariable.h)
 
 # Main
 add_executable(clinter src/main.c)

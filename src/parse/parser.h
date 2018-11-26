@@ -34,8 +34,7 @@
 
 #include "../tools/tool.h"
 #include "../parse/token.h"
-#include "../rules/checker.h"
-
+#include "changeType.h"
 
 
 Token **parse(char *str, int *nbNodes);
