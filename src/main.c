@@ -27,10 +27,11 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < nbLines; i++) {
             int nbNodes = 0;
             Token **tokenList = parse(codeText[i], &nbNodes);
-            
+            if (nbNodes == 0)
+                continue;
 
             for (int j = 0; j < nbNodes; j++)
-                printf("%s %s", tokenList[j]->value, getEnumName(tokenList[j]->type));
+                printf("%s", tokenList[j]->value);
             
             check(tokenList, nbNodes);
 

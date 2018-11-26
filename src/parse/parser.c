@@ -101,6 +101,11 @@ Token **parse(char *str, int *nbNodes) {
         char *cString = malloc(sizeof(char));
         cString[0] = str[right];
         cString[1] = '\0';
+         if (str[right] == '/' && str[right + 1] == '/')
+         {
+             *nbNodes = countList;
+             return listToken;
+         }
         if (!isDelim(str[right])) // extend right until end of "word"
             right++;
         if (str[right] == '\"') {
