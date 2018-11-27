@@ -67,17 +67,23 @@ void assignTypes(Token **listToken, int nbNodes) {
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '/')
             listToken[i]->type = Nothing;
         if (strcmp("int", listToken[i]->value) == 0)
-            listToken[i]->type = KeyWord;
+            listToken[i]->type = INT;
+        if (strcmp("long", listToken[i]->value) == 0)
+            listToken[i]->type = LONG;
         if (strcmp("char", listToken[i]->value) == 0)
-            listToken[i]->type = KeyWord;
+            listToken[i]->type = CHAR;
         if (strcmp("void", listToken[i]->value) == 0)
-            listToken[i]->type = KeyWord;
+            listToken[i]->type = VOID;
         if (strcmp("double", listToken[i]->value) == 0)
-            listToken[i]->type = KeyWord;
+            listToken[i]->type = DOUBLE;
         if (strcmp("float", listToken[i]->value) == 0)
-            listToken[i]->type = KeyWord;
+            listToken[i]->type = FLOAT;
         if (strcmp("const", listToken[i]->value) == 0)
             listToken[i]->type = CONST;
+        if (strcmp("unsigned", listToken[i]->value) == 0)
+            listToken[i]->type = UNSIGNED;
+        if (strcmp("signed", listToken[i]->value) == 0)
+            listToken[i]->type = SIGNED;
         if (strcmp("return", listToken[i]->value) == 0)
             listToken[i]->type = RETURN;
 
