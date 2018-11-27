@@ -29,7 +29,6 @@ Stack *stackInit()
     st->capacity = 10;
     st->capPos = 10;
 
-    st->posStack = -1;
     st->posBaseTop = -1;
 
     st->stack = malloc(sizeof(Token) * st->capacity);
