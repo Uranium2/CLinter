@@ -163,6 +163,7 @@ Token **parse(char *str, int *nbNodes)
         if (str[right] == '/' && str[right + 1] == '/') // comment line
         {
             commentLine(&right, &left, str, nbNodes, listToken, &countList);
+            assignTypes(listToken, *nbNodes);
             return listToken;
         }
         

@@ -57,10 +57,7 @@ void nextTok(int *pos, int nbNode, Token **tokens)
     *pos = *pos + 1;
 
     while (match(tokens[*pos], Delimiter, " ") || match(tokens[*pos], Delimiter, "\t"))
-    {
-        printf("%d", *pos);
         *pos = *pos + 1;
-    }
 }
 
 /**
