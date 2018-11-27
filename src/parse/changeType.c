@@ -64,6 +64,8 @@ void assignTypes(Token **listToken, int nbNodes) {
         }
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '*')
             listToken[i]->type = Nothing;
+        if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '/')
+            listToken[i]->type = Nothing;
         if (strcmp("int", listToken[i]->value) == 0)
             listToken[i]->type = KeyWord;
         if (strcmp("char", listToken[i]->value) == 0)
