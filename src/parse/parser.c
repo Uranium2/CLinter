@@ -104,13 +104,18 @@ int canBeExpe(char c, char *str, int right)
  * @param str String containing text
  * @return int 0 false else true
  */
-void checkCommentBlock(int *right, char *str)
+void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList)
 {
     if (str[*right] == '/' && str[*right + 1] == '*') // comment block /* */
     {
         while (!(str[*right] == '*' && str[*right + 1] == '/'))
             (*right)++;
-        *right = *right + 2;
+        *right = *right + 1;
+        char *sub = getSubString(str, *left, *right);
+        listToken[*countList] = createToken(Nothing, sub, *left);
+        *right = *right + 1;
+        *countList = *countList + 1;
+        *left = *right;
     }
 }
 
@@ -124,14 +129,14 @@ void checkCommentBlock(int *right, char *str)
  * @param listToken List of tokens
  * @param countList Number of tokens in listToken
  */
-void commentLine(int right, int left, char *str, int *nbNodes, Token** listToken, int countList)
+void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listToken, int *countList)
 {
-    while (str[right] != '\0')
-        right++;
-    char *sub = getSubString(str, left, right);
-    listToken[countList] = createToken(Nothing, sub, left);
-    countList++;
-    *nbNodes = countList;
+    while (str[*right] != '\0')
+        *right = *right + 1;
+    char *sub = getSubString(str, *left, *right);
+    listToken[*countList] = createToken(Nothing, sub, *left);
+    *countList = *countList + 1;
+    *nbNodes = *countList;
 }
 
 /**
@@ -154,12 +159,13 @@ Token **parse(char *str, int *nbNodes)
         char *cString = malloc(sizeof(char));
         cString[0] = str[right];
         cString[1] = '\0';
+        checkCommentBlock(&left, &right, str, listToken, &countList);
         if (str[right] == '/' && str[right + 1] == '/') // comment line
         {
-            commentLine(right, left, str, nbNodes, listToken, countList);
+            commentLine(&right, &left, str, nbNodes, listToken, &countList);
             return listToken;
         }
-        checkCommentBlock(&right, str);
+        
         if (!isDelim(str[right])) // extend right until end of "word"
             right++;
         if (str[right] == '\"')
