@@ -194,22 +194,12 @@ int getType(Token **tokens, int *pos, int nbNode)
  */
 void varDeclare(Token **tokens, int *pos, int nbNode)
 {
-    //printf("Pos before %d\n", *pos);
     nextTok(pos, nbNode, tokens);
-    //printf("Pos after %d\n", *pos);
-    getType(tokens, pos, nbNode);
-    //printf("Pos after type %d\n", *pos);
-    /*if (eatToken(tokens, KeyWord, pos, nbNode))
+    while(*pos != nbNode)
     {
-        if (eatToken(tokens, IDENTIFIER, pos, nbNode))
-        {
-            if (eatToken(tokens, OpenPar, pos, nbNode))
-                printf(RED "Found Function declaration\n" RESET);
-            else
-                printf(RED "Found Variable declaration\n" RESET);
-        }
-    }*/
-    // Do something clever here
+        getType(tokens, pos, nbNode);
+        *pos = *pos + 1;
+    }
 }
 
 /**
