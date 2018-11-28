@@ -41,6 +41,7 @@ void assignTypes(Token **listToken, int nbNodes) {
             case '"':
             case ' ':
             case '\t':
+            case '\n':
             case '[':
             case ']':
             case '|':
