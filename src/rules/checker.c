@@ -81,6 +81,15 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
     return 1;
 }
 
+/**
+ * @brief Determines if the given token is a varirable or a function 
+ * 
+ * @param tokens List of Tokens
+ * @param pos Position in the list of tokens
+ * @param nbNode Number of nodes
+ * @param type Type of the variable/function
+ * @return int 0 false else true
+ */
 int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
 {
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
@@ -99,6 +108,14 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
     return 0;
 }
 
+/**
+ * @brief Finds a varaible call (not declaration)
+ * 
+ * @param tokens List of Tokens
+ * @param pos Position in the list of tokens
+ * @param nbNode Number of nodes
+ * @return int 0 false else true
+ */
 int getVarCall(Token **tokens, int *pos, int nbNode)
 {
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
@@ -110,6 +127,14 @@ int getVarCall(Token **tokens, int *pos, int nbNode)
     return 0;
 }
 
+/**
+ * @brief Get the Type of a Variable or Function
+ * 
+ * @param tokens List of Tokens
+ * @param pos Position in the list of tokens
+ * @param nbNode Number of nodes
+ * @return int 0 false else true
+ */
 int getType(Token **tokens, int *pos, int nbNode)
 {
     if (eatToken(tokens, UNSIGNED, pos, nbNode))
