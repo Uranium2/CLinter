@@ -18,7 +18,7 @@
  */
 int skipSpaces(Token **listToken, int nbToken) {
     int i = 0;
-    while (listToken[i]->type == Delimiter && i == nbToken - 1)
+    while (i == nbToken - 1 && listToken[i]->type == Delimiter)
         i++;
     return i;
 }
@@ -46,7 +46,9 @@ int containsStr(Token **listToken, int nbToken, char *str) {
  * @param line At which line we are in the File
  * @param fileName The file name
  */
-void multiDeclare(Token **listToken, int nbToken, int line, char *fileName) {
+void multiDeclare(Token **listToken, int nbToken, int line, char *fileName, int *inComment) {
+    if (*inComment == 1)
+        return;
     int i = skipSpaces(listToken, nbToken);
     if (!(listToken[i]->type == KeyWord))
         return;

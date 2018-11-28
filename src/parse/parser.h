@@ -21,7 +21,7 @@
 #include "changeType.h"
 
 
-Token **parse(char *str, int *nbNodes);
+Token **parse(char *str, int *nbNodes, int *inComment);
 
 int isOpe(char c);
 

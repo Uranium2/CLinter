@@ -104,10 +104,31 @@ int canBeExpe(char c, char *str, int right)
  * @param str String containing text
  * @return int 0 false else true
  */
-void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList)
+void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList, int* inComment)
 {
+    if (*inComment == 1)
+    {
+        *inComment = 0;
+        while (!(str[*right] == '*' && str[*right + 1] == '/'))
+        {
+            if (str[*right + 1] == '\0')
+            {
+                *inComment = 1;
+                break;
+            }
+            (*right)++;
+        }
+        *right = *right + 1;
+        char *sub = getSubString(str, *left, *right);
+        listToken[*countList] = createToken(RETURN, sub, *left);
+        *right = *right + 1;
+        *countList = *countList + 1;
+        *left = *right;
+    }
+
     if (str[*right] == '/' && str[*right + 1] == '*') // comment block /* */
     {
+        *inComment = 1;
         while (!(str[*right] == '*' && str[*right + 1] == '/'))
         {
             if (str[*right + 1] == '\0')
@@ -150,7 +171,7 @@ void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listTok
  * @param nbNodes number of nodes in string
  * @return Token** list of list of tokens
  */
-Token **parse(char *str, int *nbNodes)
+Token **parse(char *str, int *nbNodes, int *inComment)
 {
     int left = 0;
     int right = 0;
@@ -158,12 +179,18 @@ Token **parse(char *str, int *nbNodes)
     Token **listToken = malloc(sizeof(Token) * len);
     int countList = 0;
 
+    if (*inComment == 1)
+    {
+        checkCommentBlock(&left, &right, str, listToken, &countList, inComment);
+
+    }
+
     while (right <= len - 1 && right >= left)
     { // stop when reach end of string or left cursor reaches right cursor
         char *cString = malloc(sizeof(char));
         cString[0] = str[right];
         cString[1] = '\0';
-        checkCommentBlock(&left, &right, str, listToken, &countList);
+        checkCommentBlock(&left, &right, str, listToken, &countList, inComment);
         if (str[right] == '/' && str[right + 1] == '/') // comment line
         {
             commentLine(&right, &left, str, nbNodes, listToken, &countList);

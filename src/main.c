@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
     Config *conf = loadConfig(getConfigFile(argc, argv));
     char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
     int pos = 0;
+    int inComment = 0;
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
     // Run parsing
     for (int o = 0; o < pos; o++) {
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
         char **codeText = getAllLines(files[o], &nbLines);
         for (int i = 0; i < nbLines; i++) {
             int nbNodes = 0;
-            Token **tokenList = parse(codeText[i], &nbNodes);
+            Token **tokenList = parse(codeText[i], &nbNodes, &inComment);
             if (nbNodes == 0)
                 continue;
 
@@ -36,7 +37,7 @@ int main(int argc, char *argv[]) {
             check(tokenList, nbNodes);
 
             if (conf->NoMultiDeclaration)
-                multiDeclare(tokenList, nbNodes, nbLines, files[o]);
+                multiDeclare(tokenList, nbNodes, nbLines, files[o], &inComment);
             if (conf->maxLineNumbers)
                 checkMaxLineNumbers(i + 1,
                                     tokenList[nbNodes - 1]->pos +
