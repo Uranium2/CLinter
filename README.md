@@ -1,12 +1,57 @@
 # CLinter
 
-Linter in C
+This project has objective to warn the developper of a potential compilation error or a coding style error before compiling. It is a Linter written in C for C code.
+
+You will need to compile the project to have the binaries. Before executing the binary you will need to create a configuration file named ***\<name\>**.lconf*. This configuration file must follow some rules. Here is an example.
+
+    =extends
+    myConfig.lconf
+    
+    =rules
+    - array-bracket-eol = on
+    - no-trailing-spaces = on
+    - operators-spacing = on
+    - max-line-numbers = 80
+    - max-file-line-numbers = 80
+    - no-multi-declaration = on
+    - comments-header = on
+    
+    =excludedFiles
+    - main.c
+    - hello2.c
+    - hello3.c
+    - hello4.c
+    
+    =recursive
+    false
+    
+**extends** is the rule to fetch and load the configuration from the file given below.
+
+**rules** are the rules the Linter will follow.
+
+**excludedFiles** are the files to not analyze.
+
+**recursive** is the option to find c files in folders.
+
+You will find at the end of this page, the rules implemented that you can use in the configuration file.
+
+## Before running program
+
+- Get gcc, make and doxygen
+
+```console
+CLinter:~$ sudo apt-get install gcc
+CLinter:~$ sudo apt-get install make
+CLinter:~$ sudo apt-get install doxygen
+```
 
 ## To compile
 
 ```console
 CLinter:~$ make all
 ```
+
+The '**make all**' command will generate a binary, named **linter**, in the **test/** folder. You can drop your **c** files in the **test/** folder.
 
 ## To generate and view documentation
 
@@ -23,15 +68,6 @@ CLinter:~$ sudo apt-get install graphviz
 CLinter:~$ cd Doc/
 CLinter/Doc:~$ doxygen Doxyfile
 CLinter/Doc:~$ firefox html/index.html
-```
-
-## Before running program
-
-- Get gcc and make
-
-```console
-CLinter:~$ sudo apt-get install gcc
-CLinter:~$ sudo apt-get install make
 ```
 
 ## To run program
