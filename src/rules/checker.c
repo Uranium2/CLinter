@@ -92,16 +92,20 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
  */
 int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
 {
+    int pointer = 0;
+    while (eatToken(tokens, MUL_ASSIGN, pos, nbNode))
+        pointer++;
+
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
     {
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
-            printf(RED "Found %s Function declaration\n" RESET, type);
+            printf(RED "Found %d%s Function declaration\n" RESET, pointer, type);
             return 1;
         }
         else
         {
-            printf(RED "Found %s Variable declaration\n" RESET, type);
+            printf(RED "Found %d%s Variable declaration\n" RESET, pointer, type);
             return 1;
         }
     }
@@ -118,10 +122,16 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
  */
 int getVarCall(Token **tokens, int *pos, int nbNode)
 {
+    int pointer = 0;
+    while (eatToken(tokens, MUL_ASSIGN, pos, nbNode))
+        pointer++;
+        
+    int posID = *pos;
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
     {
+
         if (!eatToken(tokens, OpenPar, pos, nbNode))
-            printf(RED "Found Variable call %s\n" RESET, tokens[*pos - 1]->value);
+            printf(RED "Found Variable call %d* %s\n" RESET, pointer, tokens[posID]->value);
         return 1;
     }
     return 0;

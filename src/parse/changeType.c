@@ -21,7 +21,6 @@ void assignTypes(Token **listToken, int nbNodes) {
             case '+':
             case '-':
             case '/':
-            case '*':
             case '%':
             case '&':
             case '^':
@@ -29,6 +28,9 @@ void assignTypes(Token **listToken, int nbNodes) {
             case '<':
             case '!':
                 listToken[i]->type = Operator;
+                break;
+            case '*':
+                listToken[i]->type = MUL_ASSIGN;
                 break;
             case ',':
                 listToken[i]->type = COMA;
