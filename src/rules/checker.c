@@ -204,7 +204,6 @@ int getType(Token **tokens, int *pos, int nbNode)
  */
 void varDeclare(Token **tokens, int *pos, int nbNode)
 {
-    nextTok(pos, nbNode, tokens);
     while (*pos != nbNode)
     {
         getType(tokens, pos, nbNode);

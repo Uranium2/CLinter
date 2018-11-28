@@ -109,7 +109,11 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
     if (str[*right] == '/' && str[*right + 1] == '*') // comment block /* */
     {
         while (!(str[*right] == '*' && str[*right + 1] == '/'))
+        {
+            if (str[*right + 1] == '\0')
+                break;
             (*right)++;
+        }
         *right = *right + 1;
         char *sub = getSubString(str, *left, *right);
         listToken[*countList] = createToken(Nothing, sub, *left);
