@@ -77,7 +77,7 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
     }
     nextTok(pos, nbNode, tokens);
     if (*pos + 1 == nbNode)
-        exit(0);
+        return 0;
     return 1;
 }
 
@@ -99,6 +99,16 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
     return 0;
 }
 
+int getVarCall(Token **tokens, int *pos, int nbNode)
+{
+    if (eatToken(tokens, IDENTIFIER, pos, nbNode))
+    {
+        if (!eatToken(tokens, OpenPar, pos, nbNode))
+            printf(RED "Found Variable call %s\n" RESET, tokens[*pos - 1]->value);
+        return 1;
+    }
+    return 0;
+}
 
 int getType(Token **tokens, int *pos, int nbNode)
 {
@@ -195,9 +205,10 @@ int getType(Token **tokens, int *pos, int nbNode)
 void varDeclare(Token **tokens, int *pos, int nbNode)
 {
     nextTok(pos, nbNode, tokens);
-    while(*pos != nbNode)
+    while (*pos != nbNode)
     {
         getType(tokens, pos, nbNode);
+        getVarCall(tokens, pos, nbNode);
         *pos = *pos + 1;
     }
 }
