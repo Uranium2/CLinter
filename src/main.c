@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
     int pos = 0;
     int inComment = 0;
+    Stack *stack = stackInit();
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
     // Run parsing
     for (int o = 0; o < pos; o++) {
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
             for (int j = 0; j < nbNodes; j++)
                 printf("%s", tokenList[j]->value);
 
-            check(tokenList, nbNodes);
+            check(tokenList, nbNodes, stack);
 
             if (conf->NoMultiDeclaration)
                 multiDeclare(tokenList, nbNodes, nbLines, files[o], &inComment);

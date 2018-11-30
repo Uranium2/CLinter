@@ -16,8 +16,9 @@
 
 #include "../parse/token.h"
 #include "../parse/parser.h"
+#include "../tools/stack.h"
 
 
-void check(Token **listToken, int nbToken);
+void check(Token **listToken, int nbToken, Stack *stack);
 
 #endif

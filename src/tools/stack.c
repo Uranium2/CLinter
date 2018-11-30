@@ -9,12 +9,6 @@
  */
 int isInScope(Stack *st, Token token)
 {
-    
-    for(int i = st->baseTopArray[st->posBaseTop - 2]; i < st->baseTopArray[st->posBaseTop]; i++)
-    {
-        if (strcmp(st->stack[i].value , token.value) == 0)
-            return 1;
-    }
     return 0;
 }
 
@@ -25,51 +19,11 @@ int isInScope(Stack *st, Token token)
  */
 Stack *stackInit()
 {
-    Stack *st = malloc(sizeof(Stack));
-    st->capacity = 10;
-    st->capPos = 10;
-
-    st->posBaseTop = -1;
-
-    st->stack = malloc(sizeof(Token) * st->capacity);
-    st->baseTopArray = malloc(sizeof(int) * st->capPos);
-
-    return st;
-}
-
-/**
- * @brief Check if stack is empty
- * 
- * @param st Stack of variables
- * @return int 0 not empty else empty
- */
-int isEmpty(Stack *st)
-{
-    return st->capacity == -1;
-}
-
-/**
- * @brief Function to call when we encounter a function call
- * 
- * @param st Stack of variables
- * @param list of Tokens
- * @param number of tokens in the list
- */
-void functionCall(Stack *st, Token *tokens, int nbToken)
-{
-    // get name of fonction in tokens
-    st = st;
-    tokens = tokens;
-    nbToken = nbToken;
-    for(int i = 0; i < nbToken; i++)
-    {
-        /* code */
-    }
-    
-    // get variable in function declaration
-    // update position base and top (base = top, top = top)
-    // increment of 2 posBaseTop (base and top cell)
-    // push all the tokens
+    Stack *stack = malloc(sizeof(Stack));
+    stack->size = 100;
+    stack->tokens = malloc(sizeof(Token *) * stack->size);
+    stack->top = 0;
+    return stack;
 }
 
 /**
@@ -80,14 +34,9 @@ void functionCall(Stack *st, Token *tokens, int nbToken)
  */
 void stackPush(Stack *st, Token *tok)
 {
-    if (st->capacity == st->posBaseTop || st->capPos == st->posBaseTop)
-    {
-        // realloc Stack and baseTopArray and double capacity
-    }
-
-    st->baseTopArray[st->posBaseTop]++;
-    st->stack[st->posBaseTop] = *tok;
-
+    // check if stack is full
+    st->tokens[st->top] = tok;
+    st->top = st->top + 1;
 }
 
 /** 
@@ -97,17 +46,4 @@ void stackPush(Stack *st, Token *tok)
  */
 void stackPop(Stack *st)
 {
-    st->baseTopArray[st->posBaseTop]--;
-}
-
-/**
- * @brief Retrieve the state of the stack before function call
- * 
- * @param st Stack of variables
- */
-void endFunctionCall(Stack *st)
-{
-    // update position of base and top
-    st->posBaseTop -= 2;
-
 }

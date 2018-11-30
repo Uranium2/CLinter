@@ -90,21 +90,26 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
  * @param type Type of the variable/function
  * @return int 0 false else true
  */
-int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
+int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
 {
     int pointer = 0;
     while (eatToken(tokens, MUL_ASSIGN, pos, nbNode))
         pointer++;
 
+    int posID = *pos;
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
     {
+        
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
+            //stackPush(stack, tokens[0]);
             printf(RED "Found %d%s Function declaration\n" RESET, pointer, type);
             return 1;
         }
         else
         {
+
+            stackPush(stack, tokens[posID]);
             printf(RED "Found %d%s Variable declaration\n" RESET, pointer, type);
             return 1;
         }
@@ -147,88 +152,88 @@ int getCall(Token **tokens, int *pos, int nbNode)
  * @param nbNode Number of nodes
  * @return int 0 false else true
  */
-int getType(Token **tokens, int *pos, int nbNode)
+int getType(Token **tokens, int *pos, int nbNode, Stack *stack)
 {
     if (eatToken(tokens, UNSIGNED, pos, nbNode))
     {
         if (eatToken(tokens, SHORT, pos, nbNode))
         {
             if (eatToken(tokens, INT, pos, nbNode))
-                return funcOrVar(tokens, pos, nbNode, "UNSIGNED SHORT INT");
-            return funcOrVar(tokens, pos, nbNode, "UNSIGNED SHORT");
+                return funcOrVar(tokens, pos, nbNode, "UNSIGNED SHORT INT", stack);
+            return funcOrVar(tokens, pos, nbNode, "UNSIGNED SHORT", stack);
         }
         if (eatToken(tokens, LONG, pos, nbNode))
         {
             if (eatToken(tokens, LONG, pos, nbNode))
             {
                 if (eatToken(tokens, INT, pos, nbNode))
-                    return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG LONG INT");
-                return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG LONG");
+                    return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG LONG INT", stack);
+                return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG LONG", stack);
             }
             if (eatToken(tokens, INT, pos, nbNode))
-                return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG INT");
-            return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG");
+                return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG INT", stack);
+            return funcOrVar(tokens, pos, nbNode, "UNSIGNED LONG", stack);
         }
         if (eatToken(tokens, INT, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "UNSIGNED INT");
+            return funcOrVar(tokens, pos, nbNode, "UNSIGNED INT", stack);
         if (eatToken(tokens, CHAR, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "UNSIGNED CHAR");
-        return funcOrVar(tokens, pos, nbNode, "UNSIGNED");
+            return funcOrVar(tokens, pos, nbNode, "UNSIGNED CHAR", stack);
+        return funcOrVar(tokens, pos, nbNode, "UNSIGNED", stack);
     }
     if (eatToken(tokens, SIGNED, pos, nbNode))
     {
         if (eatToken(tokens, SHORT, pos, nbNode))
         {
             if (eatToken(tokens, INT, pos, nbNode))
-                return funcOrVar(tokens, pos, nbNode, "SIGNED SHORT INT");
-            return funcOrVar(tokens, pos, nbNode, "SIGNED SHORT");
+                return funcOrVar(tokens, pos, nbNode, "SIGNED SHORT INT", stack);
+            return funcOrVar(tokens, pos, nbNode, "SIGNED SHORT", stack);
         }
         if (eatToken(tokens, LONG, pos, nbNode))
         {
             if (eatToken(tokens, LONG, pos, nbNode))
             {
                 if (eatToken(tokens, INT, pos, nbNode))
-                    return funcOrVar(tokens, pos, nbNode, "SIGNED LONG LONG INT");
-                return funcOrVar(tokens, pos, nbNode, "SIGNED LONG LONG");
+                    return funcOrVar(tokens, pos, nbNode, "SIGNED LONG LONG INT", stack);
+                return funcOrVar(tokens, pos, nbNode, "SIGNED LONG LONG", stack);
             }
             if (eatToken(tokens, INT, pos, nbNode))
-                return funcOrVar(tokens, pos, nbNode, "SIGNED LONG INT");
-            return funcOrVar(tokens, pos, nbNode, "SIGNED LONG");
+                return funcOrVar(tokens, pos, nbNode, "SIGNED LONG INT", stack);
+            return funcOrVar(tokens, pos, nbNode, "SIGNED LONG", stack);
         }
         if (eatToken(tokens, INT, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "SIGNED INT");
+            return funcOrVar(tokens, pos, nbNode, "SIGNED INT", stack);
         if (eatToken(tokens, CHAR, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "SIGNED CHAR");
-        return funcOrVar(tokens, pos, nbNode, "SIGNED");
+            return funcOrVar(tokens, pos, nbNode, "SIGNED CHAR", stack);
+        return funcOrVar(tokens, pos, nbNode, "SIGNED", stack);
     }
     if (eatToken(tokens, SHORT, pos, nbNode))
     {
         if (eatToken(tokens, INT, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "SHORT INT");
-        return funcOrVar(tokens, pos, nbNode, "SHORT");
+            return funcOrVar(tokens, pos, nbNode, "SHORT INT", stack);
+        return funcOrVar(tokens, pos, nbNode, "SHORT", stack);
     }
     if (eatToken(tokens, LONG, pos, nbNode))
     {
         if (eatToken(tokens, LONG, pos, nbNode))
         {
             if (eatToken(tokens, INT, pos, nbNode))
-                return funcOrVar(tokens, pos, nbNode, "LONG LONG INT");
-            return funcOrVar(tokens, pos, nbNode, "LONG LONG");
+                return funcOrVar(tokens, pos, nbNode, "LONG LONG INT", stack);
+            return funcOrVar(tokens, pos, nbNode, "LONG LONG", stack);
         }
         if (eatToken(tokens, INT, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "LONG INT");
+            return funcOrVar(tokens, pos, nbNode, "LONG INT", stack);
         if (eatToken(tokens, DOUBLE, pos, nbNode))
-            return funcOrVar(tokens, pos, nbNode, "LONG DOUBLE");
-        return funcOrVar(tokens, pos, nbNode, "LONG");
+            return funcOrVar(tokens, pos, nbNode, "LONG DOUBLE", stack);
+        return funcOrVar(tokens, pos, nbNode, "LONG", stack);
     }
     if (eatToken(tokens, INT, pos, nbNode))
-        return funcOrVar(tokens, pos, nbNode, "INT");
+        return funcOrVar(tokens, pos, nbNode, "INT", stack);
     if (eatToken(tokens, DOUBLE, pos, nbNode))
-        return funcOrVar(tokens, pos, nbNode, "DOUBLE");
+        return funcOrVar(tokens, pos, nbNode, "DOUBLE", stack);
     if (eatToken(tokens, FLOAT, pos, nbNode))
-        return funcOrVar(tokens, pos, nbNode, "FLOAT");
+        return funcOrVar(tokens, pos, nbNode, "FLOAT", stack);
     if (eatToken(tokens, CHAR, pos, nbNode))
-        return funcOrVar(tokens, pos, nbNode, "CHAR");
+        return funcOrVar(tokens, pos, nbNode, "CHAR", stack);
     return 0;
 }
 
@@ -239,15 +244,17 @@ int getType(Token **tokens, int *pos, int nbNode)
  * @param pos Position in the list of Tokens
  * @param nbNode Number of tokens in the list
  */
-void varDeclare(Token **tokens, int *pos, int nbNode)
+void varDeclare(Token **tokens, int *pos, int nbNode, Stack *stack)
 {
     while (*pos != nbNode)
     {
-        if (getType(tokens, pos, nbNode))
+        if (getType(tokens, pos, nbNode, stack))
             *pos = *pos - 1;
         getCall(tokens, pos, nbNode);
         *pos = *pos + 1;
-    }
+        //    if (stack->top != 0)
+        //printf("stack top = %d tok = %s val = %s\n", stack->top, getEnumName(stack->tokens[stack->top - 1]->type), stack->tokens[stack->top - 1]->value);
+    }        
 }
 
 /**
@@ -256,8 +263,8 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
  * @param tokens List of Tokens
  * @param nbNode Number of nodes
  */
-void check(Token **tokens, int nbNode)
+void check(Token **tokens, int nbNode, Stack *stack)
 {
     int pos = 0;
-    varDeclare(tokens, &pos, nbNode);
+    varDeclare(tokens, &pos, nbNode, stack);
 }
