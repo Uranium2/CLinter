@@ -50,6 +50,8 @@ void multiDeclare(Token **listToken, int nbToken, int line, char *fileName, int 
     if (*inComment == 1)
         return;
     int i = skipSpaces(listToken, nbToken);
+    if (i >= nbToken)
+        return;
     if (!(listToken[i]->type == KeyWord))
         return;
     if (containsStr(listToken, nbToken, "{"))
