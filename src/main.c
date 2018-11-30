@@ -19,12 +19,12 @@ int main(int argc, char *argv[]) {
     char **files = malloc(sizeof(char *) * 255); // 255 files max BAD IDEA
     int pos = 0;
     int inComment = 0;
-    Stack *stack = stackInit();
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
     // Run parsing
     for (int o = 0; o < pos; o++) {
         int nbLines = 0;
         int statusHeader = 0;
+        Stack *stack = stackInit();
         char **codeText = getAllLines(files[o], &nbLines);
         for (int i = 0; i < nbLines; i++) {
             int nbNodes = 0;

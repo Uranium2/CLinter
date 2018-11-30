@@ -102,7 +102,7 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
         
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
-            //stackPush(stack, tokens[0]);
+            stackPush(stack, tokens[posID]);
             printf(RED "Found %d%s Function declaration\n" RESET, pointer, type);
             return 1;
         }
@@ -252,9 +252,7 @@ void varDeclare(Token **tokens, int *pos, int nbNode, Stack *stack)
             *pos = *pos - 1;
         getCall(tokens, pos, nbNode);
         *pos = *pos + 1;
-        //    if (stack->top != 0)
-        //printf("stack top = %d tok = %s val = %s\n", stack->top, getEnumName(stack->tokens[stack->top - 1]->type), stack->tokens[stack->top - 1]->value);
-    }        
+        }        
 }
 
 /**
