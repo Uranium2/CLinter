@@ -113,24 +113,26 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type)
 }
 
 /**
- * @brief Finds a varaible call (not declaration)
+ * @brief Finds a variable/function call (not declaration)
  * 
  * @param tokens List of Tokens
  * @param pos Position in the list of tokens
  * @param nbNode Number of nodes
  * @return int 0 false else true
  */
-int getVarCall(Token **tokens, int *pos, int nbNode)
+int getCall(Token **tokens, int *pos, int nbNode)
 {
     int pointer = 0;
     while (eatToken(tokens, MUL_ASSIGN, pos, nbNode))
         pointer++;
-        
+
     int posID = *pos;
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
     {
 
-        if (!eatToken(tokens, OpenPar, pos, nbNode))
+        if (eatToken(tokens, OpenPar, pos, nbNode))
+            printf(RED "Found Function call %s\n" RESET, tokens[posID]->value);
+        else
             printf(RED "Found Variable call %d* %s\n" RESET, pointer, tokens[posID]->value);
         return 1;
     }
@@ -241,8 +243,9 @@ void varDeclare(Token **tokens, int *pos, int nbNode)
 {
     while (*pos != nbNode)
     {
-        getType(tokens, pos, nbNode);
-        getVarCall(tokens, pos, nbNode);
+        if (getType(tokens, pos, nbNode))
+            *pos = *pos - 1;
+        getCall(tokens, pos, nbNode);
         *pos = *pos + 1;
     }
 }
