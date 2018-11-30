@@ -135,6 +135,7 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
                 break;
             (*right)++;
         }
+        *inComment = 0;
         *right = *right + 1;
         char *sub = getSubString(str, *left, *right);
         listToken[*countList] = createToken(Nothing, sub, *left);
