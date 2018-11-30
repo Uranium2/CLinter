@@ -56,10 +56,10 @@ int main(int argc, char *argv[]) {
             if (conf->unusedVariable)
                 checkUnusedVariable(tokenList, nbNodes, i + 1, files[o]);
 
+            
             // TokenList
-            free_tokenList(tokenList, nbNodes);
+            //free_tokenList(tokenList, nbNodes);
         }
-
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
         free_text(codeText, nbLines);
