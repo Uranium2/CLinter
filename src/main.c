@@ -59,12 +59,14 @@ int main(int argc, char *argv[]) {
             // TokenList
             //free_tokenList(tokenList, nbNodes);
         }
+        //stackPrint(stack);
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
         if (conf->unusedVariable)
-            checkUnusedVar(stack);
+            checkUnusedVar(stack, files[o]);
         if (conf->unusedFunction)
-            checkUnusedFunc(stack);
+            checkUnusedFunc(stack, files[o]);
+        checkUndeclaredVar(stack, files[o]);
         free_text(codeText, nbLines);
     }
 

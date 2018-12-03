@@ -5,7 +5,7 @@
  * 
  * @param st Stack of variable/functions names
  */
-void checkUnusedVar(Stack *st)
+void checkUnusedVar(Stack *st, char *file)
 {
 
     for (int i = 0; i < st->top; i++)
@@ -24,7 +24,7 @@ void checkUnusedVar(Stack *st)
         }
         if (seen != 1)
         {
-            printf(YEL "%s not used\n" RESET, st->itemNames[i]->name);
+            printf(RED "%s " YEL "variable not used at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
         }
     }
 }
@@ -34,9 +34,8 @@ void checkUnusedVar(Stack *st)
  * 
  * @param st Stack of variable/functions names
  */
-void checkUnusedFunc(Stack *st)
+void checkUnusedFunc(Stack *st, char *file)
 {
-
     for (int i = 0; i < st->top; i++)
     {
         if (!st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
@@ -53,7 +52,61 @@ void checkUnusedFunc(Stack *st)
         }
         if (seen != 1)
         {
-            printf(YEL "%s not used\n" RESET, st->itemNames[i]->name);
+            printf(RED "%s " YEL "function not used at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+        }
+    }
+}
+
+/**
+ * @brief Warns the user if a variable is used but not declared
+ * 
+ * @param st Stack of variable/functions names
+ */
+void checkUndeclaredVar(Stack *st, char *file)
+{
+    for (int i = st->top - 1; i != 0; i--)
+    {
+        if (st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
+            continue;
+        int seen = 0;
+        for (int j = i - 1; j != 0; j--)
+        {
+            if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
+            {
+                seen = 1;
+                break;
+            }
+        }
+        if (seen == 0)
+        {
+            printf(RED "%s " YEL "variable not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+        }
+    }
+}
+
+/**
+ * @brief Warns the user if a variable is used but not declared
+ * 
+ * @param st Stack of variable/functions names
+ */
+void checkUndeclaredFunc(Stack *st, char *file)
+{
+    for (int i = st->top - 1; i != 0; i--)
+    {
+        if (st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
+            continue;
+        int seen = 0;
+        for (int j = i - 1; j != 0; j--)
+        {
+            if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
+            {
+                seen = 1;
+                break;
+            }
+        }
+        if (seen == 0)
+        {
+            printf(RED "%s " YEL "function not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
         }
     }
 }
@@ -81,7 +134,7 @@ Stack *stackInit()
 void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc)
 {
     // check if stack is full
-        // Do stuff
+    // Do stuff
     ItemName *it = malloc(sizeof(ItemName));
     it->name = tok->value;
     if (typeOfPush == 1)

@@ -27,5 +27,6 @@ typedef struct Stack_t
 Stack *stackInit();
 void stackPush(Stack *st, Token *token, int typeOfPush, int varOrFunc);
 void stackPrint(Stack *st);
-void checkUnusedVar(Stack *st);
-void checkUnusedFunc(Stack *st);
+void checkUnusedVar(Stack *st, char* file);
+void checkUnusedFunc(Stack *st, char* file);
+void checkUndeclaredVar(Stack *st, char* file);

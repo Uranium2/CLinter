@@ -103,14 +103,12 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
             stackPush(stack, tokens[posID], 1, 0);
-            printf(RED "Found %d%s Function declaration\n" RESET, pointer, type);
             return 1;
         }
         else
         {
 
             stackPush(stack, tokens[posID], 1, 1);
-            printf(RED "Found %d%s Variable declaration\n" RESET, pointer, type);
             return 1;
         }
     }
@@ -138,12 +136,10 @@ int getCall(Token **tokens, int *pos, int nbNode, Stack *stack)
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
             stackPush(stack, tokens[posID], 0, 0);
-            printf(RED "Found Function call %s\n" RESET, tokens[posID]->value);
         }
         else
         {
             stackPush(stack, tokens[posID], 0, 1);
-            printf(RED "Found Variable call %d* %s\n" RESET, pointer, tokens[posID]->value);
         }
         return 1;
     }
