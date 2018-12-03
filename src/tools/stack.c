@@ -21,7 +21,7 @@ Stack *stackInit()
 {
     Stack *stack = malloc(sizeof(Stack));
     stack->size = 100;
-    stack->tokens = malloc(sizeof(Token *) * stack->size);
+    stack->itemNames = malloc(sizeof(ItemName *) * stack->size);
     stack->top = 0;
     return stack;
 }
@@ -32,18 +32,43 @@ Stack *stackInit()
  * @param st Stack of variables
  * @param tok Variable to push
  */
-void stackPush(Stack *st, Token *tok)
+void stackPush(Stack *st, Token *tok, int typeOfPush)
 {
     // check if stack is full
-    st->tokens[st->top] = tok;
+    ItemName *it = malloc(sizeof(ItemName));
+    it->type = tok->type;
+    it->name = tok->value;
+    if (typeOfPush == 1)
+    {
+        it->isDeclaration = 1;
+        it->isCall = 0;
+    }
+    else
+    {
+        it->isDeclaration = 0;
+        it->isCall = 1;
+    }
+    st->itemNames[st->top] = it;
     st->top = st->top + 1;
 }
 
-/** 
- * @brief Pop the last variable at the top of the Stack
+/**
+ * @brief Print content of Stack
  * 
- * @param st Stack of variables
+ * @param st stack of Tokens
  */
-void stackPop(Stack *st)
+void stackPrint(Stack *st)
+{
+
+    for (int i = 0; i < st->top; i++)
+    {
+        printf("%s %s isDeclare = %d isCall = %d\n", getEnumName(st->itemNames[i]->type),
+               st->itemNames[i]->name,
+               st->itemNames[i]->isDeclaration,
+               st->itemNames[i]->isCall);
+    }
+}
+
+void checkUnusedVar(Stack *st)
 {
 }
