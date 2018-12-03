@@ -1,15 +1,32 @@
 #include "stack.h"
 
 /**
- * @brief Check if a variable is declared in the scope
+ * @brief Warns the user if a variable or function is declared but not used
  * 
- * @param st Stack of variables
- * @return int 0 not empty else empty
- * @return int 
+ * @param st Stack of variable/functions names
  */
-int isInScope(Stack *st, Token token)
+void checkUnused(Stack *st)
 {
-    return 0;
+
+    for (int i = 0; i < st->top; i++)
+    {
+        if (!st->itemNames[i]->isDeclaration)
+            continue;
+        int seen = 0;
+        for (int j = i + 1; j < st->top; j++)
+        {
+            if (st->itemNames[i]->isDeclaration && st->itemNames[j]->isCall &&
+                strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0)
+            {
+                seen = 1;
+                break;
+            }
+        }
+        if (seen != 1)
+        {
+            printf(YEL "%s not used\n" RESET, st->itemNames[i]->name);
+        }
+    }
 }
 
 /**
@@ -35,8 +52,8 @@ Stack *stackInit()
 void stackPush(Stack *st, Token *tok, int typeOfPush)
 {
     // check if stack is full
+        // Do stuff
     ItemName *it = malloc(sizeof(ItemName));
-    it->type = tok->type;
     it->name = tok->value;
     if (typeOfPush == 1)
     {
@@ -62,7 +79,7 @@ void stackPrint(Stack *st)
 
     for (int i = 0; i < st->top; i++)
     {
-        printf("%s %s isDeclare = %d isCall = %d\n", getEnumName(st->itemNames[i]->type),
+        printf("%s isDeclare = %d isCall = %d\n",
                st->itemNames[i]->name,
                st->itemNames[i]->isDeclaration,
                st->itemNames[i]->isCall);

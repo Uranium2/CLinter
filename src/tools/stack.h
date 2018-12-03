@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include "../parse/token.h"
+#include "tool.h"
 
 typedef 
 struct ItemName_T
@@ -8,7 +9,6 @@ struct ItemName_T
     char* name;
     short isDeclaration;
     short isCall;
-    Type type;
 } ItemName;
 
 
@@ -26,3 +26,4 @@ typedef struct Stack_t
 Stack *stackInit();
 void stackPush(Stack *st, Token *token, int typeOfPush);
 void stackPrint(Stack *st);
+void checkUnused(Stack *st);

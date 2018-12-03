@@ -21,12 +21,12 @@ int main(int argc, char *argv[]) {
     int inComment = 0;
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
     // Run parsing
-    for (int o = 0; o < pos; o++) {
+    for (int o = 0; o < pos; o++) { // For each files
         int nbLines = 0;
         int statusHeader = 0;
         Stack *stack = stackInit();
         char **codeText = getAllLines(files[o], &nbLines);
-        for (int i = 0; i < nbLines; i++) {
+        for (int i = 0; i < nbLines; i++) { // For each lines in File
             int nbNodes = 0;
             Token **tokenList = parse(codeText[i], &nbNodes, &inComment);
             if (nbNodes == 0)
@@ -56,12 +56,12 @@ int main(int argc, char *argv[]) {
             if (conf->unusedVariable)
                 checkUnusedVariable(tokenList, nbNodes, i + 1, files[o]);
 
-            
             // TokenList
             //free_tokenList(tokenList, nbNodes);
         }
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
+        checkUnused(stack);
         free_text(codeText, nbLines);
     }
 
