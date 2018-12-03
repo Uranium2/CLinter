@@ -9,6 +9,7 @@ struct ItemName_T
     char* name;
     short isDeclaration;
     short isCall;
+    short isVar;
 } ItemName;
 
 
@@ -24,6 +25,7 @@ typedef struct Stack_t
 } Stack;
 
 Stack *stackInit();
-void stackPush(Stack *st, Token *token, int typeOfPush);
+void stackPush(Stack *st, Token *token, int typeOfPush, int varOrFunc);
 void stackPrint(Stack *st);
-void checkUnused(Stack *st);
+void checkUnusedVar(Stack *st);
+void checkUnusedFunc(Stack *st);

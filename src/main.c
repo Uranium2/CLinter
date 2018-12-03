@@ -61,7 +61,10 @@ int main(int argc, char *argv[]) {
         }
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
-        checkUnused(stack);
+        if (conf->unusedVariable)
+            checkUnusedVar(stack);
+        if (conf->unusedFunction)
+            checkUnusedFunc(stack);
         free_text(codeText, nbLines);
     }
 
