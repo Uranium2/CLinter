@@ -84,7 +84,7 @@ CLinter:~$ ./linter
 CLinter:~$ ./linter [path/to/config/file]
 ```
 
-## TODO:
+## TODO
 
 - Delimiter les tokens (Mot clés, délimiteurs, opérateurs, noms variables, espaces, reste?):+1: :-1:
 - Partie 1:
@@ -92,17 +92,17 @@ CLinter:~$ ./linter [path/to/config/file]
   - [x] Charger récursivement les fichiers de configuration
 - Règles:
   - [x] array-bracket-eol
-  - [x] operators-spacing 
+  - [x] operators-spacing
   - [ ] indent
   - [x] comments-header
   - [x] max-line-numbers
   - [x] max-file-line-numbers
   - [x] no-trailing-spaces
   - [x] no-multi-declaration
-  - [ ] unused-variable
-  - [ ] undeclared-variable
+  - [ ] unused-variable         :+1: :-1:
+  - [ ] undeclared-variable     :+1: :-1:
   - [ ] no-prototype
-  - [ ] unused-function
-  - [ ] undeclared-function
+  - [ ] unused-function         :+1: :-1:
+  - [ ] undeclared-function     :+1: :-1:
   - [ ] variable-assignment-type
   - [ ] function-parameters-type
