@@ -5,6 +5,6 @@
 #include "../tools/tool.h"
 
 void checkUnusedVariable(Token **listToken, int nbToken, int line, char *fileName, int *inComment){
-
-    print_warning("TEST", line, listToken[2 - 1]->pos, fileName);
+    // TODO end unusedvariable with linterMemory
+    //print_warning("TEST", line, listToken[2 - 1]->pos, fileName);
 }
