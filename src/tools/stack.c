@@ -8,12 +8,12 @@
 void checkUnusedVar(Stack *st, char *file)
 {
 
-    for (int i = 0; i < st->top; i++)
+    for (int i = 0; i < st->top[st->posTopBase]; i++)
     {
         if (!st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
             continue;
         int seen = 0;
-        for (int j = i + 1; j < st->top; j++)
+        for (int j = i + 1; j < st->top[st->posTopBase]; j++)
         {
             if (st->itemNames[i]->isDeclaration && st->itemNames[j]->isCall &&
                 strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0)
@@ -36,12 +36,12 @@ void checkUnusedVar(Stack *st, char *file)
  */
 void checkUnusedFunc(Stack *st, char *file)
 {
-    for (int i = 0; i < st->top; i++)
+    for (int i = 0; i < st->top[st->posTopBase]; i++)
     {
         if (!st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;
         int seen = 0;
-        for (int j = i + 1; j < st->top; j++)
+        for (int j = i + 1; j < st->top[st->posTopBase]; j++)
         {
             if (st->itemNames[i]->isDeclaration && st->itemNames[j]->isCall &&
                 strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0)
@@ -64,7 +64,7 @@ void checkUnusedFunc(Stack *st, char *file)
  */
 void checkUndeclaredVar(Stack *st, char *file)
 {
-    for (int i = st->top - 1; i != 0; i--)
+    for (int i = st->top[st->posTopBase] - 1; i != 0; i--)
     {
         if (st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
             continue;
@@ -91,7 +91,7 @@ void checkUndeclaredVar(Stack *st, char *file)
  */
 void checkUndeclaredFunc(Stack *st, char *file)
 {
-    for (int i = st->top - 1; i != 0; i--)
+    for (int i = st->top[st->posTopBase] - 1; i != 0; i--)
     {
         if (st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;
@@ -121,7 +121,11 @@ Stack *stackInit()
     Stack *stack = malloc(sizeof(Stack));
     stack->size = 100;
     stack->itemNames = malloc(sizeof(ItemName *) * stack->size);
-    stack->top = 0;
+    stack->top = malloc(sizeof(int) * stack->size);
+    stack->base = malloc(sizeof(int) * stack->size);
+    stack->posTopBase = 0;
+    stack->top[stack->posTopBase] = 0;
+    stack->base[stack->posTopBase] = 0;
     return stack;
 }
 
@@ -153,8 +157,8 @@ void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
     else
         it->isVar = 0;
 
-    st->itemNames[st->top] = it;
-    st->top = st->top + 1;
+    st->itemNames[st->top[st->posTopBase]] = it;
+    st->top[st->posTopBase] = st->top[st->posTopBase] + 1;
 }
 
 /**
@@ -165,7 +169,7 @@ void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
 void stackPrint(Stack *st)
 {
 
-    for (int i = 0; i < st->top; i++)
+    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
     {
         printf("%s isDeclare = %d isCall = %d isVar = %d type = %s\n",
                st->itemNames[i]->name,
@@ -173,4 +177,11 @@ void stackPrint(Stack *st)
                st->itemNames[i]->isCall, st->itemNames[i]->isVar,
                st->itemNames[i]->type);
     }
+
+    
+    for(int i = 0; i <= st->posTopBase; i++)
+    {
+        printf("top = %d base = %d\n", st->top[i], st->base[i]);
+    }
+    
 }

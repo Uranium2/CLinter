@@ -21,8 +21,10 @@ struct ItemName_T
 typedef struct Stack_t
 {
     ItemName** itemNames;
-    int top;
+    int *top;
     int size;
+    int *base;
+    int posTopBase;
 } Stack;
 
 Stack *stackInit();
