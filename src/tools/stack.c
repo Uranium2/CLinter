@@ -131,12 +131,13 @@ Stack *stackInit()
  * @param st Stack of variables
  * @param tok Variable to push
  */
-void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc)
+void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
 {
     // check if stack is full
     // Do stuff
     ItemName *it = malloc(sizeof(ItemName));
     it->name = tok->value;
+    it->type = type;
     if (typeOfPush == 1)
     {
         it->isDeclaration = 1;
@@ -166,9 +167,10 @@ void stackPrint(Stack *st)
 
     for (int i = 0; i < st->top; i++)
     {
-        printf("%s isDeclare = %d isCall = %d isVar = %d\n",
+        printf("%s isDeclare = %d isCall = %d isVar = %d type = %s\n",
                st->itemNames[i]->name,
                st->itemNames[i]->isDeclaration,
-               st->itemNames[i]->isCall, st->itemNames[i]->isVar);
+               st->itemNames[i]->isCall, st->itemNames[i]->isVar,
+               st->itemNames[i]->type);
     }
 }
