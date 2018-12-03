@@ -11,6 +11,6 @@
 
 #include "../parse/token.h"
 
-void checkUnusedVariable(Token **listToken, int nbToken, int line, char *fileName);
+void checkUnusedVariable(Token **listToken, int nbToken, int line, char *fileName, int *inComment);
 
 #endif //CLINTER_CHECKUNUSEDVARIABLE_H

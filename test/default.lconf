@@ -9,6 +9,7 @@ myConfig.lconf
 - max-file-line-numbers = 80
 - no-multi-declaration = on
 - comments-header = on
+- unused-variable = on
 
 
 =excludedFiles

@@ -66,18 +66,13 @@ add_library(
         src/parse/parser.h
         src/parse/token.c
         src/parse/token.h
-        src/rules/checkCoding.c
-        src/rules/checkCoding.h
         src/rules/checker.c
         src/rules/checker.h
-        src/rules/checkVarFunc.c
-        src/rules/checkVarFunc.c
-        src/rules/checkVarFunc.h
         src/headers.h
-        src/rules/checkUnusedVariable.c src/rules/checkUnusedVariable.h)
+        src/rules/checkUnusedVariable.c src/rules/checkUnusedVariable.h src/rules/checkMaxLineNumbers.c src/rules/checkMaxLineNumbers.h src/rules/checkNoMultiDeclaration.c src/rules/checkNoMultiDeclaration.h src/rules/checkNoTrailingSpaces.c src/rules/checkNoTrailingSpaces.h src/rules/checkArrayBracketEol.c src/rules/checkArrayBracketEol.h src/rules/checkCommentsHeader.c src/rules/checkCommentsHeader.h src/rules/checkUnusedFunction.c src/rules/checkUnusedFunction.h src/rules/checkOperatorsSpacing.c src/rules/checkOperatorsSpacing.h)
 
 # Main
-add_executable(clinter src/main.c)
+add_executable(clinter src/main.c src/tools/linterMemory.c src/tools/linterMemory.h)
 target_link_libraries(clinter ${MYSQLLIBRARY} MainLibrary)
 
 
