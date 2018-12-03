@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) {
     int pos = 0;
     int inComment = 0;
     // TODO : Add LinterMemory for unusedvariable etc..
-    //LinterMemory *lm;
+    LinterMemory *lm = addElement("",0,0,NULL);
+
 
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
 
@@ -68,7 +69,10 @@ int main(int argc, char *argv[]) {
                 checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader, nbLines - 1);
             }
             if (conf->unusedVariable) {
-                checkUnusedVariable(tokenList, nbNodes, i + 1, files[o], &inComment);
+                checkUnusedVariable(tokenList, nbNodes, i + 1, files[o], &inComment, lm);
+            }
+            if (conf->unusedFunction) {
+                checkUnusedFunction(tokenList, nbNodes, i + 1, files[o], &inComment, lm);
             }
         }
         //stackPrint(stack);
@@ -84,6 +88,7 @@ int main(int argc, char *argv[]) {
         checkUndeclaredVar(stack, files[o]);
         free_text(codeText, nbLines);
     }
+    freeLinterMemory(lm);
     free_conf(conf);
     free_files(files, pos);
 
