@@ -99,7 +99,7 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
     int posID = *pos;
     if (eatToken(tokens, IDENTIFIER, pos, nbNode))
     {
-        
+
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
             stackPush(stack, tokens[posID], 1, 0, type);
@@ -250,10 +250,11 @@ void varDeclare(Token **tokens, int *pos, int nbNode, Stack *stack)
 {
     while (*pos != nbNode)
     {
-        getType(tokens, pos, nbNode, stack);
         getCall(tokens, pos, nbNode, stack);
+        if (getType(tokens, pos, nbNode, stack))
+            *pos = *pos - 1;
         *pos = *pos + 1;
-        }        
+    }
 }
 
 /**
@@ -276,7 +277,8 @@ void check(Token **tokens, int nbNode, Stack *stack)
  * @param str String to check
  * @return int 0 false else true
  */
-int containsStr(Token **listToken, int nbToken, char *str) {
+int containsStr(Token **listToken, int nbToken, char *str)
+{
     for (int i = 0; i < nbToken; i++)
         if (strcmp(listToken[i]->value, str) == 0)
             return i;
