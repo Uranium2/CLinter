@@ -8,7 +8,11 @@ default.lconf
 - max-line-numbers = 80
 - max-file-line-numbers = 80
 - no-multi-declaration = on
-
+- comments-header = on
+- unused-variable = on
+- unused-function = on
+- undeclared-function = on
+- undeclared-variable = on
 
 =excludedFiles
 - test.c
