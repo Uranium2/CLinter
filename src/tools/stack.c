@@ -8,7 +8,7 @@
 void checkUnusedVar(Stack *st, char *file)
 {
 
-    for (int i = 0; i < st->top[st->posTopBase]; i++)
+    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
     {
         if (!st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
             continue;
@@ -36,7 +36,7 @@ void checkUnusedVar(Stack *st, char *file)
  */
 void checkUnusedFunc(Stack *st, char *file)
 {
-    for (int i = 0; i < st->top[st->posTopBase]; i++)
+    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
     {
         if (!st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;
@@ -64,12 +64,12 @@ void checkUnusedFunc(Stack *st, char *file)
  */
 void checkUndeclaredVar(Stack *st, char *file)
 {
-    for (int i = st->top[st->posTopBase] - 1; i != 0; i--)
+    for (int i = st->top[st->posTopBase] - 1; i != st->base[st->posTopBase]; i--)
     {
         if (st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
             continue;
         int seen = 0;
-        for (int j = i - 1; j != 0; j--)
+        for (int j = i - 1; j != st->base[st->posTopBase]; j--)
         {
             if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
             {
@@ -91,12 +91,12 @@ void checkUndeclaredVar(Stack *st, char *file)
  */
 void checkUndeclaredFunc(Stack *st, char *file)
 {
-    for (int i = st->top[st->posTopBase] - 1; i != 0; i--)
+    for (int i = st->top[st->posTopBase] - 1; i != st->base[st->posTopBase]; i--)
     {
         if (st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;
         int seen = 0;
-        for (int j = i - 1; j != 0; j--)
+        for (int j = i - 1; j != st->base[st->posTopBase]; j--)
         {
             if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
             {
