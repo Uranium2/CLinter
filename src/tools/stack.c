@@ -119,7 +119,7 @@ void checkUndeclaredFunc(Stack *st, char *file)
 Stack *stackInit()
 {
     Stack *stack = malloc(sizeof(Stack));
-    stack->size = 100;
+    stack->size = 5;
     stack->itemNames = malloc(sizeof(ItemName *) * stack->size);
     stack->top = malloc(sizeof(int) * stack->size);
     stack->base = malloc(sizeof(int) * stack->size);
@@ -127,6 +127,16 @@ Stack *stackInit()
     stack->top[stack->posTopBase] = 0;
     stack->base[stack->posTopBase] = 0;
     return stack;
+}
+
+/**
+ * @brief Update Stack MetaData to create a virtual scope in the stack
+ * 
+ * @param st Stack of variables
+ */
+void stackPushScope(Stack *st)
+{
+
 }
 
 /**
@@ -138,6 +148,14 @@ Stack *stackInit()
 void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
 {
     // check if stack is full
+    if (st->size == st->top[st->posTopBase] || st->size == st->posTopBase)
+    {
+        st->size = st->size * 2;
+        st->top = realloc(st->top, sizeof(int*) * st->size);
+        st->base = realloc(st->base, sizeof(int*) * st->size);
+        st->itemNames = realloc(st->itemNames, sizeof(int*) * st->size);
+
+    }
     // Do stuff
     ItemName *it = malloc(sizeof(ItemName));
     it->name = tok->value;
