@@ -264,8 +264,8 @@ void mergeConf(Config *conf, char *path) {
     conf->commaSpacing += conf2->commaSpacing;
     conf->indent += conf2->indent;
     conf->commentsHeader += conf2->commentsHeader;
-    conf->maxLineNumbers = MAX(conf->maxLineNumbers, conf2->maxLineNumbers);
-    conf->maxFileLineNumbers = MAX(conf->maxFileLineNumbers, conf2->maxFileLineNumbers);
+    conf->maxLineNumbers = MIN(conf->maxLineNumbers, conf2->maxLineNumbers);
+    conf->maxFileLineNumbers = MIN(conf->maxFileLineNumbers, conf2->maxFileLineNumbers);
     conf->noTrallingSpaces += conf2->noTrallingSpaces;
     conf->NoMultiDeclaration += conf->NoMultiDeclaration;
     conf->unusedVariable += conf->unusedVariable;

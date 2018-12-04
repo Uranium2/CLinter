@@ -18,6 +18,10 @@
  * @brief Macro to return MAX between integers
  */
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
+/**
+ * @brief Macro to return MIN between integers
+ */
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 /**
  * @brief Structure to store all configurations elements
