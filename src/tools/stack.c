@@ -149,6 +149,11 @@ void stackPushItem(Stack *st, ItemName *it)
     st->top[st->posTopBase] = st->top[st->posTopBase] + 1;
 }
 
+void stackRemoveScope(Stack *st)
+{
+    st->posTopBase = st->posTopBase - 1;
+}
+
 /**
  * @brief Update Stack MetaData to create a virtual scope in the stack
  * 

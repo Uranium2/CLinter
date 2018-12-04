@@ -36,3 +36,4 @@ void checkUnusedFunc(Stack *st, char* file);
 void checkUndeclaredVar(Stack *st, char* file);
 void checkUndeclaredFunc(Stack *st, char *file);
 void stackAddScope(Stack *st);
+void stackRemoveScope(Stack *st);
