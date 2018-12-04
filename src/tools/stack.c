@@ -24,7 +24,7 @@ void checkUnusedVar(Stack *st, char *file)
         }
         if (seen != 1)
         {
-            printf(RED "%s " YEL "variable not used at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+            printf(RED "%s " YEL "variable not used at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
         }
     }
 }
@@ -52,7 +52,7 @@ void checkUnusedFunc(Stack *st, char *file)
         }
         if (seen != 1)
         {
-            printf(RED "%s " YEL "function not used at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+            printf(RED "%s " YEL "function not used at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
         }
     }
 }
@@ -79,7 +79,7 @@ void checkUndeclaredVar(Stack *st, char *file)
         }
         if (seen == 0)
         {
-            printf(RED "%s " YEL "variable not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+            printf(RED "%s " YEL "variable not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
         }
     }
 }
@@ -106,7 +106,7 @@ void checkUndeclaredFunc(Stack *st, char *file)
         }
         if (seen == 0)
         {
-            printf(RED "%s " YEL "function not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, i, file);
+            printf(RED "%s " YEL "function not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
         }
     }
 }
@@ -130,13 +130,44 @@ Stack *stackInit()
 }
 
 /**
+ * @brief Push an existing itemName in the stack. Usefull for copy data
+ * 
+ * @param st Stack of variables
+ * @param tok Variable to push
+ */
+void stackPushItem(Stack *st, ItemName *it)
+{
+    // check if stack is full
+    if (st->size == st->top[st->posTopBase] || st->size == st->posTopBase)
+    {
+        st->size = st->size * 2;
+        st->top = realloc(st->top, sizeof(int *) * st->size);
+        st->base = realloc(st->base, sizeof(int *) * st->size);
+        st->itemNames = realloc(st->itemNames, sizeof(int *) * st->size);
+    }
+    st->itemNames[st->top[st->posTopBase]] = it;
+    st->top[st->posTopBase] = st->top[st->posTopBase] + 1;
+}
+
+/**
  * @brief Update Stack MetaData to create a virtual scope in the stack
  * 
  * @param st Stack of variables
  */
-void stackPushScope(Stack *st)
+void stackAddScope(Stack *st)
 {
+    int oldBase = st->base[st->posTopBase];
+    int oldTop = st->top[st->posTopBase];
+    int newBase = oldTop;
 
+    st->posTopBase = st->posTopBase + 1;
+    st->base[st->posTopBase] = newBase;
+    st->top[st->posTopBase] = newBase;
+
+    for (int i = oldBase; i < oldTop; i++)
+        stackPushItem(st, st->itemNames[i]);
+
+    
 }
 
 /**
@@ -145,31 +176,23 @@ void stackPushScope(Stack *st)
  * @param st Stack of variables
  * @param tok Variable to push
  */
-void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
+void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFunc, char *type)
 {
     // check if stack is full
     if (st->size == st->top[st->posTopBase] || st->size == st->posTopBase)
     {
         st->size = st->size * 2;
-        st->top = realloc(st->top, sizeof(int*) * st->size);
-        st->base = realloc(st->base, sizeof(int*) * st->size);
-        st->itemNames = realloc(st->itemNames, sizeof(int*) * st->size);
-
+        st->top = realloc(st->top, sizeof(int *) * st->size);
+        st->base = realloc(st->base, sizeof(int *) * st->size);
+        st->itemNames = realloc(st->itemNames, sizeof(int *) * st->size);
     }
     // Do stuff
     ItemName *it = malloc(sizeof(ItemName));
     it->name = tok->value;
     it->type = type;
-    if (typeOfPush == 1)
-    {
-        it->isDeclaration = 1;
-        it->isCall = 0;
-    }
-    else
-    {
-        it->isDeclaration = 0;
-        it->isCall = 1;
-    }
+    it->isDeclaration = isDeclaration;
+    it->isCall = isCall;
+    it->line = tok->pos;
     if (varOrFunc)
         it->isVar = 1;
     else
@@ -187,7 +210,7 @@ void stackPush(Stack *st, Token *tok, int typeOfPush, int varOrFunc, char *type)
 void stackPrint(Stack *st)
 {
 
-    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
+    for (int i = 0; i < st->top[st->posTopBase]; i++)
     {
         printf("%s isDeclare = %d isCall = %d isVar = %d type = %s\n",
                st->itemNames[i]->name,
@@ -196,8 +219,7 @@ void stackPrint(Stack *st)
                st->itemNames[i]->type);
     }
 
-    
-    for(int i = 0; i <= st->posTopBase; i++)
+    for (int i = 0; i <= st->posTopBase; i++)
     {
         printf("top = %d base = %d\n", st->top[i], st->base[i]);
     }

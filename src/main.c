@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
             if (conf->commentsHeader)
                 checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader, nbLines - 1);
         }
-        stackPrint(stack);
+        //stackPrint(stack);
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
         if (conf->unusedVariable)

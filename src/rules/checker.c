@@ -8,8 +8,6 @@
 */
 #include "checker.h"
 
-int getDoubleType(Token **tokens, int *pos, int nbNode);
-int getSingleType(Token **tokens, int *pos, int nbNode);
 
 /**
  * @brief Debug function to print Grammar errors
@@ -102,13 +100,12 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
 
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
-            stackPush(stack, tokens[posID], 1, 0, type);
+            stackPush(stack, tokens[posID], 1, 0, 0, type);
             return 1;
         }
         else
         {
-
-            stackPush(stack, tokens[posID], 1, 1, type);
+            stackPush(stack, tokens[posID], 1, 0, 1, type);
             return 1;
         }
     }
@@ -135,11 +132,11 @@ int getCall(Token **tokens, int *pos, int nbNode, Stack *stack)
 
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
-            stackPush(stack, tokens[posID], 0, 0, "");
+            stackPush(stack, tokens[posID], 0, 1, 0, "");
         }
         else
         {
-            stackPush(stack, tokens[posID], 0, 1, "");
+            stackPush(stack, tokens[posID], 0, 1, 1, "");
         }
         return 1;
     }
