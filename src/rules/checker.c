@@ -267,3 +267,18 @@ void check(Token **tokens, int nbNode, Stack *stack)
     int pos = 0;
     varDeclare(tokens, &pos, nbNode, stack);
 }
+
+/**
+ * @brief Check if the list of Tokens contains a specific string
+ *
+ * @param listToken List of Tokens
+ * @param nbToken Numbers of Tokens
+ * @param str String to check
+ * @return int 0 false else true
+ */
+int containsStr(Token **listToken, int nbToken, char *str) {
+    for (int i = 0; i < nbToken; i++)
+        if (strcmp(listToken[i]->value, str) == 0)
+            return i;
+    return 0;
+}

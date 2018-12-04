@@ -1,46 +1,27 @@
-/**
-* @file checkVarFunc.c
-* @brief This c file will contain all functions to check rules on functions or variables.
-*
-* @author Antoine TAVERNIER
-*
-* @date 16/11/2018
-*/
-#include "checkVarFunc.h"
+//
+// Created by theo on 03/12/18.
+//
 
+#include "checkNoMultiDeclaration.h"
+#include "checker.h"
 
 /**
- * @brief Skips the tokens with Delimiter Type
- * 
+ * @brief Skips the token with Delimiter Type
  * @param listToken List of Tokens
  * @param nbToken Number of Tokens
  * @return int 0 false else true
  */
-int skipSpaces(Token **listToken, int nbToken) {
-    int i = 0;
-    while (i == nbToken - 1 && listToken[i]->type == Delimiter)
-        i++;
-    return i;
-}
-
-/**
- * @brief Check if the list of Tokens contains a specific strins
- * 
- * @param listToken List of Tokens
- * @param nbToken Numbers of Tokens
- * @param str String to check
- * @return int 0 false else true
- */
-int containsStr(Token **listToken, int nbToken, char *str) {
-    for (int i = 0; i < nbToken; i++)
-        if (strcmp(listToken[i]->value, str) == 0)
-            return i;
-    return 0;
-}
+ int skipSpaces(Token **listToken, int nbToken){
+     int i = 0;
+     while(i == nbToken - 1 && listToken[i]->type == Delimiter){
+         i++;
+     }
+     return i;
+ }
 
 /**
  * @brief Check the rule multi declaration
- * 
+ *
  * @param listToken List of Tokens
  * @param nbToken Number of Tokens
  * @param line At which line we are in the File

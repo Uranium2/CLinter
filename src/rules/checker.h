@@ -21,4 +21,6 @@
 
 void check(Token **listToken, int nbToken, Stack *stack);
 
+int containsStr(Token **listToken, int nbToken, char *str);
+
 #endif
