@@ -15,6 +15,10 @@ You will need to compile the project to have the binaries. Before executing the 
     - max-file-line-numbers = 80
     - no-multi-declaration = on
     - comments-header = on
+    - unused-variable = on
+    - unused-function = on
+    - undeclared-function = on
+    - undeclared-variable = on
     
     =excludedFiles
     - main.c
