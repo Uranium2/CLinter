@@ -33,3 +33,4 @@ void stackPrint(Stack *st);
 void checkUnusedVar(Stack *st, char* file);
 void checkUnusedFunc(Stack *st, char* file);
 void checkUndeclaredVar(Stack *st, char* file);
+void checkUndeclaredFunc(Stack *st, char *file);

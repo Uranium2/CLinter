@@ -250,8 +250,7 @@ void varDeclare(Token **tokens, int *pos, int nbNode, Stack *stack)
 {
     while (*pos != nbNode)
     {
-        if (getType(tokens, pos, nbNode, stack))
-            *pos = *pos - 1;
+        getType(tokens, pos, nbNode, stack);
         getCall(tokens, pos, nbNode, stack);
         *pos = *pos + 1;
         }        

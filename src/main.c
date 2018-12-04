@@ -66,7 +66,11 @@ int main(int argc, char *argv[]) {
             checkUnusedVar(stack, files[o]);
         if (conf->unusedFunction)
             checkUnusedFunc(stack, files[o]);
-        checkUndeclaredVar(stack, files[o]);
+        if(conf->undeclaredVariable)
+            checkUndeclaredVar(stack, files[0]);
+        if(conf->undeclaredFunction)
+            checkUndeclaredFunc(stack, files[0]);
+        stackPrint(stack);
         free_text(codeText, nbLines);
     }
 
