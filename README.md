@@ -90,10 +90,12 @@ CLinter:~$ ./linter [path/to/config/file]
 
 ## TODO
 
-- Delimiter les tokens (Mot clés, délimiteurs, opérateurs, noms variables, espaces, reste?):+1: :-1:
+
 - Partie 1:
   - [x] Récursif sur les dossiers
   - [x] Charger récursivement les fichiers de configuration
+  - [x] Ouvrir les fichiers non exclus.
+  - [x] Delimiter les mots par des tokens.
 - Règles:
   - [x] array-bracket-eol
   - [x] operators-spacing
@@ -103,10 +105,12 @@ CLinter:~$ ./linter [path/to/config/file]
   - [x] max-file-line-numbers
   - [x] no-trailing-spaces
   - [x] no-multi-declaration
-  - [ ] unused-variable         :+1: :-1:
-  - [ ] undeclared-variable     :+1: :-1:
+  - [x] unused-variable         :+1: :-1: Ne marche pas dans les blocks IF ELSE WHILE DO SWITCH. Mais marche dans les blocks Fonctions
+  - [x] undeclared-variable     :+1: :-1: Ne marche pas dans les blocks IF ELSE WHILE DO SWITCH. Mais marche dans les blocks Fonctions
   - [ ] no-prototype
-  - [ ] unused-function         :+1: :-1:
-  - [ ] undeclared-function     :+1: :-1:
+  - [x] unused-function         :+1: :-1:
+  - [x] undeclared-function     :+1: :-1:
   - [ ] variable-assignment-type
   - [ ] function-parameters-type
+- Mémoire:
+  - [ ] Free all. :-1: Gros leak mémoire
