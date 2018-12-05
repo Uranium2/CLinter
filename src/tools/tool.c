@@ -13,7 +13,8 @@
  * 
  * @param message The message displayed in STDOUT
  */
-void exit_m(char *message) {
+void exit_m(char *message)
+{
     printf("FORCE EXIT BECAUSE \"%s\" FAILED\n", message);
     exit(1);
 }
@@ -26,7 +27,8 @@ void exit_m(char *message) {
  * @param pos  The position of the warning
  * @param fileName The file name location of the warning
  */
-void print_warning(char *message, int line, int pos, char *fileName) {
+void print_warning(char *message, int line, int pos, char *fileName)
+{
     //if (fileName == NULL)
     //	printf("FileName is NULL %s", fileName);
     printf(YEL "%s at line " RED "%d" YEL " character for " RED "%d " YEL "for file " RED "%s\n" RESET, message, line,
@@ -39,7 +41,8 @@ void print_warning(char *message, int line, int pos, char *fileName) {
  * @param str String to check
  * @return int 0 false else true
  */
-int isKey(char *str) {
+int isKey(char *str)
+{
     return (!strcmp(str, "int") || !strcmp(str, "float") ||
             !strcmp(str, "double") || !strcmp(str, "char") ||
             !strcmp(str, "if") || !strcmp(str, "else") ||
@@ -58,7 +61,8 @@ int isKey(char *str) {
  * @param str String to check
  * @return int 0 false else true
  */
-int isNum(char *str) {
+int isNum(char *str)
+{
     if (str == NULL)
         exit_m("isNum: str == NULL");
     int len = strlen(str);
@@ -71,4 +75,18 @@ int isNum(char *str) {
     if (strlen(end) > 0)
         return 0;
     return 1;
+}
+
+void print_line(int nbNodes, Token **tokenList, int debug)
+{
+    if (!debug)
+    {
+        for (int j = 0; j < nbNodes; j++)
+            printf("%s", tokenList[j]->value);
+    }
+    else
+    {
+        for (int j = 0; j < nbNodes; j++)
+            printf("%s '%s'", tokenList[j]->value, getEnumName(tokenList[j]->type));
+    }
 }

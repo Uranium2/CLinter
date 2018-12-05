@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../parse/token.h"
+
 /**
  * @brief Color Macro for pretty printing in RED
  *
@@ -30,7 +32,6 @@
  */
 #define RESET "\x1B[0m"
 
-
 void exit_m(char *message);
 
 void print_warning(char *message, int line, int pos, char *fileName);
@@ -38,5 +39,7 @@ void print_warning(char *message, int line, int pos, char *fileName);
 int isKey(char *str);
 
 int isNum(char *str);
+
+void print_line(int nbNodes, Token **tokenList, int debug);
 
 #endif

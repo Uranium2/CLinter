@@ -47,8 +47,7 @@ int main(int argc, char *argv[])
             if (nbNodes == 0)
                 continue;
 
-            for (int j = 0; j < nbNodes; j++)
-                printf("%s", tokenList[j]->value);
+            print_line(nbNodes, tokenList, 0);
 
             check(tokenList, nbNodes, stack);
             if (conf->NoMultiDeclaration)
