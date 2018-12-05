@@ -16,6 +16,7 @@
  */
 void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status, int lastLine)
 {
+    printf("Status = %d\n", *status);
     if (line - 1 == lastLine && *status < 2)
     {
         print_warning("Missing header", 1, 0, fileName);
@@ -25,9 +26,9 @@ void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileNam
         return;
     for (int i = 0; i < nbToken; i++)
     {
-        if (*status == 0 && listToken[i]->type == Nothing)
+        if (*status == 0 && listToken[i]->type == Comment)
             *status = *status + 1;
-        else if (*status == 1 && strcmp(listToken[i]->value, "*") == 0 && strcmp(listToken[i + 1]->value, "/") == 0)
+        else if (*status == 1 && strcmp(listToken[i]->value, "*/") < 0)
             *status = *status + 1;
     }
 }

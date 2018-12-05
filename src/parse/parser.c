@@ -120,7 +120,7 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
         }
         *right = *right + 1;
         char *sub = getSubString(str, *left, *right);
-        listToken[*countList] = createToken(RETURN, sub, *left);
+        listToken[*countList] = createToken(Comment, sub, *left);
         *right = *right + 1;
         *countList = *countList + 1;
         *left = *right;
@@ -129,16 +129,23 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
     if (str[*right] == '/' && str[*right + 1] == '*') // comment block /* */
     {
         *inComment = 1;
+        int tmp = 0;
         while (!(str[*right] == '*' && str[*right + 1] == '/'))
         {
             if (str[*right + 1] == '\0')
+            {
+                tmp++;
                 break;
+            }
             (*right)++;
         }
-        *inComment = 0;
+        if (tmp)
+            *inComment = 1;
+        else
+            *inComment = 0;
         *right = *right + 1;
         char *sub = getSubString(str, *left, *right);
-        listToken[*countList] = createToken(Nothing, sub, *left);
+        listToken[*countList] = createToken(Comment, sub, *left);
         *right = *right + 1;
         *countList = *countList + 1;
         *left = *right;
@@ -160,7 +167,7 @@ void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listTok
     while (str[*right] != '\0')
         *right = *right + 1;
     char *sub = getSubString(str, *left, *right);
-    listToken[*countList] = createToken(Nothing, sub, *left);
+    listToken[*countList] = createToken(Comment, sub, *left);
     *countList = *countList + 1;
     *nbNodes = *countList;
 }

@@ -38,7 +38,8 @@ char *getEnumName(Type type) {
             return "Numerical";
         case KeyWord:
             return "KeyWord";
-
+        case Comment:
+            return "Comment";
             // new
         case IDENTIFIER:
             return "IDENTIFIER";

@@ -25,6 +25,7 @@ typedef enum Type_e {
     Numerical,
     KeyWord,
     Var_type,
+    Comment,
     // new types
             OpenPar,
     ClosedPar,

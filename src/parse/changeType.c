@@ -16,6 +16,8 @@ void assignTypes(Token **listToken, int nbNodes)
 
     for (int i = 0; i < nbNodes; i++)
     {
+        if (listToken[i]->type == Comment)
+            continue;
         if ((listToken[i]->value[0] == '+' && listToken[i + 1]->value[0] == '+') ||
             (listToken[i]->value[0] == '+' && listToken[i + 1]->value[0] == '+'))
         {
@@ -77,9 +79,9 @@ void assignTypes(Token **listToken, int nbNodes)
             break;
         }
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '*')
-            listToken[i]->type = Nothing;
+            listToken[i]->type = Comment;
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '/')
-            listToken[i]->type = Nothing;
+            listToken[i]->type = Comment;
         if (strcmp("int", listToken[i]->value) == 0)
             listToken[i]->type = INT;
         if (strcmp("long", listToken[i]->value) == 0)
