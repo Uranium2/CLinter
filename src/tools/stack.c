@@ -7,24 +7,26 @@
  */
 void checkUnusedVar(Stack *st, char *file)
 {
-
-    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
+    for (int o = 1; o < st->posTopBase + 1; o++)
     {
-        if (!st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
-            continue;
-        int seen = 0;
-        for (int j = i + 1; j < st->top[st->posTopBase]; j++)
+        for (int i = st->base[o]; i < st->top[o]; i++)
         {
-            if (st->itemNames[i]->isDeclaration && st->itemNames[j]->isCall &&
-                strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0)
+            if (!st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
+                continue;
+            int seen = 0;
+            for (int j = i + 1; j < st->top[o]; j++)
             {
-                seen = 1;
-                break;
+                if (st->itemNames[i]->isDeclaration && st->itemNames[j]->isCall &&
+                    strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0)
+                {
+                    seen = 1;
+                    break;
+                }
             }
-        }
-        if (seen != 1)
-        {
-            printf(RED "%s " YEL "variable not used at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
+            if (seen != 1)
+            {
+                printf(RED "%s " YEL "variable not used at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
+            }
         }
     }
 }
@@ -36,7 +38,7 @@ void checkUnusedVar(Stack *st, char *file)
  */
 void checkUnusedFunc(Stack *st, char *file)
 {
-    for (int i = st->base[st->posTopBase]; i < st->top[st->posTopBase]; i++)
+    for (int i = 0; i < st->top[st->posTopBase]; i++)
     {
         if (!st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;
@@ -64,22 +66,26 @@ void checkUnusedFunc(Stack *st, char *file)
  */
 void checkUndeclaredVar(Stack *st, char *file)
 {
-    for (int i = st->top[st->posTopBase] - 1; i != st->base[st->posTopBase]; i--)
+
+    for (int o = 1; o < st->posTopBase + 1; o++)
     {
-        if (st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
-            continue;
-        int seen = 0;
-        for (int j = i - 1; j != st->base[st->posTopBase]; j--)
+        for (int i = st->top[o] - 1; i != st->base[o]; i--)
         {
-            if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
+            if (st->itemNames[i]->isDeclaration || !st->itemNames[i]->isVar)
+                continue;
+            int seen = 0;
+            for (int j = i - 1; j != st->base[o]; j--)
             {
-                seen = 1;
-                break;
+                if (strcmp(st->itemNames[i]->name, st->itemNames[j]->name) == 0 && st->itemNames[j]->isDeclaration)
+                {
+                    seen = 1;
+                    break;
+                }
             }
-        }
-        if (seen == 0)
-        {
-            printf(RED "%s " YEL "variable not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
+            if (seen == 0)
+            {
+                printf(RED "%s " YEL "variable not declared at line %d in file %s\n" RESET, st->itemNames[i]->name, st->itemNames[i]->line, file);
+            }
         }
     }
 }
@@ -151,6 +157,8 @@ void stackPushItem(Stack *st, ItemName *it)
 
 void stackRemoveScope(Stack *st)
 {
+    if (st->posTopBase == 0)
+        return;
     st->posTopBase = st->posTopBase - 1;
 }
 
@@ -161,7 +169,7 @@ void stackRemoveScope(Stack *st)
  */
 void stackAddScope(Stack *st)
 {
-    int oldBase = st->base[st->posTopBase];
+    //int oldBase = st->base[st->posTopBase];
     int oldTop = st->top[st->posTopBase];
     int newBase = oldTop;
 
@@ -169,10 +177,8 @@ void stackAddScope(Stack *st)
     st->base[st->posTopBase] = newBase;
     st->top[st->posTopBase] = newBase;
 
-    for (int i = oldBase; i < oldTop; i++)
-        stackPushItem(st, st->itemNames[i]);
-
-    
+    //for (int i = oldBase; i < oldTop; i++)
+    //    stackPushItem(st, st->itemNames[i]);
 }
 
 /**
@@ -228,5 +234,4 @@ void stackPrint(Stack *st)
     {
         printf("top = %d base = %d\n", st->top[i], st->base[i]);
     }
-    
 }

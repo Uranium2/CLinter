@@ -100,6 +100,8 @@ int funcOrVar(Token **tokens, int *pos, int nbNode, char *type, Stack *stack)
 
         if (eatToken(tokens, OpenPar, pos, nbNode))
         {
+            //stackRemoveScope(stack);
+            stackAddScope(stack);
             stackPush(stack, tokens[posID], 1, 0, 0, type);
             return 1;
         }
