@@ -16,7 +16,6 @@
  */
 void checkCommentsHeader(Token **listToken, int nbToken, int line, char *fileName, int *status, int lastLine)
 {
-    printf("Status = %d\n", *status);
     if (line - 1 == lastLine && *status < 2)
     {
         print_warning("Missing header", 1, 0, fileName);
