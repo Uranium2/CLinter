@@ -20,6 +20,8 @@ void checkOperator(Token **listToken, int nbToken, int line, char *fileName)
         return;
     for (int i = 1; i < nbToken; i++)
     {
+        if (listToken[i]->type == Operator && listToken[i - 1]->type == Comment)
+            continue;
         if (listToken[i]->type == Operator && strcmp(listToken[i - 1]->value, " ") != 0 &&
             listToken[i - 1]->type != Operator && listToken[i - 1]->type != KeyWord)
             print_warning("Missing space", line, listToken[i]->pos, fileName);
