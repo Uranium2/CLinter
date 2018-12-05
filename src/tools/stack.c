@@ -122,13 +122,13 @@ void checkUndeclaredFunc(Stack *st, char *file)
  * 
  * @return Stack* Pointer to an empty call stack
  */
-Stack *stackInit()
+Stack *stackInit(Collector *c)
 {
-    Stack *stack = malloc(sizeof(Stack));
+    Stack *stack = malloc_collect(c, sizeof(Stack));
     stack->size = 5;
-    stack->itemNames = malloc(sizeof(ItemName *) * stack->size);
-    stack->top = malloc(sizeof(int) * stack->size);
-    stack->base = malloc(sizeof(int) * stack->size);
+    stack->itemNames = malloc_collect(c, sizeof(ItemName *) * stack->size);
+    stack->top = malloc_collect(c, sizeof(int) * stack->size);
+    stack->base = malloc_collect(c, sizeof(int) * stack->size);
     stack->posTopBase = 0;
     stack->top[stack->posTopBase] = 0;
     stack->base[stack->posTopBase] = 0;
@@ -187,7 +187,7 @@ void stackAddScope(Stack *st)
  * @param st Stack of variables
  * @param tok Variable to push
  */
-void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFunc, char *type)
+void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFunc, char *type, Collector *c)
 {
     // check if stack is full
     if (st->size == st->top[st->posTopBase] || st->size == st->posTopBase)
@@ -198,7 +198,7 @@ void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFu
         st->itemNames = realloc(st->itemNames, sizeof(int *) * st->size);
     }
     // Do stuff
-    ItemName *it = malloc(sizeof(ItemName));
+    ItemName *it = malloc_collect(c, sizeof(ItemName));
     it->name = tok->value;
     it->type = type;
     it->isDeclaration = isDeclaration;

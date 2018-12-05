@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../tools/collector.h"
+
 /**
  * @brief Enumeration to store type of a Token
  * 
@@ -108,6 +110,6 @@ typedef struct Token_t {
 
 char *getEnumName(Type type);
 
-Token *createToken(Type type, char *value, int pos);
+Token *createToken(Type type, char *value, int pos, Collector *c);
 
 #endif

@@ -16,9 +16,11 @@
 #include <string.h>
 #include <dirent.h>
 
+#include "../tools/collector.h"
+
 int isNotExcluded(char **excludedFiles, char *file, int length);
 
 void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
-              char *path, int length);
+              char *path, int length, Collector *c);
 
 #endif

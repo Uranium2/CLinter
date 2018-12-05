@@ -19,9 +19,10 @@
 #include "../tools/tool.h"
 #include "../parse/token.h"
 #include "changeType.h"
+#include "../tools/collector.h"
 
 
-Token **parse(char *str, int *nbNodes, int *inComment);
+Token **parse(char *str, int *nbNodes, int *inComment, Collector *c);
 
 int isOpe(char c);
 
@@ -29,6 +30,6 @@ int isDelim(char c);
 
 int isDelimNoSpace(char c);
 
-char *getSubString(char *str, int left, int right);
+char *getSubString(char *str, int left, int right, Collector *c);
 
 #endif

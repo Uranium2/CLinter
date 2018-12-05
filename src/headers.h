@@ -8,6 +8,9 @@
 #ifndef HEADERS
 #define HEADERS
 
+// Collector
+#include "tools/collector.h"
+
 // Config
 #include "config/config.h"
 #include "tools/freeAll.h"
@@ -23,5 +26,6 @@
 #include "rules/checkOperatorsSpacing.h"
 #include "rules/checkUnusedFunction.h"
 #include "rules/checkUnusedVariable.h"
+
 
 #endif

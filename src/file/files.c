@@ -33,7 +33,7 @@ int countLinesInFile(FILE *f) {
  * @param nbLines Number of lines updated in the file
  * @return char** A list of string containing the text of file
  */
-char **getAllLines(char *path, int *nbLines) {
+char **getAllLines(char *path, int *nbLines, Collector *c) {
     if (path[strlen(path) - 1] == '\n')
         path[strlen(path) - 1] = '\0';
     FILE *f = fopen(path, "r");
@@ -42,7 +42,7 @@ char **getAllLines(char *path, int *nbLines) {
     char *line = NULL;
     size_t len = 0;
     *nbLines = countLinesInFile(f);
-    char **text = malloc(sizeof(char *) * *nbLines);
+    char **text = malloc_collect(c, sizeof(char *) * *nbLines);
     int index = 0;
     rewind(f); // reset pointer to start of file
     while ((getline(&line, &len, f)) != -1) {

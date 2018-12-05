@@ -2,6 +2,7 @@
 
 #include "../parse/token.h"
 #include "tool.h"
+#include "collector.h"
 
 typedef 
 struct ItemName_T
@@ -28,8 +29,8 @@ typedef struct Stack_t
     int posTopBase;
 } Stack;
 
-Stack *stackInit();
-void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFunc, char *type);
+Stack *stackInit(Collector *c);
+void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFunc, char *type, Collector *c);
 void stackPrint(Stack *st);
 void checkUnusedVar(Stack *st, char* file);
 void checkUnusedFunc(Stack *st, char* file);

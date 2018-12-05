@@ -15,10 +15,11 @@
  */
 int main(int argc, char *argv[])
 {
-
+    // Garbage Collector
+    Collector *collector = collectorInit();
     // Load Config file
-    Config *conf = loadConfig(getConfigFile(argc, argv));
-    char **files = malloc(sizeof(char *) * 255);
+    Config *conf = loadConfig(getConfigFile(argc, argv), collector);
+    char **files = malloc_collect(collector, sizeof(char *) * 255);
 
     //Counters
     int pos = 0;
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
     // TODO : Add LinterMemory for unusedvariable etc..
     LinterMemory *lm = addElement("", 0, 0, NULL);
 
-    getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles);
+    getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles, collector);
 
     // Run parsing for each files
     for (int o = 0; o < pos; o++)
@@ -34,22 +35,22 @@ int main(int argc, char *argv[])
 
         int nbLines = 0;
         int statusHeader = 0;
-        Stack *stack = stackInit();
-        char **codeText = getAllLines(files[o], &nbLines);
+        Stack *stack = stackInit(collector);
+        char **codeText = getAllLines(files[o], &nbLines, collector);
 
         // Travels each lines in file
         for (int i = 0; i < nbLines; i++)
         {
 
             int nbNodes = 0;
-            Token **tokenList = parse(codeText[i], &nbNodes, &inComment);
+            Token **tokenList = parse(codeText[i], &nbNodes, &inComment, collector);
 
             if (nbNodes == 0)
                 continue;
 
             print_line(nbNodes, tokenList, 0);
 
-            check(tokenList, nbNodes, stack);
+            check(tokenList, nbNodes, stack, collector);
             if (conf->NoMultiDeclaration)
                 multiDeclare(tokenList, nbNodes, nbLines, files[o], &inComment);
             if (conf->maxLineNumbers)
@@ -78,9 +79,10 @@ int main(int argc, char *argv[])
         free_text(codeText, nbLines);
     }
 
-    freeLinterMemory(lm);
-    free_conf(conf);
-    free_files(files, pos);
+    collectorFree(collector);
+    //freeLinterMemory(lm);
+    //free_conf(conf);
+    //free_files(files, pos);
 
     return 0;
 }

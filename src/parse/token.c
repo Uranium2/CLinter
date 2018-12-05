@@ -175,8 +175,8 @@ char *getEnumName(Type type) {
  * @param pos Given position of the Token in a line 
  * @return Token* A new Token
  */
-Token *createToken(Type type, char *value, int pos) {
-    Token *token = malloc(sizeof(Token));
+Token *createToken(Type type, char *value, int pos, Collector *c) {
+    Token *token = malloc_collect(c, sizeof(Token));
     token->type = type;
     token->value = value;
     token->pos = pos;

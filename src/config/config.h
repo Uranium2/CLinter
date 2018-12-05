@@ -12,7 +12,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../tools/collector.h"
 #include "../file/files.h"
+
+
+
 
 /**
  * @brief Macro to return MAX between integers
@@ -55,7 +59,7 @@ int containsConfigFile(Config *conf, char *path);
 
 void debug_config(Config * r);
 
-char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2);
+char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c);
 
 char *getConfigFile(int argc, char **argv);
 
@@ -63,13 +67,13 @@ int isValidConfFile(char *filename);
 
 short getRecursive(char **file, int nbLines);
 
-char *getExtends(char **file, int nbLines);
+char *getExtends(char **file, int nbLines, Collector *c);
 
-char **getFilesName(char **file, int nbLines, int *NbFiles);
+char **getFilesName(char **file, int nbLines, int *NbFiles, Collector *c);
 
 int getVal(char **file, char *rule, int nbLines);
 
-Config *loadConfig(char *path);
+Config *loadConfig(char *path, Collector *c);
 
 char *getConfigFile(int argc, char **argv);
 

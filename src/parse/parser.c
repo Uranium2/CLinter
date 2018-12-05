@@ -67,13 +67,13 @@ int isDelimNoSpace(char c)
  * @param right Right pointer on the str
  * @return char* Substring between left and right pointers
  */
-char *getSubString(char *str, int left, int right)
+char *getSubString(char *str, int left, int right, Collector *c)
 {
     if (left > right)
         exit_m("getSubString: left > right");
     if (str == NULL)
         exit_m("getSubString: str == NULL");
-    char *res = malloc(sizeof(char) * (right - left + 2));
+    char *res = malloc_collect(c, sizeof(char) * (right - left + 2));
     int i = left;
     for (; i < right + 1; i++)
     {
@@ -104,7 +104,7 @@ int canBeExpe(char c, char *str, int right)
  * @param str String containing text
  * @return int 0 false else true
  */
-void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList, int* inComment)
+void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList, int* inComment, Collector *c)
 {
     if (*inComment == 1)
     {
@@ -119,8 +119,8 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
             (*right)++;
         }
         *right = *right + 1;
-        char *sub = getSubString(str, *left, *right);
-        listToken[*countList] = createToken(Comment, sub, *left);
+        char *sub = getSubString(str, *left, *right, c);
+        listToken[*countList] = createToken(Comment, sub, *left, c);
         *right = *right + 1;
         *countList = *countList + 1;
         *left = *right;
@@ -143,8 +143,8 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
             *inComment = 1;
         else
             *inComment = 0;
-        char *sub = getSubString(str, *left, *right);
-        listToken[*countList] = createToken(Comment, sub, *left);
+        char *sub = getSubString(str, *left, *right, c);
+        listToken[*countList] = createToken(Comment, sub, *left, c);
         *right = *right + 1;
         *countList = *countList + 1;
         *left = *right;
@@ -161,12 +161,12 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
  * @param listToken List of tokens
  * @param countList Number of tokens in listToken
  */
-void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listToken, int *countList)
+void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listToken, int *countList, Collector *c)
 {
     while (str[*right] != '\0')
         *right = *right + 1;
-    char *sub = getSubString(str, *left, *right);
-    listToken[*countList] = createToken(Comment, sub, *left);
+    char *sub = getSubString(str, *left, *right, c);
+    listToken[*countList] = createToken(Comment, sub, *left, c);
     *countList = *countList + 1;
     *nbNodes = *countList;
 }
@@ -178,29 +178,29 @@ void commentLine(int *right, int *left, char *str, int *nbNodes, Token **listTok
  * @param nbNodes number of nodes in string
  * @return Token** list of list of tokens
  */
-Token **parse(char *str, int *nbNodes, int *inComment)
+Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
 {
     int left = 0;
     int right = 0;
     int len = strlen(str);
-    Token **listToken = malloc(sizeof(Token) * len);
+    Token **listToken = malloc_collect(c, sizeof(Token) * len);
     int countList = 0;
 
     if (*inComment == 1)
     {
-        checkCommentBlock(&left, &right, str, listToken, &countList, inComment);
+        checkCommentBlock(&left, &right, str, listToken, &countList, inComment, c);
 
     }
 
     while (right <= len - 1 && right >= left)
     { // stop when reach end of string or left cursor reaches right cursor
-        char *cString = malloc(sizeof(char));
+        char *cString = malloc_collect(c, sizeof(char));
         cString[0] = str[right];
         cString[1] = '\0';
-        checkCommentBlock(&left, &right, str, listToken, &countList, inComment);
+        checkCommentBlock(&left, &right, str, listToken, &countList, inComment, c);
         if (str[right] == '/' && str[right + 1] == '/') // comment line
         {
-            commentLine(&right, &left, str, nbNodes, listToken, &countList);
+            commentLine(&right, &left, str, nbNodes, listToken, &countList, c);
             assignTypes(listToken, *nbNodes);
             return listToken;
         }
@@ -227,7 +227,7 @@ Token **parse(char *str, int *nbNodes, int *inComment)
         }
         if (isDelim(str[right]) && left == right)
         {
-            listToken[countList] = createToken(Nothing, cString, left);
+            listToken[countList] = createToken(Nothing, cString, left, c);
             right++;
             countList++;
             left = right;
@@ -239,12 +239,12 @@ Token **parse(char *str, int *nbNodes, int *inComment)
                 right++;
                 continue;
             }
-            char *sub = getSubString(str, left, right);
+            char *sub = getSubString(str, left, right, c);
             int lastPos = strlen(sub) - 1;
             sub[lastPos] = '\0'; // remove \n at each end of lines
             if (sub[0] == '\0')
                 continue;
-            listToken[countList] = createToken(Nothing, sub, left);
+            listToken[countList] = createToken(Nothing, sub, left, c);
             left = right;
             countList++;
         }

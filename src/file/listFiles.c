@@ -37,7 +37,7 @@ int isNotExcluded(char **excludedFiles, char *file, int length) {
  * @param length Number of excluded files
  */
 void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
-              char *path, int length) {
+              char *path, int length, Collector *c) {
     char newPath[100];
     struct dirent *dp;
     DIR *dir = opendir(path);
@@ -47,7 +47,7 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
         if (!(strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0)) {
             if (strstr(dp->d_name, ".c") != NULL && isNotExcluded(excludedFiles, dp->d_name, length) &&
                 dp->d_name[strlen(dp->d_name) - 1] == 'c') {
-                char *str = malloc(sizeof(char) * 255); // length max file name 255
+                char *str = malloc_collect(c, sizeof(char) * 255); // length max file name 255
                 strcpy(str, path);
                 strcat(str, "/");
                 strcat(str, dp->d_name);
@@ -60,7 +60,7 @@ void getFiles(char **files, int *pos, short isRecursive, char **excludedFiles,
                         strcpy(newPath, path);
                         strcat(newPath, "/");
                         strcat(newPath, dp->d_name);
-                        getFiles(files, pos, isRecursive, excludedFiles, newPath, length);
+                        getFiles(files, pos, isRecursive, excludedFiles, newPath, length, c);
                     }
                 }
             }

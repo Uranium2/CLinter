@@ -19,6 +19,6 @@
 
 int countLinesInFile(FILE *f);
 
-char **getAllLines(char *path, int *nbLines);
+char **getAllLines(char *path, int *nbLines, Collector *c);
 
 #endif
