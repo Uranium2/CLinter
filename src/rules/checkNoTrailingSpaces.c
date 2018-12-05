@@ -19,6 +19,6 @@ void checkSpace(Token **listToken, int nbToken, int line, char *fileName) {
         return;
     for (int i = 0; i < nbToken; i++) {
         if (strcmp(listToken[i]->value, "\n") == 0 && strcmp(listToken[i - 1]->value, " ") == 0)
-            print_warning("Extra space", line, listToken[i - 1]->pos, fileName);
+            print_warning("Extra space", line, listToken[i]->pos, fileName);
     }
 }

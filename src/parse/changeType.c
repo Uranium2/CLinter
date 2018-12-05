@@ -11,59 +11,70 @@
  * @param listToken List of Tokens
  * @param nbNodes Number of Tokens
  */
-void assignTypes(Token **listToken, int nbNodes) {
+void assignTypes(Token **listToken, int nbNodes)
+{
 
-    for (int i = 0; i < nbNodes; i++) {
-        switch (listToken[i]->value[0]) {
-            case '=':
-                listToken[i]->type = EQ_OP;
-                break;
-            case '+':
-            case '-':
-            case '/':
-            case '%':
-            case '&':
-            case '^':
-            case '>':
-            case '<':
-            case '!':
-                listToken[i]->type = Operator;
-                break;
-            case '*':
-                listToken[i]->type = MUL_ASSIGN;
-                break;
-            case ',':
-                listToken[i]->type = COMA;
-                break;
-            case ';':
-                listToken[i]->type = DotComa;
-                break;
-            case ':':
-            case '\'':
-            case '"':
-            case ' ':
-            case '\t':
-            case '\n':
-            case '[':
-            case ']':
-            case '|':
-                listToken[i]->type = Delimiter;
-                break;
-            case '{':
-                listToken[i]->type = OpenBracket;
-                break;
-            case '}':
-                listToken[i]->type = ClosedBracket;
-                break;
-            case ')':
-                listToken[i]->type = ClosedPar;
-                break;
-            case '(':
-                listToken[i]->type = OpenPar;
-                break;
-            default:
-                listToken[i]->type = IDENTIFIER; // INDITENFIER
-                break;
+    for (int i = 0; i < nbNodes; i++)
+    {
+        if ((listToken[i]->value[0] == '+' && listToken[i + 1]->value[0] == '+') ||
+            (listToken[i]->value[0] == '+' && listToken[i + 1]->value[0] == '+'))
+        {
+            listToken[i]->type = INC_OP;
+            listToken[i + 1]->type = INC_OP;
+            i++;
+            continue;
+        }
+        switch (listToken[i]->value[0])
+        {
+        case '=':
+            listToken[i]->type = EQ_OP;
+            break;
+        case '+':
+        case '-':
+        case '/':
+        case '%':
+        case '&':
+        case '^':
+        case '>':
+        case '<':
+        case '!':
+            listToken[i]->type = Operator;
+            break;
+        case '*':
+            listToken[i]->type = MUL_ASSIGN;
+            break;
+        case ',':
+            listToken[i]->type = COMA;
+            break;
+        case ';':
+            listToken[i]->type = DotComa;
+            break;
+        case ':':
+        case '\'':
+        case '"':
+        case ' ':
+        case '\t':
+        case '\n':
+        case '[':
+        case ']':
+        case '|':
+            listToken[i]->type = Delimiter;
+            break;
+        case '{':
+            listToken[i]->type = OpenBracket;
+            break;
+        case '}':
+            listToken[i]->type = ClosedBracket;
+            break;
+        case ')':
+            listToken[i]->type = ClosedPar;
+            break;
+        case '(':
+            listToken[i]->type = OpenPar;
+            break;
+        default:
+            listToken[i]->type = IDENTIFIER; // INDITENFIER
+            break;
         }
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '*')
             listToken[i]->type = Nothing;
