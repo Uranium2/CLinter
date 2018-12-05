@@ -143,7 +143,6 @@ void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int 
             *inComment = 1;
         else
             *inComment = 0;
-        *right = *right + 1;
         char *sub = getSubString(str, *left, *right);
         listToken[*countList] = createToken(Comment, sub, *left);
         *right = *right + 1;
