@@ -187,9 +187,7 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
     int countList = 0;
 
     if (*inComment == 1)
-    {
         checkCommentBlock(&left, &right, str, listToken, &countList, inComment, c);
-    }
 
     while (right <= len - 1 && right >= left)
     {
