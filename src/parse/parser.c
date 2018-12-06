@@ -104,7 +104,7 @@ int canBeExpe(char c, char *str, int right)
  * @param str String containing text
  * @return int 0 false else true
  */
-void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList, int* inComment, Collector *c)
+void checkCommentBlock(int *left, int *right, char *str, Token **listToken, int *countList, int *inComment, Collector *c)
 {
     if (*inComment == 1)
     {
@@ -189,7 +189,6 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
     if (*inComment == 1)
     {
         checkCommentBlock(&left, &right, str, listToken, &countList, inComment, c);
-
     }
 
     while (right <= len - 1 && right >= left)
@@ -205,7 +204,7 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
             assignTypes(listToken, *nbNodes);
             return listToken;
         }
-        
+
         while (!isDelim(str[right])) // extend right until end of "word"
             right++;
         if (str[right] == '\"')

@@ -8,7 +8,6 @@
 */
 #include "checker.h"
 
-
 /**
  * @brief Debug function to print Grammar errors
  * 
@@ -30,6 +29,8 @@ void printErr(char *expected, char *found)
  */
 int match(Token *tok, Type type, char *val)
 {
+    if (tok == NULL)
+        return 0;
     if (type == tok->type)
     {
         if (val == NULL)
@@ -48,14 +49,18 @@ int match(Token *tok, Type type, char *val)
  */
 void nextTok(int *pos, int nbNode, Token **tokens)
 {
-    if (*pos == nbNode - 1)
-    {
+    if (tokens[*pos] == NULL)
         return;
-    }
+    if (*pos == nbNode)
+        return;
     *pos = *pos + 1;
 
     while (match(tokens[*pos], Delimiter, " ") || match(tokens[*pos], Delimiter, "\t") || tokens[*pos]->type == Delimiter)
+    {
         *pos = *pos + 1;
+        if (*pos == nbNode)
+            return;
+    }
 }
 
 /**
@@ -69,14 +74,12 @@ void nextTok(int *pos, int nbNode, Token **tokens)
  */
 int eatToken(Token **tokens, Type type, int *pos, int nbNode)
 {
-    if (tokens[*pos]->type != type)
-    {
+    if (*pos  >= nbNode)
         return 0;
-    }
-    if (nbNode == 2)
+    if (tokens[*pos]->type != type)
         return 0;
     nextTok(pos, nbNode, tokens);
-    if (*pos + 1 == nbNode)
+    if (*pos - 1 == nbNode)
         return 0;
     return 1;
 }
@@ -249,7 +252,7 @@ int getType(Token **tokens, int *pos, int nbNode, Stack *stack, Collector *c)
  */
 void varDeclare(Token **tokens, int *pos, int nbNode, Stack *stack, Collector *c)
 {
-    while (*pos != nbNode)
+    while (*pos <= nbNode)
     {
         getCall(tokens, pos, nbNode, stack, c);
         if (getType(tokens, pos, nbNode, stack, c))

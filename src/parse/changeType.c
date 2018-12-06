@@ -82,6 +82,8 @@ void assignTypes(Token **listToken, int nbNodes)
             listToken[i]->type = Comment;
         if (listToken[i]->value[0] == '/' && listToken[i]->value[1] == '/')
             listToken[i]->type = Comment;
+        if (strcmp("if", listToken[i]->value) == 0)
+            listToken[i]->type = IF;
         if (strcmp("int", listToken[i]->value) == 0)
             listToken[i]->type = INT;
         if (strcmp("long", listToken[i]->value) == 0)

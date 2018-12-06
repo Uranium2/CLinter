@@ -75,6 +75,21 @@ int isNum(char *str)
     return 1;
 }
 
+void change_color(Token *tok)
+{
+
+    switch (tok->type)
+    {
+    case IF:
+        printf(YEL);
+        break;
+
+    default:
+        printf(RESET);
+        break;
+    }
+}
+
 /**
  * @brief Main printing function. It will print the a line of code given in a list of tokens.
  * 
@@ -87,7 +102,10 @@ void print_line(int nbNodes, Token **tokenList, int debug)
     if (!debug)
     {
         for (int j = 0; j < nbNodes; j++)
+        {
+            change_color(tokenList[j]);
             printf("%s", tokenList[j]->value);
+        }
     }
     else
     {
