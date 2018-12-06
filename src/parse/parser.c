@@ -193,7 +193,8 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
     }
 
     while (right <= len - 1 && right >= left)
-    { // stop when reach end of string or left cursor reaches right cursor
+    {
+        // stop when reach end of string or left cursor reaches right cursor
         char *cString = malloc_collect(c, sizeof(char));
         cString[0] = str[right];
         cString[1] = '\0';
@@ -205,7 +206,7 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
             return listToken;
         }
         
-        if (!isDelim(str[right])) // extend right until end of "word"
+        while (!isDelim(str[right])) // extend right until end of "word"
             right++;
         if (str[right] == '\"')
         {

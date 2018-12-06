@@ -106,7 +106,7 @@ void checkUndeclaredVar(Stack *st, char *file)
  */
 void checkUndeclaredFunc(Stack *st, char *file)
 {
-    for (int i = st->top[st->posTopBase] - 1; i != st->base[st->posTopBase]; i--)
+    for (int i = st->top[st->posTopBase] - 1; i >= st->base[st->posTopBase]; i--)
     {
         if (st->itemNames[i]->isDeclaration || st->itemNames[i]->isVar)
             continue;

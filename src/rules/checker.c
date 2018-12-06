@@ -73,6 +73,8 @@ int eatToken(Token **tokens, Type type, int *pos, int nbNode)
     {
         return 0;
     }
+    if (nbNode == 2)
+        return 0;
     nextTok(pos, nbNode, tokens);
     if (*pos + 1 == nbNode)
         return 0;
