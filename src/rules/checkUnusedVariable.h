@@ -1,6 +1,9 @@
-//
-// Created by Théo Huchard on 26/11/18.
-//
+/**
+* @file checkUnusedVariable.h
+* @brief Header file of checkUnusedVariable
+* @author Antoine TAVERNIER. New file created by Théo Huchard on 03/12/2018
+* @date 16/11/2018
+*/
 
 #ifndef CLINTER_CHECKUNUSEDVARIABLE_H
 #define CLINTER_CHECKUNUSEDVARIABLE_H

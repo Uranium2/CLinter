@@ -1,6 +1,10 @@
-//
-// Created by Théo Huchard on 26/11/18.
-//
+/**
+* @file checkUnusedFunction.c
+* @brief This c file will apply the checkUnusedFunction rule.
+* @author Antoine TAVERNIER. New file created by Théo Huchard on 03/12/2018
+* @date 16/11/2018
+*/
+
 #include "checkUnusedFunction.h"
 
 

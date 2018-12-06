@@ -1,6 +1,9 @@
-//
-// Created by theo on 03/12/18.
-//
+/**
+* @file checkCommentsHeader.h
+* @brief Header file of checkCommentsHeader
+* @author Antoine TAVERNIER. New file created by Théo Huchard on 03/12/2018
+* @date 16/11/2018
+*/
 
 #ifndef CLINTER_CHECKCOMMENTSHEADER_H
 #define CLINTER_CHECKCOMMENTSHEADER_H

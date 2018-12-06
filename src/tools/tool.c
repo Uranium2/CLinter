@@ -75,6 +75,13 @@ int isNum(char *str)
     return 1;
 }
 
+/**
+ * @brief Main printing function. It will print the a line of code given in a list of tokens.
+ * 
+ * @param nbNodes Number of nodes in the tokenList.
+ * @param tokenList List of Tokens.
+ * @param debug 0 normal printing. Else debug printing. Display types next to the token.
+ */
 void print_line(int nbNodes, Token **tokenList, int debug)
 {
     if (!debug)

@@ -1,6 +1,9 @@
-//
-// Created by theo on 03/12/18.
-//
+/**
+* @file checkUnusedFunction.h
+* @brief Header file of checkUnusedFunction
+* @author Antoine TAVERNIER. New file created by Théo Huchard on 03/12/2018
+* @date 16/11/2018
+*/
 
 #ifndef CLINTER_CHECKUNUSEDFUNCTION_H
 #define CLINTER_CHECKUNUSEDFUNCTION_H

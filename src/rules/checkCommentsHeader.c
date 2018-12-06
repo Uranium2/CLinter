@@ -1,6 +1,9 @@
-//
-// Created by theo on 03/12/18.
-//
+/**
+* @file checkCommentsHeader.c
+* @brief This c file will apply the checkCommentsHeader rule.
+* @author Antoine TAVERNIER. New file created by Théo Huchard on 03/12/2018
+* @date 16/11/2018
+*/
 
 #include "checkCommentsHeader.h"
 #include "../tools/tool.h"

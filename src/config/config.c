@@ -366,7 +366,6 @@ Config *loadConfig(char *path, Collector *c)
     conf->functionParametersType = getVal(configText, "function-parameters-type", nbLines);
     conf->excludedFiles = getFilesName(configText, nbLines, &(conf->nbExcludedFiles), c);
     conf->recursive = getRecursive(configText, nbLines);
-    //debug_config(conf);
 
     if (conf->extends != NULL || conf->extends[0] != '\0')
         mergeConf(conf, conf->extends, c);

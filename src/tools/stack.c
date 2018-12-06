@@ -1,3 +1,12 @@
+/**
+* @file stack.c
+* @brief This c file will contain all functions to create and manipulate a Stack of items.
+*
+* @author Antoine TAVERNIER
+*
+* @date 01/12/2018
+*/
+
 #include "stack.h"
 
 /**
