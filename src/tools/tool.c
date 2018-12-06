@@ -81,9 +81,31 @@ void change_color(Token *tok)
     switch (tok->type)
     {
     case IF:
-        printf(YEL);
+    case ELSE:
+    case SWITCH:
+    case FOR:
+    case CASE:
+    case CONTINUE:
+    case BREAK:
+    case DEFAULT:
+    case RETURN:
+        printf(CYN);
         break;
-
+    case Numerical:
+        printf(CYN);
+        break;
+    case INT:
+    case FLOAT:
+    case CONST:
+    case DOUBLE:
+    case CHAR:
+    case UNSIGNED:
+    case STRUCT:
+    case UNION:
+    case SIGNED:
+    case SIZEOF:
+        printf(BLU);
+        break;
     default:
         printf(RESET);
         break;

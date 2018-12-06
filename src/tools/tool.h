@@ -27,6 +27,26 @@
  */
 #define YEL "\x1B[33m"
 /**
+ * @brief Color Macro for pretty printing in BLUE
+ *
+ */
+#define BLU   "\x1B[34m"
+/**
+ * @brief Color Macro for pretty printing in MAGENTA
+ *
+ */
+#define MAG   "\x1B[35m"
+/**
+ * @brief Color Macro for pretty printing in CYANT
+ *
+ */
+#define CYN   "\x1B[36m"
+/**
+ * @brief Color Macro for pretty printing in GREEN
+ *
+ */
+#define GRN   "\x1B[32m"
+/**
  * @brief Reset to default color the printing color
  *
  */

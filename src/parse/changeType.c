@@ -26,6 +26,19 @@ void assignTypes(Token **listToken, int nbNodes)
             i++;
             continue;
         }
+        if ((listToken[i]->value[0] == '+' && listToken[i + 1]->value[0] == '+') ||
+            (listToken[i]->value[0] == '<' && listToken[i + 1]->value[0] == '=') ||
+            (listToken[i]->value[0] == '>' && listToken[i + 1]->value[0] == '=') ||
+            (listToken[i]->value[0] == '!' && listToken[i + 1]->value[0] == '=') ||
+            (listToken[i]->value[0] == '-' && listToken[i + 1]->value[0] == '>') ||
+            (listToken[i]->value[0] == '&' && listToken[i + 1]->value[0] == '&') ||
+            (listToken[i]->value[0] == '|' && listToken[i + 1]->value[0] == '|'))
+                {
+            listToken[i]->type = INC_OP;
+            listToken[i + 1]->type = INC_OP;
+            i++;
+            continue;
+        }
         switch (listToken[i]->value[0])
         {
         case '=':
@@ -84,6 +97,20 @@ void assignTypes(Token **listToken, int nbNodes)
             listToken[i]->type = Comment;
         if (strcmp("if", listToken[i]->value) == 0)
             listToken[i]->type = IF;
+        if (strcmp("else", listToken[i]->value) == 0)
+            listToken[i]->type = ELSE;
+        if (strcmp("while", listToken[i]->value) == 0)
+            listToken[i]->type = WHILE;
+        if (strcmp("case", listToken[i]->value) == 0)
+            listToken[i]->type = CASE;
+        if (strcmp("break", listToken[i]->value) == 0)
+            listToken[i]->type = BREAK;
+        if (strcmp("continue", listToken[i]->value) == 0)
+            listToken[i]->type = CONTINUE;
+        if (strcmp("for", listToken[i]->value) == 0)
+            listToken[i]->type = FOR;
+        if (strcmp("switch", listToken[i]->value) == 0)
+            listToken[i]->type = SWITCH;
         if (strcmp("int", listToken[i]->value) == 0)
             listToken[i]->type = INT;
         if (strcmp("long", listToken[i]->value) == 0)
