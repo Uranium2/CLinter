@@ -205,8 +205,16 @@ Token **parse(char *str, int *nbNodes, int *inComment, Collector *c)
             return listToken;
         }
 
-        while (!isDelim(str[right])) // extend right until end of "word"
+        while (!isDelim(str[right]) && str[right] != '\0') // extend right until end of "word"
             right++;
+        if (str[right] == '\0') // end of line
+        {
+            listToken[countList] = createToken(Nothing, cString, left, c);
+            countList++;
+            *nbNodes = countList;
+            assignTypes(listToken, *nbNodes);
+            return listToken;
+        }
         if (str[right] == '\"')
         {
             right++;

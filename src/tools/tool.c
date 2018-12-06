@@ -104,7 +104,16 @@ void change_color(Token *tok)
     case UNION:
     case SIGNED:
     case SIZEOF:
+    case VOID:
+    case LONG:
+    case SHORT:
         printf(BLU);
+        break;
+    case Comment:
+        printf(GRN);
+        break;
+    case IDENTIFIER:
+        printf(YEL);
         break;
     default:
         printf(RESET);
