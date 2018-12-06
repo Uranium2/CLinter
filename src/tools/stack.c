@@ -176,9 +176,6 @@ void stackAddScope(Stack *st)
     st->posTopBase = st->posTopBase + 1;
     st->base[st->posTopBase] = newBase;
     st->top[st->posTopBase] = newBase;
-
-    //for (int i = oldBase; i < oldTop; i++)
-    //    stackPushItem(st, st->itemNames[i]);
 }
 
 /**
