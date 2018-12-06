@@ -11,8 +11,15 @@ Collector *collectorInit()
 
 void *malloc_collect(Collector *c, size_t size)
 {
-    //printf("New malloc pos = %d size = %d\n", c->pos, c->size);
     void *p = malloc(size);
+    c->item[c->pos] = p;
+    c->pos++;
+    return p;
+}
+
+void *realloc_collect(Collector *c, void* ptr, size_t size)
+{
+    void *p = realloc(ptr, size);
     c->item[c->pos] = p;
     c->pos++;
     return p;
@@ -25,6 +32,6 @@ void collectorFree(Collector *c)
     {
         free(c->item[i]);
     }
-    //free(c->item);
+    free(c->item);
     free(c);
 }

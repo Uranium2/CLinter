@@ -12,7 +12,7 @@
 #include "tools/collector.h"
 
 // Config
-#include "config/config.h"
+//#include "config/config.h"
 #include "tools/freeAll.h"
 #include "file/listFiles.h"
 

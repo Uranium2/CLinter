@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     int pos = 0;
     int inComment = 0;
     // TODO : Add LinterMemory for unusedvariable etc..
-    LinterMemory *lm = addElement("", 0, 0, NULL);
+    //LinterMemory *lm = addElement("", 0, 0, NULL);
 
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles, collector);
 
@@ -37,7 +37,8 @@ int main(int argc, char *argv[])
         int statusHeader = 0;
         Stack *stack = stackInit(collector);
         char **codeText = getAllLines(files[o], &nbLines, collector);
-
+        if (codeText == NULL)
+            continue;
         // Travels each lines in file
         for (int i = 0; i < nbLines; i++)
         {

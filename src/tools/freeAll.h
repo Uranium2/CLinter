@@ -18,7 +18,7 @@
 
 void clean_text(char **codeText, int nbLines);
 
-void free_conf(Config *conf);
+//void free_conf(Config *conf);
 
 void free_text(char **codeText, int nbLines);
 

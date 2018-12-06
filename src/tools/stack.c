@@ -193,9 +193,9 @@ void stackPush(Stack *st, Token *tok, int isDeclaration, int isCall, int varOrFu
     if (st->size == st->top[st->posTopBase] || st->size == st->posTopBase)
     {
         st->size = st->size * 2;
-        st->top = realloc(st->top, sizeof(int *) * st->size);
-        st->base = realloc(st->base, sizeof(int *) * st->size);
-        st->itemNames = realloc(st->itemNames, sizeof(int *) * st->size);
+        st->top = realloc_collect(c, st->top, sizeof(int *) * st->size);
+        st->base = realloc_collect(c, st->base, sizeof(int *) * st->size);
+        st->itemNames = realloc_collect(c, st->itemNames, sizeof(int *) * st->size);
     }
     // Do stuff
     ItemName *it = malloc_collect(c, sizeof(ItemName));

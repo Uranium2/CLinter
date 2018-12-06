@@ -12,9 +12,10 @@
 #include <stdio.h>
 #include <string.h>
 
+
 #include "../tools/collector.h"
 #include "../file/files.h"
-
+#include "../tools/freeAll.h"
 
 
 

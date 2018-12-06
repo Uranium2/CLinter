@@ -10,46 +10,47 @@
  * @brief Prints debug file content
  * @param Config struct
  */
-void debug_config(Config *r) {
+void debug_config(Config *r)
+{
     printf(
-            "extends : %s \n"
-            "arrayBracketEol : %c \n"
-            "operatorsSpacing : %c \n"
-            "commaSpacing : %c \n"
-            "indent : %c \n"
-            "commentsHeader : %c \n"
-            "maxLineNumbers : %c \n"
-            "maxFileLineNumbers : %c \n"
-            "noTrallingSpaces : %c \n"
-            "NoMultiDeclaration : %c \n"
-            "unusedVariable : %c \n"
-            "undeclaredVariable : %c \n"
-            "noPrototype : %c \n"
-            "unusedFunction : %c \n"
-            "undeclaredFunction : %c \n"
-            "variableAssignmentType : %c \n"
-            "functionParametersType : %c \n"
-            "recursive : %c \n"
-            "nbExcludedFiles : %c \n",
-            r->extends,
-            r->arrayBracketEol,
-            r->operatorsSpacing,
-            r->commaSpacing,
-            r->indent,
-            r->commentsHeader,
-            r->maxLineNumbers,
-            r->maxFileLineNumbers,
-            r->noTrallingSpaces,
-            r->NoMultiDeclaration,
-            r->unusedVariable,
-            r->undeclaredVariable,
-            r->noPrototype,
-            r->unusedFunction,
-            r->undeclaredFunction,
-            r->variableAssignmentType,
-            r->functionParametersType,
-            r->recursive,
-            r->nbExcludedFiles);
+        "extends : %s \n"
+        "arrayBracketEol : %c \n"
+        "operatorsSpacing : %c \n"
+        "commaSpacing : %c \n"
+        "indent : %c \n"
+        "commentsHeader : %c \n"
+        "maxLineNumbers : %c \n"
+        "maxFileLineNumbers : %c \n"
+        "noTrallingSpaces : %c \n"
+        "NoMultiDeclaration : %c \n"
+        "unusedVariable : %c \n"
+        "undeclaredVariable : %c \n"
+        "noPrototype : %c \n"
+        "unusedFunction : %c \n"
+        "undeclaredFunction : %c \n"
+        "variableAssignmentType : %c \n"
+        "functionParametersType : %c \n"
+        "recursive : %c \n"
+        "nbExcludedFiles : %c \n",
+        r->extends,
+        r->arrayBracketEol,
+        r->operatorsSpacing,
+        r->commaSpacing,
+        r->indent,
+        r->commentsHeader,
+        r->maxLineNumbers,
+        r->maxFileLineNumbers,
+        r->noTrallingSpaces,
+        r->NoMultiDeclaration,
+        r->unusedVariable,
+        r->undeclaredVariable,
+        r->noPrototype,
+        r->unusedFunction,
+        r->undeclaredFunction,
+        r->variableAssignmentType,
+        r->functionParametersType,
+        r->recursive,
+        r->nbExcludedFiles);
 }
 
 /**
@@ -60,7 +61,8 @@ void debug_config(Config *r) {
  * @param nb2 Number of strings in 2
  * @return char** The total content of both texts
  */
-char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c) {
+char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c)
+{
     int nbTotal = *nb1 + *nb2;
     char **txt3 = malloc_collect(c, sizeof(char *) * nbTotal);
     int j = 0;
@@ -68,7 +70,8 @@ char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c) {
     for (int i = 0; i < *nb1; i++)
         txt3[i] = txt1[i];
 
-    for (int i = *nb1; i < nbTotal; i++) {
+    for (int i = *nb1; i < nbTotal; i++)
+    {
         txt3[i] = txt2[j];
         j++;
     }
@@ -82,7 +85,8 @@ char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c) {
  * @param argv List of argument of main
  * @return char* Name of config file
  */
-char *getConfigFile(int argc, char **argv) {
+char *getConfigFile(int argc, char **argv)
+{
     for (int i = 1; i < argc; i++)
         if (strstr(argv[i], ".lconf") != NULL)
             return argv[i];
@@ -94,7 +98,8 @@ char *getConfigFile(int argc, char **argv) {
  * @param filename A file path
  * @return int false (0) if not contains .lconf else true (1)
  */
-int isValidConfFile(char *filename) {
+int isValidConfFile(char *filename)
+{
     char *dot = strrchr(filename, '.');
     if (!dot || dot == filename)
         return 0;
@@ -110,10 +115,13 @@ int isValidConfFile(char *filename) {
  * @param nbLines Number of lines in the file
  * @return short 0 false else true
  */
-short getRecursive(char **file, int nbLines) {
+short getRecursive(char **file, int nbLines)
+{
 
-    for (int i = 0; i < nbLines - 1; i++) {
-        if (strstr(file[i], "=recursive") != NULL) {
+    for (int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "=recursive") != NULL)
+        {
             if (strstr(file[i + 1], "true") != NULL)
                 return 1;
         }
@@ -127,10 +135,13 @@ short getRecursive(char **file, int nbLines) {
  * @param nbLines Number of lines in the file
  * @return char* A file name
  */
-char *getExtends(char **file, int nbLines, Collector *c) {
+char *getExtends(char **file, int nbLines, Collector *c)
+{
 
-    for (int i = 0; i < nbLines - 1; i++) {
-        if (strstr(file[i], "extends") != NULL) {
+    for (int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "extends") != NULL)
+        {
             char *res = malloc_collect(c, sizeof(char) * strlen(file[i + 1]));
             res = file[i + 1];
             return res;
@@ -146,16 +157,21 @@ char *getExtends(char **file, int nbLines, Collector *c) {
  * @param NbFiles Number of excluded files updated
  * @return char** List of files name
  */
-char **getFilesName(char **file, int nbLines, int *NbFiles, Collector *c) {
+char **getFilesName(char **file, int nbLines, int *NbFiles, Collector *c)
+{
     int countFiles = 0;
     char **fileNames = malloc_collect(c, sizeof(char *) * 20); // MAX 20 FILES. BAD IDEA
-    for (int i = 0; i < nbLines - 1; i++) {
-        if (strstr(file[i], "excludedFiles") != NULL) {
+    for (int i = 0; i < nbLines - 1; i++)
+    {
+        if (strstr(file[i], "excludedFiles") != NULL)
+        {
             i++;
             char *p = NULL;
-            while (file[i][0] == '-') {
+            while (file[i][0] == '-')
+            {
                 p = strrchr(file[i], ' ');
-                if (p && *(p + 1)) {
+                if (p && *(p + 1))
+                {
                     fileNames[countFiles] = p + 1;
                     countFiles++;
                 }
@@ -182,13 +198,21 @@ char **getFilesName(char **file, int nbLines, int *NbFiles, Collector *c) {
  * @param nbLines Number of lines in the lconf file
  * @return int 0 false else true
  */
-int getVal(char **file, char *rule, int nbLines) {
+int getVal(char **file, char *rule, int nbLines)
+{
 
-    for (int i = 0; i < nbLines; i++) {
+    for (int i = 0; i < nbLines; i++)
+    {
 
-        if (strstr(file[i], rule) != NULL) {
+        if (strstr(file[i], rule) != NULL)
+        {
             char *p = strrchr(file[i], ' ');
-            if (p && *(p + 1)) {
+            if (p && *(p + 1))
+            {
+                if (strstr(file[i], "on\n") != NULL)
+                    return 1;
+                if (strstr(file[i], "off\n") != NULL)
+                    return 0;
                 if (strstr(file[i], "on") != NULL)
                     return 1;
                 if (strstr(file[i], "off") != NULL)
@@ -207,7 +231,8 @@ int getVal(char **file, char *rule, int nbLines) {
  * @param path The path to the new configuration to merge with the original structure
  * @return 0 false else true
  */
-int containsConfigFile(Config *conf, char *path) {
+int containsConfigFile(Config *conf, char *path)
+{
     int index = 0;
     while (path[index] != '\0')
         index++;
@@ -225,7 +250,8 @@ int containsConfigFile(Config *conf, char *path) {
  * @param conf Original configuration structure
  * @param path The path to the new configuration to merge with the original structure
  */
-void mergeConf(Config *conf, char *path, Collector *c) {
+void mergeConf(Config *conf, char *path, Collector *c)
+{
     // check if conf is already loaded
     if (containsConfigFile(conf, path))
         return;
@@ -236,6 +262,8 @@ void mergeConf(Config *conf, char *path, Collector *c) {
         return;
     else
         configText = getAllLines(path, &nbLines, c);
+    if (configText == NULL)
+        return;
 
     Config *conf2 = malloc_collect(c, sizeof(Config));
     conf2->extends = getExtends(configText, nbLines, c);
@@ -278,8 +306,8 @@ void mergeConf(Config *conf, char *path, Collector *c) {
     conf->excludedFiles = mergeText(conf->excludedFiles, &conf->nbExcludedFiles, conf2->excludedFiles,
                                     &conf2->nbExcludedFiles, c);
     conf->recursive += conf->recursive;
-
     mergeConf(conf, conf->extends, c);
+    free_text(configText, nbLines);
 }
 
 /**
@@ -288,23 +316,36 @@ void mergeConf(Config *conf, char *path, Collector *c) {
  * @param path Configuration file
  * @return Config* Configuration structure from given file
  */
-Config *loadConfig(char *path, Collector *c) {
+Config *loadConfig(char *path, Collector *c)
+{
     char **configText;
     int nbLines = 0;
     Config *conf = malloc_collect(c, sizeof(Config));
     conf->nbconfigFileName = 0;
     conf->configFileName = malloc_collect(c, sizeof(char *) * 100); // "only 100 files"
 
-    if (!isValidConfFile(path)) {
+    if (!isValidConfFile(path))
+    {
         configText = getAllLines("default.lconf", &nbLines, c);
+        if (configText == NULL)
+        {
+            // faire une conf vide?
+            return conf;
+        }
         conf->configFileName[conf->nbconfigFileName] = "default.lconf";
         conf->nbconfigFileName++;
-    } else {
+    }
+    else
+    {
         configText = getAllLines(path, &nbLines, c);
+        if (configText == NULL)
+        {
+            // faire une conf vide?
+            return conf;
+        }
         conf->configFileName[conf->nbconfigFileName] = path;
         conf->nbconfigFileName++;
     }
-
 
     conf->extends = getExtends(configText, nbLines, c);
     conf->arrayBracketEol = getVal(configText, "array-bracket-eol", nbLines);
@@ -329,5 +370,6 @@ Config *loadConfig(char *path, Collector *c) {
 
     if (conf->extends != NULL || conf->extends[0] != '\0')
         mergeConf(conf, conf->extends, c);
+    free_text(configText, nbLines);
     return conf;
 }
