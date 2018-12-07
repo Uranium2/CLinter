@@ -135,7 +135,7 @@ void assignTypes(Token **listToken, int nbNodes)
         if (strcmp("float", listToken[i]->value) == 0)
             listToken[i]->type = FLOAT;
         if (strcmp("const", listToken[i]->value) == 0)
-            listToken[i]->type = Delimiter;
+            listToken[i]->type = CONST;
         if (strcmp("unsigned", listToken[i]->value) == 0)
             listToken[i]->type = UNSIGNED;
         if (strcmp("signed", listToken[i]->value) == 0)
