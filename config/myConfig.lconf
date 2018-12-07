@@ -2,16 +2,22 @@
 default.lconf
 
 =rules
-- array-bracket-eol = on
+- array-bracket-eol = on 
 - no-trailing-spaces = on
 - operators-spacing = on
+- comma-spacing = on
 - max-line-numbers = 80
 - max-file-line-numbers = 80
 - no-multi-declaration = on
+- comments-header = on
+- unused-variable = on
+- unused-function = on
+- undeclared-function = on
+- undeclared-variable = on
 
 
 =excludedFiles
-- test.c
+- main.c
 - hello2.c
 - hello3.c
 - hello4.c
