@@ -59,7 +59,7 @@ The '**make all**' command will generate a binary, named **linter**, in the **te
 
 ## To generate and view documentation
 
-- Prerequisite: Install doxygen and graphviz 
+- Prerequisite: Install doxygen and graphviz
 
 ```console
 CLinter:~$ sudo apt-get install doxygen
