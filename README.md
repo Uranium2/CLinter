@@ -90,7 +90,6 @@ CLinter:~$ ./linter [path/to/config/file]
 
 ## TODO
 
-
 - Partie 1:
   - [x] Récursif sur les dossiers
   - [x] Charger récursivement les fichiers de configuration
