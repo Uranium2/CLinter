@@ -2,9 +2,10 @@
 myConfig.lconf
 
 =rules
-- array-bracket-eol = on
+- array-bracket-eol = on 
 - no-trailing-spaces = on
 - operators-spacing = on
+- comma-spacing = on
 - max-line-numbers = 80
 - max-file-line-numbers = 80
 - no-multi-declaration = on
