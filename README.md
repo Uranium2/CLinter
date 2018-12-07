@@ -113,4 +113,4 @@ CLinter:~$ ./linter [path/to/config/file]
   - [ ] variable-assignment-type
   - [ ] function-parameters-type
 - Mémoire:
-  - [ ] Free all. :-1: Gros leak mémoire
+  - [x] Free all.
