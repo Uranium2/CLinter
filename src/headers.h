@@ -28,5 +28,4 @@
 #include "rules/checkUnusedVariable.h"
 #include "rules/checkCommaSpacing.h"
 
-
 #endif

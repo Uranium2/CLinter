@@ -23,7 +23,7 @@ void checkMaxLineNumbers(int line, int nbChar, int maxLine, char *fileName) {
 }
 
 /**
- * @brief
+ * @brief max-file-line-numbers
  *
  * @param nbLines Number of lines in the file
  * @param linesConf Number max of lines in a file from configuration

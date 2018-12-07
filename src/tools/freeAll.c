@@ -14,19 +14,20 @@
  * @param codeText A list of string
  * @param nbLines Number of strings in the list
  */
-void clean_text(char **codeText, int nbLines) {
-    if (nbLines < 1) {
+void clean_text(char **codeText, int nbLines)
+{
+    if (nbLines < 1)
+    {
         return;
     }
 
-    for (int i = 0; i < nbLines; i++) {
-
-        for (int j = 0; j < 255; j++) {
+    for (int i = 0; i < nbLines; i++)
+    {
+        for (int j = 0; j < 255; j++)
+        {
             codeText[i][j] = '\0';
         }
-
     }
-
 }
 
 /**
@@ -35,10 +36,10 @@ void clean_text(char **codeText, int nbLines) {
  * @param files List of files
  * @param nbFiles Number of files in the list
  */
-void free_files(char **files, int nbFiles) {
-    if (nbFiles < 1) {
+void free_files(char **files, int nbFiles)
+{
+    if (nbFiles < 1)
         return;
-    }
 
     for (int i = 0; i < nbFiles; i++)
         free(files[i]);
@@ -52,12 +53,13 @@ void free_files(char **files, int nbFiles) {
  * @param tokenList List of Tokens to free
  * @param nbNodes Numbers of Tokens in the list
  */
-void free_tokenList(Token **tokenList, int nbNodes) {
-    if (nbNodes < 1) {
+void free_tokenList(Token **tokenList, int nbNodes)
+{
+    if (nbNodes < 1)
         return;
-    }
 
-    for (int j = 0; j < nbNodes; j++) {
+    for (int j = 0; j < nbNodes; j++)
+    {
         free(tokenList[j]->value);
         free(tokenList[j]);
     }
@@ -70,10 +72,10 @@ void free_tokenList(Token **tokenList, int nbNodes) {
  * @param codeText A list of string
  * @param nbLines Number of strings in the list
  */
-void free_text(char **codeText, int nbLines) {
-    if (nbLines < 1) {
+void free_text(char **codeText, int nbLines)
+{
+    if (nbLines < 1)
         return;
-    }
 
     for (int i = 0; i < nbLines; i++)
         free(codeText[i]);
@@ -84,14 +86,14 @@ void free_text(char **codeText, int nbLines) {
  * 
  * @param conf Config structure
  */
-void free_conf(Config *conf) {
-    if (conf == NULL){
+void free_conf(Config *conf)
+{
+    if (conf == NULL)
         return;
-    }
-    //Free ExcludedFiles[i]?
 
     free(conf->excludedFiles);
-    if (conf->extends == NULL) {
+    if (conf->extends == NULL)
+    {
         free(conf->extends);
     }
     free(conf);

@@ -6,8 +6,9 @@
 #include <stdio.h>
 #include "linterMemory.h"
 
-LinterMemory* addElement(char * type,int line, int position, char *filename){
-    LinterMemory * lm = malloc(sizeof(LinterMemory));
+LinterMemory *addElement(char *type, int line, int position, char *filename)
+{
+    LinterMemory *lm = malloc(sizeof(LinterMemory));
     lm->type = type;
     lm->filename = filename;
     lm->position = position;
@@ -15,17 +16,20 @@ LinterMemory* addElement(char * type,int line, int position, char *filename){
     lm->next = NULL;
     return lm;
 }
-void freeLinterMemory(LinterMemory * lm){
-    if(lm->next != NULL)
+void freeLinterMemory(LinterMemory *lm)
+{
+    if (lm->next != NULL)
         freeLinterMemory(lm->next);
     free(lm);
 }
-void printLinterMemory(LinterMemory * lm){
-    while(lm != NULL){
-        printf("%s",lm->type);
-        printf("%s",lm->filename);
-        printf("%d",lm->position);
-        printf("%d",lm->line);
+void printLinterMemory(LinterMemory *lm)
+{
+    while (lm != NULL)
+    {
+        printf("%s", lm->type);
+        printf("%s", lm->filename);
+        printf("%d", lm->position);
+        printf("%d", lm->line);
         lm = lm->next;
     }
 }

@@ -16,7 +16,8 @@
  * @param line Line in the file
  * @param fileName File name we are working on
  */
-void checkBracket(Token **listToken, int line, char *fileName) {
+void checkBracket(Token **listToken, int line, char *fileName)
+{
     if (strcmp(listToken[0]->value, "{") == 0)
         print_warning("Bad bracket", line, 0, fileName);
 }

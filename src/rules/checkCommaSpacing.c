@@ -15,9 +15,8 @@ void checkCommaSpacing(Token **listToken, int nbToken, int line, char *fileName,
 {
     if (*inComment == 1)
         return;
-    
-    
-    for(int i = 0; i < nbToken; i++)
+
+    for (int i = 0; i < nbToken; i++)
     {
         if (listToken[i]->type == COMA)
         {
@@ -27,6 +26,4 @@ void checkCommaSpacing(Token **listToken, int nbToken, int line, char *fileName,
                 print_warning("Missing space after comma", line, listToken[i]->pos, fileName);
         }
     }
-    
-    
 }

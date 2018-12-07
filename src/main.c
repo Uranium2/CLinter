@@ -4,11 +4,13 @@
 * @author Antoine TAVERNIER
 * @date 16/11/2018
 */
+
 #include "headers.h"
 #include "tools/linterMemory.h"
 
 /**
  * @brief The main entrance point of the program containing all the logic.
+ *
  * @param argc Number of arguments
  * @param argv List of arguments
  * @return int 0 Good else Bad
@@ -24,21 +26,20 @@ int main(int argc, char *argv[])
     //Counters
     int pos = 0;
     int inComment = 0;
-    // TODO : Add LinterMemory for unusedvariable etc..
-    //LinterMemory *lm = addElement("", 0, 0, NULL);
 
     getFiles(files, &pos, conf->recursive, conf->excludedFiles, ".", conf->nbExcludedFiles, collector);
 
     // Run parsing for each files
     for (int o = 0; o < pos; o++)
     {
-
         int nbLines = 0;
         int statusHeader = 0;
         Stack *stack = stackInit(collector);
         char **codeText = getAllLines(files[o], &nbLines, collector);
+
         if (codeText == NULL)
             continue;
+
         // Travels each lines in file
         for (int i = 0; i < nbLines; i++)
         {
@@ -68,7 +69,7 @@ int main(int argc, char *argv[])
             if (conf->commentsHeader)
                 checkCommentsHeader(tokenList, nbNodes, i + 1, files[o], &statusHeader, nbLines - 1);
         }
-        //stackPrint(stack);
+
         if (conf->maxFileLineNumbers)
             checkmaxFileLineNumbers(nbLines, conf->maxFileLineNumbers, files[o]);
         if (conf->unusedVariable)
@@ -81,11 +82,7 @@ int main(int argc, char *argv[])
             checkUndeclaredFunc(stack, files[0]);
         free_text(codeText, nbLines);
     }
-
     collectorFree(collector);
-    //freeLinterMemory(lm);
-    //free_conf(conf);
-    //free_files(files, pos);
 
     return 0;
 }

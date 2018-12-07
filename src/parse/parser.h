@@ -21,7 +21,6 @@
 #include "changeType.h"
 #include "../tools/collector.h"
 
-
 Token **parse(char *str, int *nbNodes, int *inComment, Collector *c);
 
 int isOpe(char c);

@@ -18,7 +18,6 @@
 #include "../parse/parser.h"
 #include "../tools/stack.h"
 
-
 void check(Token **listToken, int nbToken, Stack *stack, Collector *c);
 
 int containsStr(Token **listToken, int nbToken, char *str);

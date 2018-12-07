@@ -74,7 +74,7 @@ void nextTok(int *pos, int nbNode, Token **tokens)
  */
 int eatToken(Token **tokens, Type type, int *pos, int nbNode)
 {
-    if (*pos  >= nbNode)
+    if (*pos >= nbNode)
         return 0;
     if (tokens[*pos]->type != type)
         return 0;

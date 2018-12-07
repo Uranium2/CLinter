@@ -44,7 +44,7 @@ void assignTypes(Token **listToken, int nbNodes)
             (listToken[i]->value[0] == '\'' && listToken[i + 1]->value[0] == '=') ||
             (listToken[i]->value[0] == '\'' && listToken[i + 1]->value[0] == '!') ||
             (listToken[i]->value[0] == '\'' && listToken[i + 1]->value[0] == '^'))
-                {
+        {
             listToken[i]->type = INC_OP;
             listToken[i + 1]->type = INC_OP;
             i++;

@@ -19,9 +19,10 @@
  * @brief Enumeration to store type of a Token
  * 
  */
-typedef enum Type_e {
+typedef enum Type_e
+{
     // old types
-            Operator,
+    Operator,
     Delimiter,
     Variable,
     Numerical,
@@ -29,7 +30,7 @@ typedef enum Type_e {
     Var_type,
     Comment,
     // new types
-            OpenPar,
+    OpenPar,
     ClosedPar,
     OpenBracket,
     ClosedBracket,
@@ -102,10 +103,11 @@ typedef enum Type_e {
  * @brief Structure to store a Token
  * 
  */
-typedef struct Token_t {
-    Type type; /**< The type of the Token. */
+typedef struct Token_t
+{
+    Type type;   /**< The type of the Token. */
     char *value; /**< The string representation of the Token. */
-    int pos; /**< The position of the Token in the list of characters of a line. */
+    int pos;     /**< The position of the Token in the list of characters of a line. */
 } Token;
 
 char *getEnumName(Type type);

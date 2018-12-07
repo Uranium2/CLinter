@@ -13,12 +13,9 @@
 #include <string.h>
 #include <limits.h>
 
-
 #include "../tools/collector.h"
 #include "../file/files.h"
 #include "../tools/freeAll.h"
-
-
 
 /**
  * @brief Macro to return MAX between integers
@@ -32,14 +29,15 @@
 /**
  * @brief Structure to store all configurations elements
  */
-typedef struct Config_t {
+typedef struct Config_t
+{
     char *extends;
     short arrayBracketEol;
     short operatorsSpacing;
     short commaSpacing;
     short indent; // nb space of indend
     short commentsHeader;
-    short maxLineNumbers; // nb Max char per line
+    short maxLineNumbers;     // nb Max char per line
     short maxFileLineNumbers; // nb Max line per file
     short noTrallingSpaces;
     short NoMultiDeclaration;
@@ -59,7 +57,7 @@ typedef struct Config_t {
 
 int containsConfigFile(Config *conf, char *path);
 
-void debug_config(Config * r);
+void debug_config(Config *r);
 
 char **mergeText(char **txt1, int *nb1, char **txt2, int *nb2, Collector *c);
 
