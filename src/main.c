@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
                 checkSpace(tokenList, nbNodes, i + 1, files[o]);
             if (conf->arrayBracketEol)
                 checkBracket(tokenList, i + 1, files[o]);
+            if (conf->commaSpacing)
+                checkCommaSpacing(tokenList, nbNodes, i + 1, files[o], &inComment);
             if (conf->operatorsSpacing)
                 checkOperator(tokenList, nbNodes, i + 1, files[o]);
             if (conf->commentsHeader)

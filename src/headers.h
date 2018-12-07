@@ -26,6 +26,7 @@
 #include "rules/checkOperatorsSpacing.h"
 #include "rules/checkUnusedFunction.h"
 #include "rules/checkUnusedVariable.h"
+#include "rules/checkCommaSpacing.h"
 
 
 #endif
