@@ -13,4 +13,4 @@ all:
 	$(CC) -o test/$(EXEC) $(SRC) $(CFLAGS)
 
 clean:
-	rm -rf *.o $(EXEC)
+	rm -rf *.o test/$(EXEC) $(EXEC)
