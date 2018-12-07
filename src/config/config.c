@@ -7,6 +7,34 @@
 #include "config.h"
 
 /**
+ * @brief Fill the conf structure with default values.
+ * 
+ * @param conf A default configuration.
+ */
+void defaultConf(Config *conf)
+{
+    conf->extends = NULL;
+    conf->arrayBracketEol = 0;
+    conf->operatorsSpacing = 0;
+    conf->commaSpacing = 0;
+    conf->indent = -1;
+    conf->commentsHeader = 0;
+    conf->maxLineNumbers = SHRT_MAX;
+    conf->maxFileLineNumbers = SHRT_MAX;
+    conf->noTrallingSpaces = 0;
+    conf->NoMultiDeclaration = 0;
+    conf->unusedVariable = 0;
+    conf->undeclaredVariable = 0;
+    conf->noPrototype = 0;
+    conf->unusedFunction = 0;
+    conf->undeclaredFunction = 0;
+    conf->variableAssignmentType = 0;
+    conf->functionParametersType = 0;
+    conf->excludedFiles = NULL;
+    conf->recursive = 0;
+}
+
+/**
  * @brief Prints debug file content
  * @param Config struct
  */
@@ -329,7 +357,7 @@ Config *loadConfig(char *path, Collector *c)
         configText = getAllLines("default.lconf", &nbLines, c);
         if (configText == NULL)
         {
-            // faire une conf vide?
+            defaultConf(conf);
             return conf;
         }
         conf->configFileName[conf->nbconfigFileName] = "default.lconf";
@@ -340,7 +368,7 @@ Config *loadConfig(char *path, Collector *c)
         configText = getAllLines(path, &nbLines, c);
         if (configText == NULL)
         {
-            // faire une conf vide?
+            defaultConf(conf);
             return conf;
         }
         conf->configFileName[conf->nbconfigFileName] = path;
